@@ -1,0 +1,19 @@
+{
+  "name": "sap-empup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishidholkheria/SAP-EmpUp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishidholkheria/SAP-EmpUp/issues"
+  },
+  "homepage": "https://github.com/rishidholkheria/SAP-EmpUp#readme"
+}
