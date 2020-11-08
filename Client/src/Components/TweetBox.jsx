@@ -11,15 +11,18 @@ const TweetBox = () => {
     e.preventDefault();
 
     const newPost = {
-      title: { tweetMessage },
+      aText: { tweetMessage },
+      aImage: { tweetImage },
     };
 
     axios
-      .post(`https://jsonplaceholder.typicode.com/posts`, { newPost })
+      .post("http://localhost:4000/api/announcement", { newPost })
       .then((res) => {
         console.log(res);
         console.log(res.data);
-      });
+      })
+      .then((res) => res.doesNotExist.throwAnError)
+      .catch((err) => err);
 
     setTweetMessage("");
     setTweetImage("");

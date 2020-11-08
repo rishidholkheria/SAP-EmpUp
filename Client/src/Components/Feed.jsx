@@ -8,11 +8,16 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
-      console.log(res);
-      setPosts(res.data);
+    axios.get("http://localhost:4000/api/announcement").then((res) => {
+      // console.log(res);
+      setPosts(res.data.data);
     });
   }, []);
+
+  const reverse = () => {
+    const rev_posts = posts;
+    return rev_posts.reverse();
+  };
 
   return (
     <div className="feed">
@@ -20,22 +25,22 @@ const Feed = () => {
       <div className="feed__header">
         <h1>Home</h1>
       </div>
-
       {/* Tweet Box */}
       <TweetBox />
-
       {/* Post */}
-
-      {posts.map((post) => (
-        <Post
-          displayName={post.userId}
-          // username={post.username}
-          // verified={post.verified}
-          text={post.title}
-          // image={post.image}
-          // avatar={post.avatar}
-        />
-      ))}
+      {[...posts]
+        .reverse()
+        .slice(0, 5)
+        .map((post) => (
+          <Post
+            displayName={post.aId}
+            // username={post.username}
+            // verified={post.verified}
+            text={post.aText}
+            // image={post.image}
+            // avatar={post.avatar}
+          />
+        ))}
     </div>
   );
 };
