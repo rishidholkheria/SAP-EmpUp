@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./Feed.css";
+import axios from "axios";
+import Post from "./Post";
+import TweetBox from "./TweetBox";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/posts").then((res) => {
+      console.log(res);
+      setPosts(res.data);
+    });
+  }, []);
 
   return (
     <div className="feed">
@@ -12,20 +22,20 @@ const Feed = () => {
       </div>
 
       {/* Tweet Box */}
-      {/* <TweetBox /> */}
+      <TweetBox />
 
       {/* Post */}
 
-      {/* {posts.map((post) => (
+      {posts.map((post) => (
         <Post
-          displayName={post.displayName}
-          username={post.username}
-          verified={post.verified}
-          text={post.text}
-          image={post.image}
-          avatar={post.avatar}
+          displayName={post.userId}
+          // username={post.username}
+          // verified={post.verified}
+          text={post.title}
+          // image={post.image}
+          // avatar={post.avatar}
         />
-      ))} */}
+      ))}
     </div>
   );
 };
