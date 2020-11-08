@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/rishidholkheria/SAP-EmpUp/issues"
   },
-  "homepage": "https://github.com/rishidholkheria/SAP-EmpUp#readme"
+  "homepage": "https://github.com/rishidholkheria/SAP-EmpUp#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13",
+    "multer": "^1.4.2",
+    "xlsx": "^0.16.8"
+  }
 }
