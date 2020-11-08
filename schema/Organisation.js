@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 var orgSchema = mongoose.Schema({
+    oId: mongoose.Schema.Types.ObjectId,
     orgName:{
         type: String
     },
