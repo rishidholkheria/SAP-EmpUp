@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Feed.css";
-import Post from "./Post";
-import TweetBox from "./TweetBox";
-import db from "./firebase";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -15,11 +12,11 @@ const Feed = () => {
       </div>
 
       {/* Tweet Box */}
-      <TweetBox />
+      {/* <TweetBox /> */}
 
       {/* Post */}
 
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <Post
           displayName={post.displayName}
           username={post.username}
@@ -28,7 +25,7 @@ const Feed = () => {
           image={post.image}
           avatar={post.avatar}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

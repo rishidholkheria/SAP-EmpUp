@@ -11,22 +11,44 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />
-      <div>
-        <SidebarOption active Icon={HomeIcon} text="Home" />
-      </div>
-      <SidebarOption Icon={SearchIcon} text="Explore" />
-      <SidebarOption Icon={SearchIcon} text="Notifications" />
-      <SidebarOption Icon={SearchIcon} text="Messages" />
-      <SidebarOption Icon={SearchIcon} text="Bookmarks" />
+
+      <Link to="/">
+        <SidebarOption active Icon={HomeIcon} text="Dashboard" />
+      </Link>
+
+      <Link to="/library">
+        <SidebarOption Icon={SearchIcon} text="Library" />
+      </Link>
+
+      <Link to="/payroll">
+        <SidebarOption Icon={SearchIcon} text="Payroll" />
+      </Link>
+
+      <Link to="/commonroom">
+        <SidebarOption Icon={SearchIcon} text="Common Room" />
+      </Link>
+
+      <Link to="/hrd">
+        <SidebarOption Icon={SearchIcon} text="HR Department" />
+      </Link>
+
+      <Link to="/feedback">
+        <SidebarOption Icon={SearchIcon} text="Feedback" />
+      </Link>
+
+      <Link to="/profile">
+        <SidebarOption Icon={SearchIcon} text="Profile" />
+      </Link>
 
       {/* Button -> Tweet */}
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
-        Tweet
+        HR Office
       </Button>
     </div>
   );
