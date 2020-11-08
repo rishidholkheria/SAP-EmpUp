@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-const {genId,getDate} = require('./randomID');
 
 var employeeSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
