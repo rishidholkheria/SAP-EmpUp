@@ -22,11 +22,19 @@ module.exports = connect;
 const uploadXLRoute = require("./routes/uploadXL");
 const uploadEmployee = require("./routes/addEmployee");
 const createAnnouncement = require("./routes/announcement");
+const admin = require('./routes/admin');
+const feedback = require('./routes/feedback');
+const motivation = require('./routes/motivation');
+const organisation = require('./routes/organisation');
 
 //middlewares
 app.use("/api/upload-employee-data", uploadXLRoute);
 app.use("/api/employee", uploadEmployee);
 app.use("/api/announcement", createAnnouncement);
+app.use("/api/admin",admin);
+app.use("/api/feedback",feedback);
+app.use("/api/motivation",motivation);
+app.use("/api/organisation",organisation);
 
 //listening on port
 const PORT = 4000 || process.env.PORT;

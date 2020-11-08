@@ -3,23 +3,23 @@ const app = express();
 const router = express.Router();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const Announcement = require('../schema/Announcement');
-const genId = require('../utils/random');
-const getDate = require('../utils/date')
+const Feedback = require('../schema/Feedback');
+const getDate = require('../utils/date');
 router.use(express.json());
 
 //connect to DB
 const connect = require('../index');
 
 router.post('/',(req,res)=>{
-    const announcement = new Announcement({
-        aId: genId(6),
-        aText: req.body.aText,
-        aImage: req.body.aImage,
-        aDate: getDate()
+    const feedback = new Feedback({
+        feedback: req.body.feedback,
+        complaineeName: req.body.complaineeName,
+        complaineeEmail: req.body.complaineeEmail,
+        complaineeDept: req.body.complaineeDept,
+        complaineeDesig: req.body.complaineeDesig,
+        cDate: getDate()
     });
-    console.log(req.body);
-    announcement.save((err,data)=>{
+    feedback.save((err,data)=>{
         if(err){
             res.send("Error: "+err);
         }
@@ -28,13 +28,13 @@ router.post('/',(req,res)=>{
     });
 });
 
-//get all announcements
+//get all feedback
 router.get('/',async(req,res)=>{
-    const announcement = await Announcement.find({}, (err, result) => {
+    const feedback = await Feedback.find({}, (err, result) => {
         if(!err){
             res.status(200).json({
                 data: result,
-                message: "All announcements.."
+                message: "All feedback.."
             });
         }
         else{
@@ -47,20 +47,20 @@ router.get('/',async(req,res)=>{
     
 });
 
-//get api for a specific annoucement
+//get api for a specific feedback
 router.get('/:id',(req,res)=>{
-    Announcement.findOne({aId: req.params.id},(err,result)=>{
-    //check if announcement exists
+    Feedback.findOne({fId: req.params.id},(err,result)=>{
+    //check if feedback exists
     if(!result) return res.status(404).json({
         data:{},
-        message: 'No such announcement exist. Please check and try again later'
+        message: 'No such feedback exist. Please check and try again later'
     });
 
     //if exist and no err
     if(!err){
         res.status(200).json({
             data:result,
-            message:"Announcement fetched!"
+            message:"Feedback fetched!"
         });
     }
     else{
