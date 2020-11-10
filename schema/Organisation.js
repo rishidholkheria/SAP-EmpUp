@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var orgSchema = mongoose.Schema({
-    oId: mongoose.Schema.Types.ObjectId,
+    oId: String,
     orgName:{
         type: String
     },
@@ -14,11 +14,16 @@ var orgSchema = mongoose.Schema({
     orgEmail:{
         type: String
     },
-    orgContact:{
-        type: String
-    },
     orgWebsite:{
         type: String
+    },
+    monthlyGoal:{
+        type: String,
+        default: ""
+    },
+    notice: {
+        type: [String],
+        default:[""]
     }
 });
 
