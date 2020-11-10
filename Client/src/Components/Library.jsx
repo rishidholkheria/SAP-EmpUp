@@ -8,8 +8,9 @@ const Library = () => {
     <div className="library">
       <div className="library__header">
         <h1>Library</h1>
-        <Book />
       </div>
+      <Book />
+      <Book />
     </div>
   );
 };

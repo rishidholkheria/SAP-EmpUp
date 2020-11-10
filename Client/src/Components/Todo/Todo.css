@@ -1,0 +1,47 @@
+.todo {
+  margin: 0.5rem 0;
+  background: white;
+  font-size: 1rem;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 1s ease;
+  max-width: 100%;
+  min-height: fit-content;
+  /* max-width: calc(100% - 62px); */
+  border: 1px solid rgb(185, 185, 185);
+}
+
+.todo .todo-item {
+  width: 100%;
+
+  max-width: calc(100% - 62px);
+  overflow: hidden;
+  padding: 0.3rem;
+  /* flex: 1; */
+  /* padding: 0rem 0.5rem; */
+}
+
+.trash-btn,
+.complete-btn {
+  background: #ff6f47;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.complete-btn {
+  background: rgb(11, 212, 162);
+}
+
+.fa-trash,
+.fa-check {
+  pointer-events: none;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

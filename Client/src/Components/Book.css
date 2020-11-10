@@ -1,10 +1,22 @@
-.book__container {
-  display: flex;
-  margin: 10px 10px 10px 10px;
-  margin-right: 50px;
+.book {
+  /* max-height: 80px; */
+  width: 85%;
+  margin: 13px auto;
+  overflow: hidden;
   border-radius: 10px;
   box-shadow: 3px 5px 5px rgb(196, 196, 196);
+}
+
+.book * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.book__container {
+  display: flex;
   overflow: hidden;
+  width: 100%;
 }
 
 .department_side {
@@ -19,15 +31,13 @@
   /* border: 3px dotted yellow; */
 }
 
-.department_side h2 {
-}
-
 .bookinfo_side {
   background-color: rgb(248, 248, 248);
   flex: 2;
   transform: scale(120%);
-  padding: 8px 15px;
+  padding: 15px 15px;
   /* border: 3px dotted green; */
+  position: relative;
 }
 
 .btn {
@@ -38,4 +48,7 @@
   border-radius: 50px;
   margin: 5px;
   float: right;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

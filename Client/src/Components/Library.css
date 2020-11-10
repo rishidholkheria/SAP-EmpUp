@@ -1,7 +1,11 @@
 .library {
   flex: 0.4;
   border-right: 1px solid var(--twitter-background);
-  min-width: fit-content;
+  /* min-width: fit-content; */
+  min-width: 50vw;
+  width: 50vw;
+  max-width: 50vw;
+  /* overflow: hidden; */
   overflow-y: scroll;
 }
 
