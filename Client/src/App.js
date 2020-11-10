@@ -9,6 +9,7 @@ import Profile from "./Components/Profile";
 import CommonRoom from "./Components/CommonRoom";
 import HRDept from "./Components/HRDept";
 import Feedback from "./Components/Feedback";
+import HomeRight from "./Components/HomeRight";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <Feed />
+              <HomeRight />
             </div>
           </Route>
         </Switch>

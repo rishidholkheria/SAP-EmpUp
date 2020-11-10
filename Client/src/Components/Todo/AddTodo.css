@@ -1,0 +1,57 @@
+.row-one {
+  /* min-height: 10vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 5px;
+}
+
+form input {
+  padding: 0.5rem;
+  border: 1px solid rgb(207, 207, 207);
+  background: white;
+  font-size: 1rem;
+  width: 100%;
+}
+
+form button {
+  padding: 0.3rem 0.5rem;
+  font-size: 1.5rem;
+  border: none;
+  background: white;
+}
+
+form button {
+  color: #ff6f47;
+  background: #f7fffe;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+form button:hover {
+  background: #ff6f47;
+  color: white;
+}
+
+.row-two {
+  width: 100%;
+  margin: 5px 0 0;
+}
+
+select {
+  border: 1px solid rgb(207, 207, 207);
+  /* color: green; */
+  /* outline: none; */
+  /* height: 55px; */
+  /* height: 2rem; */
+  padding: 0.2rem 0.3rem;
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+select::selection {
+  color: black;
+}
+
+/* .filter-todo {
+  padding: 1rem;
+} */

@@ -1,12 +1,16 @@
 import React from "react";
+import Book from "./Book";
 import "./Library.css";
+import TweetBox from "./TweetBox";
 
 const Library = () => {
   return (
-    <div>
+    <div className="library">
       <div className="library__header">
         <h1>Library</h1>
       </div>
+      <Book />
+      <Book />
     </div>
   );
 };

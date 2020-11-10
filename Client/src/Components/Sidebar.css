@@ -5,6 +5,9 @@
   margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  width: 300px;
+  max-width: 300px;
+  min-width: 300px;
 }
 
 .sidebar__twitterIcon {
@@ -23,4 +26,8 @@
   border-radius: 30px !important;
   height: 50px !important;
   margin-top: 20px !important;
+}
+
+.sidebar a {
+  text-decoration: none;
 }
