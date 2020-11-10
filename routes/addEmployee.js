@@ -50,7 +50,6 @@ var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]]);
 //adding extra properties
 var i, length;
 length = Object.keys(jsonData).length;
-console.log(length);
 for(i=0;i<length;i++){
     jsonData[i].password = genId(6),
     jsonData[i].image = "",
@@ -60,8 +59,6 @@ for(i=0;i<length;i++){
     jsonData[i].deduction = "",
     jsonData[i].empId = genId(6)
 }
-console.log(jsonData); 
-
 
 //posting to Database
 router.post('/upload-to-db',(req,res)=>{
