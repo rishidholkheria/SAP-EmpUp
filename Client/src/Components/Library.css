@@ -1,6 +1,18 @@
+.library {
+  flex: 0.4;
+  border-right: 1px solid var(--twitter-background);
+  min-width: fit-content;
+  overflow-y: scroll;
+}
+
+.library::-webkit-scrollbar {
+  display: none;
+}
+
 .library__header {
   position: sticky;
   top: 0;
+  width: 100%;
   background-color: white;
   z-index: 100;
   border: 1px solid var(--twitter-background);

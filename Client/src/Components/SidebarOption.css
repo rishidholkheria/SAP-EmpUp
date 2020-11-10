@@ -19,6 +19,7 @@
   font-weight: 800;
   font-size: 20px;
   margin-right: 20px;
+  text-decoration: none;
 }
 
 .sidebarOption--active {
