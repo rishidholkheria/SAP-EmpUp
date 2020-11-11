@@ -1,20 +1,20 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Organisation = require('../schema/Organisation');
 const genId = require('../utils/random');
 
-
+router.use(express.json());
 
 //connect to DB
 const connect = require("../index");
+const oId = genId(6);
 
 router.post('/',(req,res)=>{
     const organisation = new Organisation({
-        oId: genId(6),
+        oId: oId,
         orgName: req.body.orgName,
         orgLocation: req.body.orgLocation,
         orgType: req.body.orgType,
@@ -31,6 +31,7 @@ router.post('/',(req,res)=>{
         res.send(data);
         console.log('created!');
     });
+});
 
 //update monthly goals
 router.patch('/monthly-goal/update/:id',(req,res)=>{
@@ -94,4 +95,4 @@ router.get('/:id',(req,res)=>{
   });
 });
 
-module.exports = router;
+module.exports = {router, oId};
