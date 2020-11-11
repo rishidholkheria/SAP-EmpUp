@@ -27,7 +27,8 @@ const createAnnouncement = require("./routes/announcement");
 const admin = require("./routes/admin");
 const feedback = require("./routes/feedback");
 const motivation = require("./routes/motivation");
-const organisation = require("./routes/organisation");
+const obj = require("./routes/organisation");
+var organisation = obj.router;
 
 //middlewares
 app.use("/api/upload-employee-data", uploadXLRoute);

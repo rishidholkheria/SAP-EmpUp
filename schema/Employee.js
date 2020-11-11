@@ -2,8 +2,11 @@ var mongoose = require('mongoose');
 
 var employeeSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    oId: {
+        type: String
+    },
     empId: {
-        type: String,
+        type: String
     },
     email: {
         type: String
@@ -27,10 +30,7 @@ var employeeSchema = mongoose.Schema({
     image: {type: String},
     department: {type: String},
     type: {type: String},
-    dateOfJoin: {type: String},
     basicSalary: {type: Number},
-    monthlyGoal: {type: String},
-    todo: {type: String},
     addOn: {type: Number},
     deduction: {type: Number}
 });
