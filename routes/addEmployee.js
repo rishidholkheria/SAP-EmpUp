@@ -16,27 +16,27 @@ router.use(express.json());
 const connect = require("../index");
 
 //upload the file
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "../upload");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + ".xlsx");
-//   },
-// });
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "../upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + ".xlsx");
+  },
+});
 
-// var upload = multer({ storage: storage }).single("file");
+var upload = multer({ storage: storage }).single("file");
 
-// router.post("/upload", function (req, res) {
-//   upload(req, res, function (err) {
-//     if (err instanceof multer.MulterError) {
-//       return res.status(500).json(err);
-//     } else if (err) {
-//       return res.status(500).json(err);
-//     }
-//     return res.status(200).send(req.file);
-//   });
-// });
+router.post("/upload", function (req, res) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
 
 //convert to JSON
 const workBook = XLSX.readFile(process.cwd() + "/upload/Employee.xlsx");
