@@ -5,4 +5,7 @@
   z-index: 100;
   border: 1px solid var(--twitter-background);
   padding: 15px 20px;
+  min-width: 50vw;
+  width: 50vw;
+  max-width: 50vw;
 }

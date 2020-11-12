@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import AddTodo from "./Todo/AddTodo";
 import TodoList from "./Todo/TodoList";
 import "./HomeRight.css";
+import Goal from "./Goal";
 
 const HomeRight = () => {
   const [inputText, setInputText] = useState("");
@@ -50,6 +51,10 @@ const HomeRight = () => {
   };
   return (
     <div className="widgets">
+      <div className="monthly_goal">
+        <Goal />
+      </div>
+
       <div className="right-todo">
         <AddTodo
           inputText={inputText}

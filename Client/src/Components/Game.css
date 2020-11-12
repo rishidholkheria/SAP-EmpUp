@@ -1,0 +1,54 @@
+.book {
+  /* max-height: 80px; */
+  width: 85%;
+  margin: 13px auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 3px 5px 5px rgb(196, 196, 196);
+}
+
+.book * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game_container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.image_side {
+  background-image: "https://cdn.vox-cdn.com/thumbor/VOzvgg2B7akjk7St1bCybLQwt7g=/1400x788/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/21885108/1f9249103f371671071532e02e3ab39d2da49cbe_400x225.png";
+  flex: 1;
+  /* font-size: 1.1rem; */
+  display: flex;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  /* border: 3px dotted yellow; */
+}
+
+.game_details {
+  background-color: rgb(248, 248, 248);
+  flex: 2;
+  transform: scale(120%);
+  padding: 15px 15px;
+  /* border: 3px dotted green; */
+  position: relative;
+}
+
+.btn {
+  background-color: tomato;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  margin: 5px;
+  float: right;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

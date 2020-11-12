@@ -3,7 +3,6 @@ import "./Feed.css";
 import axios from "axios";
 import Post from "./Post";
 import TweetBox from "./TweetBox";
-import Goal from "./Goal";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -39,6 +38,7 @@ const Feed = () => {
       <TweetBox />
 
       {/* Post */}
+      <h2>Announcements</h2>
       {[...posts]
         .reverse()
         .slice(0, 5)

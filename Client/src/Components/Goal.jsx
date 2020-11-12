@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Goal.css";
 
-const Goal = ({ goal }) => {
+const Goal = () => {
   return (
     <div className="goal">
-      <h3>{goal}</h3>
+      <h3>This is my Goal</h3>
     </div>
   );
 };

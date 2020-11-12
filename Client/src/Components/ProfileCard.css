@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+
+.card_container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vh;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 1px grey;
+  overflow: hidden;
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 270px;
+  top: 0;
+  clip-path: circle(400px at 50% -48.5%);
+  left: 0;
+  background-image: linear-gradient(to top, #00f2fe, #4facfe);
+}
+
+.main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.card_header {
+  position: absolute;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: url("https://image-cdn.essentiallysports.com/wp-content/uploads/20200626114700/maxresdefault-249-560x315.jpg")
+    no-repeat center / cover;
+  border: 4px solid #00d8fe;
+  margin-bottom: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.name {
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 500;
+  line-height: 1;
+  margin: 5px 0;
+}
+
+.content {
+  display: flex;
+  padding: 1.7rem 2.5rem 2.6rem 2.5rem;
+}

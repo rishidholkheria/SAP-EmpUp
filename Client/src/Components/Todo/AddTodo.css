@@ -1,3 +1,7 @@
+.add_todo {
+  padding: 20px;
+}
+
 .row-one {
   /* min-height: 10vh; */
   display: flex;
