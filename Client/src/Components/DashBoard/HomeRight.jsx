@@ -1,7 +1,7 @@
 // import { Widgets } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
-import AddTodo from "./Todo/AddTodo";
-import TodoList from "./Todo/TodoList";
+import AddTodo from "../Todo/AddTodo";
+import TodoList from "../Todo/TodoList";
 import "./HomeRight.css";
 import Goal from "./Goal";
 

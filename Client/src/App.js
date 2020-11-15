@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import Feed from "./Components/Feed";
+import Feed from "./Components/DashBoard/Feed";
 import Sidebar from "./Components/Sidebar";
-import Library from "./Components/Library";
-import Payroll from "./Components/Payroll";
+import Library from "./Components/Library/Library";
 import Profile from "./Components/Profile";
-import CommonRoom from "./Components/CommonRoom";
+import CommonRoom from "./Components/CommonRoom/CommonRoom";
 import HRDept from "./Components/HRDept";
 import Feedback from "./Components/Feedback";
-import HomeRight from "./Components/HomeRight";
+import HomeRight from "./Components/DashBoard/HomeRight";
 
 function App() {
   return (

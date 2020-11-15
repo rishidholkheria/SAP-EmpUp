@@ -19,22 +19,6 @@ const Feedback = () => {
 
   return (
     <div>
-      {/* <div className="feedback__header">
-        <h1>Feedback</h1>
-      </div>
-      <div className="wrapper">
-        <div className="form">
-          <div className="title">Create an Account</div>
-
-          <form action="#" className="myform">
-            <div className="control-form">
-              <label for="fistname"></label>
-              <input type="text" id="firstname" value="" />
-            </div>
-          </form>
-        </div>
-      </div> 
-      */}
       <div className="feedback__header">
         <h1>Feedback</h1>
       </div>
@@ -61,12 +45,7 @@ const Feedback = () => {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
 
-          <button
-            type="submit"
-            style={{ background: loader ? "#ccc" : " rgb(2, 2, 110)" }}
-          >
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

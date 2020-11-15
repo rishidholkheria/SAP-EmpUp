@@ -1,7 +1,6 @@
 import React from "react";
-import Book from "./Book";
+import Book from "./Library/Book";
 import "./Library.css";
-import TweetBox from "./TweetBox";
 
 const Library = () => {
   return (

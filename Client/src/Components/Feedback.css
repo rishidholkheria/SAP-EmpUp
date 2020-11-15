@@ -57,6 +57,7 @@ textarea:focus {
 
 .form > button {
   padding: 20px;
+  border-radius: 20px;
   border: none;
   background-color: rgb(2, 2, 110);
   font-weight: 500;

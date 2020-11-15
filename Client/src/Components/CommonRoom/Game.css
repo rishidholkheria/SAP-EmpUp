@@ -1,4 +1,4 @@
-.book {
+.game {
   /* max-height: 80px; */
   width: 85%;
   margin: 13px auto;
@@ -7,7 +7,7 @@
   box-shadow: 3px 5px 5px rgb(196, 196, 196);
 }
 
-.book * {
+.game * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -58,6 +58,10 @@
   padding: 15px 15px;
   /* border: 3px dotted green; */
   position: relative;
+}
+
+.game_type {
+  padding: 3px;
 }
 
 .btn {
