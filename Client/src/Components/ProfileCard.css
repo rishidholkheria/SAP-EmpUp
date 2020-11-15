@@ -12,8 +12,8 @@
 
 .card {
   position: relative;
-  width: 400px;
-  height: 500px;
+  width: 600px;
+  height: 550px;
   border-radius: 5px;
   box-shadow: 0 5px 15px 1px grey;
   overflow: hidden;
@@ -67,6 +67,8 @@
 }
 
 .content {
+  margin-top: 250px;
+  /* margin-top: 50px; */
   display: flex;
   padding: 1.7rem 2.5rem 2.6rem 2.5rem;
 }
