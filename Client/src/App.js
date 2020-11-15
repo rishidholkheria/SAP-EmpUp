@@ -22,12 +22,12 @@ function App() {
               <Library />
             </div>
           </Route>
-          <Route path="/payroll">
+          {/* <Route path="/payroll">
             <div className="path_direction">
               <Sidebar />
               <Payroll />
             </div>
-          </Route>
+          </Route> */}
           <Route path="/commonroom">
             <div className="path_direction">
               <Sidebar />

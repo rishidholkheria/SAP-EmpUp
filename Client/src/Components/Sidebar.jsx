@@ -18,33 +18,33 @@ function Sidebar() {
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />
 
-      <a href="/">
+      <Link to="/">
         <SidebarOption active Icon={HomeIcon} text="Dashboard" />
-      </a>
+      </Link>
 
-      <a href="/library">
+      <Link to="/library">
         <SidebarOption Icon={SearchIcon} text="Library" />
-      </a>
+      </Link>
 
-      <a href="/payroll">
+      {/* <Link to="/payroll">
         <SidebarOption Icon={SearchIcon} text="Payroll" />
-      </a>
+      </Link> */}
 
-      <a href="/commonroom">
+      <Link to="/commonroom">
         <SidebarOption Icon={SearchIcon} text="Common Room" />
-      </a>
+      </Link>
 
-      <a href="/hrd">
+      <Link to="/hrd">
         <SidebarOption Icon={SearchIcon} text="HR Department" />
-      </a>
+      </Link>
 
-      <a href="/feedback">
+      <Link to="/feedback">
         <SidebarOption Icon={SearchIcon} text="Feedback" />
-      </a>
+      </Link>
 
-      <a href="/profile">
+      <Link to="/profile">
         <SidebarOption Icon={SearchIcon} text="Profile" />
-      </a>
+      </Link>
 
       {/* Button -> Tweet */}
       <Button variant="outlined" className="sidebar__tweet" fullWidth>

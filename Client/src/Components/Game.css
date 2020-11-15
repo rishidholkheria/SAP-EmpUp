@@ -20,15 +20,27 @@
 }
 
 .image_side {
-  background-image: "https://cdn.vox-cdn.com/thumbor/VOzvgg2B7akjk7St1bCybLQwt7g=/1400x788/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/21885108/1f9249103f371671071532e02e3ab39d2da49cbe_400x225.png";
-  flex: 1;
+  width: 120px;
+  overflow: hidden;
   /* font-size: 1.1rem; */
-  display: flex;
+  /* display: flex;
   align-items: center;
   color: white;
   text-align: center;
   padding: 10px;
-  /* border: 3px dotted yellow; */
+  border: 3px dotted yellow;  */
+  /* display: flex;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.125); */
+}
+
+.image_side .img {
+  width: 100%;
+  display: block;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .game_details {
