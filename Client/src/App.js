@@ -4,11 +4,12 @@ import "./App.css";
 import Feed from "./Components/DashBoard/Feed";
 import Sidebar from "./Components/Sidebar";
 import Library from "./Components/Library/Library";
-import Profile from "./Components/Profile";
+import Profile from "./Components/Profile/Profile";
 import CommonRoom from "./Components/CommonRoom/CommonRoom";
-import HRDept from "./Components/HRDept";
-import Feedback from "./Components/Feedback";
+import HRDept from "./Components/ChatPortal/HRDept";
+import Feedback from "./Components/Feedback/Feedback";
 import HomeRight from "./Components/DashBoard/HomeRight";
+import LibraryRight from "./Components/Library/LibraryRight";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <Library />
+              <LibraryRight />
             </div>
           </Route>
           {/* <Route path="/payroll">

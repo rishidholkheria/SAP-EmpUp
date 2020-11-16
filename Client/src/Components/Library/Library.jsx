@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "./Library/Book";
+import Book from "./Book";
 import "./Library.css";
 
 const Library = () => {

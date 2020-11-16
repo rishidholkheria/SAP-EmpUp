@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px;
+  margin: 8px;
+  box-shadow: 0 3px 15px 1px grey;
+}
+
+.Edit {
+  flex: 1;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.Guide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin: 5px;
+}
+
+.About {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  margin: 5px;
+}
+
+.Logout {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin: 5px;
+}
