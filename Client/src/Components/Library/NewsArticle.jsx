@@ -1,14 +1,14 @@
 import React from "react";
 import "./NewsArticle.css";
 
-const NewsArticle = () => {
+const NewsArticle = ({ title, description, source }) => {
   return (
     <div className="news">
-      <h1 className="news__title">Title</h1>
-      <p className="news__desc">Description</p>
+      <h1 className="news__title">{title}</h1>
+      <p className="news__desc">{description}</p>
       {/* <span className="news__author">Author</span> <br />
       <span className="news__published">published at</span> */}
-      <span className="news__source">Source Name</span>
+      <span className="news__source">{source}</span>
     </div>
   );
 };

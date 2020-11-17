@@ -1,3 +1,7 @@
+.profile {
+  background-color: #f2edf3;
+}
+
 .profile__header {
   position: sticky;
   top: 0;
@@ -8,4 +12,12 @@
   min-width: 50vw;
   width: 50vw;
   max-width: 50vw;
+}
+
+.profilecard {
+  /* background-color: white; */
+}
+
+.bottombar {
+  background-color: white;
 }

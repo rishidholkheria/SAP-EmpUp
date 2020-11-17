@@ -1,0 +1,27 @@
+.library_right {
+  background-color: #f2edf3;
+}
+
+.newsheader {
+  padding: 10px;
+  margin: 8px;
+  background-color: white;
+  display: flex;
+  font: 24px;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgb(196, 196, 196);
+}
+
+.loading {
+  margin: 10px;
+  width: 480px;
+  max-width: 490px;
+  height: 350px;
+  max-height: 410px;
+  background-color: white;
+  max-height: 320px;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}

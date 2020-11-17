@@ -27,7 +27,9 @@
   top: 0;
   clip-path: circle(400px at 50% -48.5%);
   left: 0;
-  background-image: linear-gradient(to top, #00f2fe, #4facfe);
+  /* background-image: linear-gradient(to top, #00f2fe, #4facfe); */
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #a761ff 0%, #a88beb 74%);
 }
 
 .main {

@@ -17,7 +17,7 @@ const Book = () => {
             sadjbajsndlasndnask,dnaskndsnxzn nm kjsahdn,jasbdkjasdbjsabdjsd
           </p>
 
-          <button className="btn">Read</button>
+          <button className="read_button">Read</button>
         </div>
       </div>
     </div>

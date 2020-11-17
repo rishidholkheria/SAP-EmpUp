@@ -10,7 +10,10 @@ const Profile = () => {
         <h1>Profile</h1>
       </div>
       <ProfileCard />
-      <BottombarOptions />
+
+      <div className="bottombar">
+        <BottombarOptions />
+      </div>
     </div>
   );
 };

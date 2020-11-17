@@ -35,17 +35,18 @@
   } */
 
 .widgets {
-  padding: 5px;
-  margin: 0 8px;
+  padding: 8px;
   /* border: 1px solid red; */
+  background-color: #f2edf3;
   border-radius: 5px;
   width: calc(50vw - 320px);
   max-width: calc(50vw - 320px);
 }
 
 .widgets .right-todo {
-  border: 1px solid rgb(197, 197, 197);
+  /* border: 1px solid rgb(197, 197, 197); */
   padding: 0.5rem;
+  background-color: white;
   overflow: auto;
   min-height: 55vh;
   height: 55vh;

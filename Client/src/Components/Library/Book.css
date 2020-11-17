@@ -20,7 +20,7 @@
 }
 
 .department_side {
-  background-color: tomato;
+  background-color: #a761ff;
   flex: 1;
   /* font-size: 1.1rem; */
   display: flex;
@@ -40,8 +40,8 @@
   position: relative;
 }
 
-.btn {
-  background-color: tomato;
+.read_button {
+  background-color: #a761ff;
   color: white;
   padding: 10px 20px;
   border: none;

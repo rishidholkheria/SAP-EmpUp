@@ -2,15 +2,19 @@
   margin: 10px;
   width: 480px;
   max-width: 490px;
-  height: 250px;
+  height: 350px;
+  max-height: 410px;
+  background-color: white;
   max-height: 320px;
   padding: 30px;
+  overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 5px;
 }
 
 .news__title {
   border-bottom: 1px solid lightgray;
+  font-size: 20px;
 }
 
 .head__text {
@@ -37,6 +41,7 @@
 .news__published {
   display: inline-block;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 10px;
   color: rgb(122, 122, 122);
+  margin-bottom: 10px;
 }
