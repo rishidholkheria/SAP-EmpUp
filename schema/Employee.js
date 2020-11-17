@@ -32,7 +32,11 @@ var employeeSchema = mongoose.Schema({
     type: {type: String},
     basicSalary: {type: Number},
     addOn: {type: Number},
-    deduction: {type: Number}
+    deduction: {type: Number},
+    resetLink: {
+        data: String,
+        default: ''
+    }
 });
  
 var Employee = mongoose.model('Employee', employeeSchema);

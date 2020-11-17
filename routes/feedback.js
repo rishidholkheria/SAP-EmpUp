@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Feedback = require('../schema/Feedback');
 const getDate = require('../utils/date');
+const genId = require('../utils/random')
 router.use(express.json());
 
 //connect to DB
@@ -12,11 +13,10 @@ const connect = require('../index');
 
 router.post('/',(req,res)=>{
     const feedback = new Feedback({
+        fId: genId(6),
         feedback: req.body.feedback,
-        complaineeName: req.body.complaineeName,
-        complaineeEmail: req.body.complaineeEmail,
-        complaineeDept: req.body.complaineeDept,
-        complaineeDesig: req.body.complaineeDesig,
+        fTitle: req.body.fTitle,
+        fDept: req.body.fDept,
         cDate: getDate()
     });
     feedback.save((err,data)=>{

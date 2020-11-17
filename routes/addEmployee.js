@@ -7,8 +7,11 @@ const multer = require("multer");
 const genId = require("../utils/random");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const bcrypt = require('bcrypt');
+
 const Employee = require("../schema/Employee");
 const obj = require('../routes/organisation');
+
 console.log(obj.oId);
 router.use(express.json());
 
@@ -48,11 +51,15 @@ var i, length;
 length = Object.keys(jsonData).length;
 var oId = obj.oId;
 
-console.log(jsonData);
+// console.log(jsonData);
 
+const salt = bcrypt.genSaltSync(10);
 
 for(i=0;i<length;i++){
-    jsonData[i].password = genId(6),
+    var password = genId(6);
+    console.log(password);
+    var hashedPassword = bcrypt.hashSync(password, salt);
+    jsonData[i].password = hashedPassword,
     jsonData[i].image = "",
     jsonData[i].addOn = "",
     jsonData[i].deduction = "",
@@ -70,5 +77,6 @@ router.post("/upload-to-db", (req, res) => {
     res.send("Uploaded!");
     console.log("added!");
 });
+
 
 module.exports = router;
