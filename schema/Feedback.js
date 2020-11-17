@@ -13,13 +13,7 @@ var feedbackSchema = mongoose.Schema({
   },
   cDate: {
     type: String,
-  },
-  // complaineeName:{
-  //     type: String
-  // },
-  // complaineeDesig:{
-  //     type: String
-  // },
+  }
 });
 
 var Feedback = mongoose.model("Feedback", feedbackSchema);

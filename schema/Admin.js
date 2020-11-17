@@ -8,6 +8,9 @@ var adminSchema = mongoose.Schema({
     },
     password:{
         type: String
+    },
+    oId:{
+        type: String
     }
 });
 
