@@ -60,6 +60,7 @@ function App() {
               <HomeRight />
             </div>
           </Route>
+          {/* <Route path="https://medium.com/javascript-in-plain-english/material-ui-icons-and-lists-a98c8ccbdac0" /> */}
         </Switch>
       </div>
     </Router>

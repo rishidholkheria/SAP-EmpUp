@@ -2,18 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./Feed.css";
 import axios from "axios";
 import Post from "./Post";
-import TweetBox from "./TweetBox";
+import NoticeBoard from "./NoticeBoard";
+import AllInboxIcon from "@material-ui/icons/AllInbox";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [goal, setGoal] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:4000/api/announcement").then((res) => {
-  //     // console.log(res);
-  //     setPosts(res.data.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/announcement").then((res) => {
+      // console.log(res);
+      setPosts(res.data.data);
+    });
+  }, []);
 
   // useEffect(() => {
   //   axios.get("http://localhost:4000/api/organisation").then((res) => {
@@ -34,11 +35,16 @@ const Feed = () => {
         <Goal goal={monthlyGoal}></Goal>
       ))} */}
 
-      {/* Tweet Box */}
-      <TweetBox />
+      <NoticeBoard />
 
-      {/* Post */}
-      <h2>Announcements</h2>
+      <div className="announcement">
+        <div className="announce_icon">
+          <AllInboxIcon />
+        </div>
+        <div className="announce_head">
+          <h2>Announcements</h2>
+        </div>
+      </div>
       {[...posts]
         .reverse()
         .slice(0, 5)

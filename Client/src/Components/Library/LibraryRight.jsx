@@ -29,7 +29,7 @@ const LibraryRight = () => {
       <div className="all_news">
         {news != 0 ? (
           [...news]
-            .slice(0, 5)
+            .slice(0, 10)
             .map((newsArticle) => (
               <NewsArticle
                 title={newsArticle.title}

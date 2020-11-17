@@ -33,3 +33,20 @@
   font-weight: 800;
   padding: 15px 20px;
 }
+
+.announcement {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.announce_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.announce_head {
+  margin-left: 5px;
+}

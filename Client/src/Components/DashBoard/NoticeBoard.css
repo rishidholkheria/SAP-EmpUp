@@ -1,0 +1,12 @@
+.notice_board {
+  /* border: 2px solid red; */
+  padding: 10px 15px;
+  background-color: white;
+  margin: 10px;
+  /* padding-left: 8px; */
+  border-radius: 10px;
+}
+
+.notice_board h3 {
+  padding-left: 10px;
+}

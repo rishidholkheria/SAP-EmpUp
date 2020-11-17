@@ -5,7 +5,10 @@ import "./Goal.css";
 const Goal = () => {
   return (
     <div className="goal">
-      <h3>This is my Goal</h3>
+      <h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero totam
+        asperiores, maxime amet molestiae dicta.
+      </h2>
     </div>
   );
 };

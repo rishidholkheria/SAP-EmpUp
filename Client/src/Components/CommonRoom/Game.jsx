@@ -1,7 +1,8 @@
 import React from "react";
 import "./Game.css";
+import { Link } from "react-router-dom";
 
-const Game = ({ gameName, imageUrl, gameType }) => {
+const Game = ({ gameName, imageUrl, gameType, pageUrl }) => {
   return (
     <div className="game">
       <div className="game_container">
@@ -11,7 +12,17 @@ const Game = ({ gameName, imageUrl, gameType }) => {
         <div className="game_details">
           <h2>{gameName}</h2>
           <h6 className="game_type">{gameType}</h6>
-          <button className="btn">PLAY</button>
+          <a href={pageUrl}>
+            <button
+              className="btn"
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   window.location.href({ pageUrl });
+              // }}
+            >
+              PLAY
+            </button>
+          </a>
         </div>
       </div>
     </div>
