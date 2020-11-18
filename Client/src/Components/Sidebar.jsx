@@ -47,9 +47,11 @@ function Sidebar() {
       </Link>
 
       {/* Button -> Tweet */}
-      <Button variant="outlined" className="sidebar__tweet" fullWidth>
-        HR Office
-      </Button>
+      <a href="/admin">
+        <Button variant="outlined" className="sidebar__tweet" fullWidth>
+          HR Office
+        </Button>
+      </a>
     </div>
   );
 }

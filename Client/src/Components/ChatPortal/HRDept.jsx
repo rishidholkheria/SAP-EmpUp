@@ -1,4 +1,5 @@
 import React from "react";
+import RegisterOrg from "../SignInSignUp/RegisterOrg";
 import "./HRDept.css";
 
 const HRDept = () => {

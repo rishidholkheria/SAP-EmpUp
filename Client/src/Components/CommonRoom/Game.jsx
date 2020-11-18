@@ -12,7 +12,8 @@ const Game = ({ gameName, imageUrl, gameType, pageUrl }) => {
         <div className="game_details">
           <h2>{gameName}</h2>
           <h6 className="game_type">{gameType}</h6>
-          <a href={pageUrl}>
+          <a href={pageUrl} target="_blank">
+            {" "}
             <button
               className="btn"
               // onClick={(e) => {

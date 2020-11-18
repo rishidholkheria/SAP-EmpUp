@@ -10,6 +10,8 @@ import HRDept from "./Components/ChatPortal/HRDept";
 import Feedback from "./Components/Feedback/Feedback";
 import HomeRight from "./Components/DashBoard/HomeRight";
 import LibraryRight from "./Components/Library/LibraryRight";
+import RegisterOrg from "./Components/SignInSignUp/RegisterOrg";
+import AdminRegister from "./Components/SignInSignUp/AdminRegister";
 
 function App() {
   return (
@@ -53,6 +55,16 @@ function App() {
               <Profile />
             </div>
           </Route>
+          <Route path="/register">
+            <div className="path_direction">
+              <RegisterOrg />
+            </div>
+          </Route>
+          <Route path="/admin">
+            <div className="path_direction">
+              <AdminRegister />
+            </div>
+          </Route>
           <Route path="/">
             <div className="path_direction">
               <Sidebar />
@@ -60,7 +72,6 @@ function App() {
               <HomeRight />
             </div>
           </Route>
-          {/* <Route path="https://medium.com/javascript-in-plain-english/material-ui-icons-and-lists-a98c8ccbdac0" /> */}
         </Switch>
       </div>
     </Router>
