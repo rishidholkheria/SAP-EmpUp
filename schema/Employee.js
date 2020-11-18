@@ -36,6 +36,9 @@ var employeeSchema = mongoose.Schema({
     resetLink: {
         data: String,
         default: ''
+    },
+    file:{
+        type: Buffer
     }
 });
  

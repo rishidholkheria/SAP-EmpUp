@@ -10,6 +10,7 @@ dotenv.config();
 mongoose.set("debug");
 var cors = require("cors");
 app.use(cors());
+app.set('view engine','ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,8 +21,7 @@ const connect = mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: false },
   () => {
     console.log("Connected to database");
-  }
-);
+  });
 module.exports = connect;
 
 //import routes
@@ -33,6 +33,8 @@ const feedback = require("./routes/feedback");
 const motivation = require("./routes/motivation");
 const obj = require("./routes/organisation");
 const login = require("./routes/login");
+const profileImage =require("./routes/profileImage");
+const library = require('./routes/library');
 var organisation = obj.router;
 
 //middlewares
@@ -44,6 +46,8 @@ app.use("/api/feedback", feedback);
 app.use("/api/motivation", motivation);
 app.use("/api/organisation", organisation);
 app.use("/api/employee",login);
+// app.use('/',library);
+app.use("/",profileImage);
 
 //listening on port
 const PORT = 4000 || process.env.PORT;
