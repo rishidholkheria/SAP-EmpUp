@@ -12,7 +12,7 @@ const RegisterOrg = () => {
         {/* Signup */}
 
         <div className="form-container sign-up-container">
-          <form action="#">
+          <div className="form">
             <h1>Organisation Structure</h1>
             <div className="social-container">
               <a href="#" className="social">
@@ -41,13 +41,13 @@ const RegisterOrg = () => {
             >
               Confirm Register
             </button>
-          </form>
+          </div>
         </div>
 
         {/* Sign In */}
 
         <div className="form-container sign-in-container">
-          <form action="#">
+          <div className="form">
             <h1>Register Organisation</h1>
             <div className="social-container">
               <a href="#" className="social">
@@ -75,7 +75,7 @@ const RegisterOrg = () => {
             >
               Next
             </button>
-          </form>
+          </div>
         </div>
         <div className="overlay-container">
           <div className="overlay">
@@ -88,7 +88,7 @@ const RegisterOrg = () => {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>EmpUp</h1>
-              <p>ACCURATE * ACCOUNTABLE * EASY </p>
+              <p>ADOBTABLE * ACCOUNTABLE * AFFORDABLE </p>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
                 doloribus nesciunt sunt eligendi autem rem vel quidem quis,

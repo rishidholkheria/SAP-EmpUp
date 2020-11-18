@@ -6,7 +6,7 @@
   z-index: -1;
 }
 
-.container {
+.admin_container {
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -15,24 +15,24 @@
   padding: 0 2rem;
 }
 
-.img {
+.admin_container .img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.login-content {
+.admin_container .login-content {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
 }
 
-.img img {
+.admin_container .img img {
   width: 500px;
 }
 
-form {
+.login-content form {
   width: 360px;
 }
 
@@ -76,7 +76,7 @@ form {
   height: 45px;
 }
 
-.input-div > div > h5 {
+.input-div div .input-placeholder {
   position: absolute;
   left: 10px;
   top: 50%;
@@ -110,7 +110,8 @@ form {
   width: 50%;
 }
 
-.input-div.focus > div > h5 {
+div > .input-placeholder {
+  margin: 0;
   top: -5px;
   font-size: 15px;
 }
@@ -138,7 +139,15 @@ form {
   margin-bottom: 4px;
 }
 
-a {
+/* div.input-div:focus > div.i > i.fa-user {
+  color: #38d39f;
+} */
+
+.login-content form {
+  width: 70%;
+}
+
+.login-content form a {
   display: block;
   text-align: right;
   text-decoration: none;
@@ -147,11 +156,11 @@ a {
   transition: 0.3s;
 }
 
-a:hover {
+.login-content form a:hover {
   color: #38d39f;
 }
 
-.btn {
+.login-content form input.login {
   display: block;
   width: 100%;
   height: 50px;
@@ -168,7 +177,7 @@ a:hover {
   cursor: pointer;
   transition: 0.5s;
 }
-.btn:hover {
+.login-content form .login:hover {
   background-position: right;
 }
 
