@@ -42,25 +42,25 @@ connect.once('open',()=>{
 
 //storage engine
 
-// const storage = new GridFsStorage({
-//   url: mongoURI,
-//   file: (req, file) => {
-//     return new Promise((resolve, reject) => {
-//       crypto.randomBytes(16, (err, buf) => {
-//         if (err) {
-//           return reject(err);
-//         }
-//         const filename = buf.toString('hex') + path.extname(file.originalname);
-//         const fileInfo = {
-//           filename: filename,
-//           bucketName: 'profile-image'
-//         };
-//         resolve(fileInfo);
-//       });
-//     });
-//   }
-// });
-// const upload = multer({ storage });
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'profile-image'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
 
 
 router.get('/',(req,res)=>{
@@ -81,41 +81,33 @@ router.get('/',(req,res)=>{
     });
 });
 
-// // //upload to DB
-// router.post('/upload',upload.single('file'),(req,res)=>{       //multer can upload even an array of files but its not needed rn. 'file is the filename written in the form in html in class custom-file mb-3'
-//     //res.json({file: req.file});
-    
-//     console.log('uploaded!');
-//     res.redirect('/');
-// });
-
-
 // //upload to DB
-router.post('/upload',verify,(req,res)=>{       //multer can upload even an array of files but its not needed rn. 'file is the filename written in the form in html in class custom-file mb-3'
-    res.json({file: req.file});
-    var userid = req.user.userid;
-    console.log(userid);
-
-    const storage = new GridFsStorage({
-        url: mongoURI,
-        file: (req, file) => {
-          return new Promise((resolve, reject) => {
-            const filename = userid + path.extname(file.originalname);
-            const fileInfo = {
-                filename: filename,
-                bucketName: 'profile-image'
-              };
-              resolve(fileInfo);
-            
-          });
-        }
-      });
-
-    const upload = multer({storage});
-    upload.single('file')
-    console.log('uploaded!');
+router.post('/upload',upload.single('file'),(req,res)=>{       //multer can upload even an array of files but its not needed rn. 'file is the filename written in the form in html in class custom-file mb-3'
+    // res.json({file: req.file});
+    
+    console.log(req.file);
     res.redirect('/');
+
 });
+
+//acces token and filename
+router.post('/link-file-to-user',verify,(req,res) => {
+    Employee.findOneAndUpdate({_id : req.user.userid},{
+        $set :{
+            image: req.body.filename
+        }
+    }).then(data => {
+        console.log(data);
+        res.send('uploaded')
+    }).catch(err => {
+        console.log(err);
+        res.send('err');
+    });
+    
+    //response!
+})
+
+
 
 //display all files
 
@@ -129,7 +121,7 @@ router.get('/files',(req,res)=>{
         }
         console.log('files:'+files);
          //File exist
-         return res.json(file); 
+         return res.json(files); 
     });
 });
 
