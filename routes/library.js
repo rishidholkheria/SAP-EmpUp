@@ -1,91 +1,90 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require('mongoose');
-const router = express.Router();
-const expressLayouts = require('express-ejs-layouts');
-const dotenv = require("dotenv");
-const Library = require("../schema/Library");
-
+const express = require('express');
 const app = express();
-dotenv.config();
+const router = express.Router();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const bcrypt = require("bcrypt");
 
-const imageMimeTypes = ["image/jpeg", "image/png", "images/gif"];
-app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+const Library = require('../schema/Library');
+const genId = require('../utils/random');
+const verify = require('../middlewares/verify');
 
+router.use(express.json());
 
-// DATABASE CONNECTION
-mongoose.connect(process.env.MONGOCONNECT);
-const db = mongoose.connection;
-db.once('error', (err)=>{
-    console.log(err);    
+var libId = genId(6);
+
+router.post("/upload-new-book", verify, (req, res) => {
+    if (req.user.isHR || req.user.isAdmin) {
+        const libBook = new Library({
+            libId: libId,
+            name: req.body.name,
+            department: req.body.department,
+            file: req.body.file,
+            description: req.body.description
+        });
+        console.log(req.body);
+        libBook.save((err, data) => {
+            if (err) {
+                return res.send("Error: " + err);
+            }
+            res.json({
+                data: data,
+                message: 'The file has been created successfully!'
+            });
+            console.log("created!");
+        });
+    }
+    else {
+        return res.json({
+            data: null,
+            message: 'You are not authorised. What are you trying to do?'
+        });
+    }
 });
-db.on("open", ()=>{
-    console.log("database connection success");
-})
 
-
-// MIDDLEWARE
-app.set("view engine", "ejs");
-app.use(expressLayouts);
-app.use(bodyParser.json({limit: '5mb'}));
-// app.use(bodyParser.json({limit: '5mb'}));
-// app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
-
-// ROUTES
-router.get("/", async (req, res, next) => {
-  try{
-    const library  = await Library.find();
-    res.render("index", {
-      library
+//get all books/files
+router.get("/", async (req, res) => {
+    const library = await Library.find({}, (err, result) => {
+        if (!err) {
+            res.status(200).json({
+                data: result,
+                message: "All books..",
+            });
+        } else {
+            res.status(400).json({
+                data: {},
+                message: "Some error occured..",
+            });
+        }
     });
-  }catch (err){
-    console.log("err: "+ err); 
-  }
-});
-
-router.post('/add', async ( req, res, next)=>{
-  const {name, department, file} = req.body;
-  const library = new Library({
-    name,
-    department
-  });
-  console.log(file);
-  // SETTING IMAGE AND IMAGE TYPES
-  saveImage(library, file);
-  try{
-    const newLibrary = await library.save();
-    console.log(newLibrary);  
-    res.redirect('/')  ;
-  }catch (err){
-    console.log(err);    
-  }
 });
 
 
+//get api for a specific file
+router.get("/:id", (req, res) => {
+    Library.findOne({ libId: req.params.id }, (err, result) => {
+        //check if book exists
+        if (!result)
+            return res.status(404).json({
+                data: {},
+                message: "No such book exist. Please check and try again later",
+            });
+
+        //if exist and no err
+        if (!err) {
+            res.status(200).json({
+                data: result,
+                message: "Book fetched!",
+            });
+        } else {
+            res.status(400).json({
+                data: {},
+                message: "Some unexpected error occurred.",
+            });
+        }
+    });
+});
 
 
-function saveImage(library, imgEncoded) {
-  // CHECKING FOR IMAGE IS ALREADY ENCODED OR NOT
-  console.log('err');
-  if (imgEncoded == null) return;
 
-  // ENCODING IMAGE BY JSON PARSE
-  // The JSON.parse() method parses a JSON string, constructing the JavaScript value or object described by the string
-  const file = JSON.parse(imgEncoded);
-  console.log( "JSON parse: "+ file);
-  
-  // CHECKING FOR JSON ENCODED IMAGE NOT NULL 
-  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-  // AND HAVE VALID IMAGE TYPES WITH IMAGE MIME TYPES
-  if (file != null && imageMimeTypes.includes(file.type)) {
-
-    // https://nodejs.org/api/buffer.html
-    // The Buffer class in Node.js is designed to handle raw binary data. 
-    // SETTING IMAGE AS BINARY DATA
-    library.file = new Buffer.from(file.data, "base64");
-    library.fileType = file.type;
-  }
-}
-
-
-module.exports = router;
+module.exports = {router, libId};

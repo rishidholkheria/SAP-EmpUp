@@ -10,23 +10,35 @@ router.use(express.json());
 
 //connect to DB
 const connect = require("../index");
+const { verify } = require("jsonwebtoken");
 
-router.post("/", (req, res) => {
-  const announcement = new Announcement({
-    aId: genId(6),
-    aText: req.body.newPost.aText.tweetMessage,
-    aImage: req.body.newPost.aImage.tweetImage,
-    aDate: getDate(),
-  });
-  console.log(req.body);
-  announcement.save((err, data) => {
-    if (err) {
-      res.send("Error: " + err);
-    }
-    res.send(data);
-    console.log("created!");
-  });
+var aId = genId(6);
+
+router.post("/", verify, (req, res) => {
+  if (req.user.isHR || req.user.isAdmin) {
+    const announcement = new Announcement({
+      aId: aId,
+      aText: req.body.newPost.aText.tweetMessage,
+      aImage: req.body.newPost.aImage.tweetImage,
+      aDate: getDate(),
+    });
+    console.log(req.body);
+    announcement.save((err, data) => {
+      if (err) {
+        res.send("Error: " + err);
+      }
+      res.send(data);
+      console.log("created!");
+    });
+  }
+  else {
+    return res.json({
+      data: null,
+      message: 'You are not authorised. What are you trying to do?'
+    });
+  }
 });
+
 
 //get all announcements
 router.get("/", async (req, res) => {
@@ -70,4 +82,4 @@ router.get("/:id", (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = {router, aId};
