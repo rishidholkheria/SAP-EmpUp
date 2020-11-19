@@ -1,7 +1,5 @@
 const express = require('express');
 const boydeparser = require('body-parser');
-const path = require('path');
-const crypto = require('crypto');   //for generating the file names
 const mongoose = require('mongoose');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
@@ -11,7 +9,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
 const verify = require('../middlewares/verify');
-const Employee = require('../schema/Employee');
+const Library = require('../schema/Library');
 
 const app = express();
 const router = express.Router();
@@ -24,7 +22,6 @@ app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 app.use(methodOverride('_method'));
-app.set('view engine','ejs');
 
 const mongoURI = process.env.MONGOCONNECT;
 
@@ -36,9 +33,8 @@ let gfs;
 connect.once('open',()=>{
     //Init stream
     gfs = Grid(connect.db, mongoose.mongo);
-    gfs.collection('profileimg');
+    gfs.collection('library_file');
 });
-
 
 //storage engine
 
@@ -49,7 +45,7 @@ const storage = new GridFsStorage({
         const filename = file.originalname;
         const fileInfo = {
           filename: filename,
-          bucketName: 'profileimg'
+          bucketName: 'library_file'
         };
         resolve(fileInfo);
     });
@@ -77,19 +73,18 @@ router.get('/',(req,res)=>{
 });
 
 // //upload to DB
-router.post('/upload',upload.single('file'),(req,res)=>{       //multer can upload even an array of files but its not needed rn. 'file is the filename written in the form in html in class custom-file mb-3'
+router.post('/upload',upload.single('file'),(req,res)=>{       
     // res.json({file: req.file});
-    
     console.log(req.file);
-    res.redirect('/');
+    res.send('The file has been uploaded');
 
 });
 
 //acces token and filename
-router.post('/link-file-to-user',verify,(req,res) => {
-    Employee.findOneAndUpdate({_id : req.user.userid},{
+router.post('/link-file-to-library',verify,(req,res) => {
+    Library.findOneAndUpdate({_id : req.user.userid},{
         $set :{
-            image: req.body.filename
+            file: req.body.filename
         }
     }).then(data => {
         console.log(data);
@@ -119,7 +114,7 @@ router.post('/link-file-to-user',verify,(req,res) => {
 //     });
 // });
 
-//display specific image
+// display specific image
 
 router.get('/image/:filename',(req,res)=>{
     gfs.files.findOne({filename: req.params.filename},(err, file)=>{
@@ -162,11 +157,11 @@ router.get('/files/:filename', (req, res) => {
 //delete
 
 router.delete('/files/:id', (req, res) => {
-    gfs.remove({ _id: req.params.id, root: 'profileimg' }, (err, gridStore) => {
+    gfs.remove({ _id: req.params.id, root: 'library_file' }, (err, gridStore) => {
       if (err) {
-        return res.status(404).json({ error: err });
+        return res.status(404).json({ err: err });
       }
-      res.send('success');
+      res.send('deleted!');
     });
   });
 

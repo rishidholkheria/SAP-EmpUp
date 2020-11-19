@@ -11,10 +11,8 @@ var librarySchema = mongoose.Schema({
         type: String
     },
     file: {
-        type: Buffer
-    },
-    fileType: {
-        type: String
+        type: String,
+        default: ""
     },
     description:{
         type: String
