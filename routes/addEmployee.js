@@ -8,11 +8,7 @@ const genId = require("../utils/random");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
-const _ = require('lodash');
 const nodemailer = require('nodemailer');
-const mailgun = require('mailgun-js');
-const DOMAIN = 'sandbox71c777ca587745dca57246a9516043d2.mailgun.org';
-const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
 
 const Employee = require("../schema/Employee");
 const objOrg = require('../routes/organisation');
@@ -50,7 +46,7 @@ router.post("/upload", function (req, res) {
 //convert to JSON
 const workBook = XLSX.readFile(process.cwd() + "/upload/Employee.xlsx");
 var sheet_name_list = workBook.SheetNames;
-var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {defval:"",raw:false,dateNF:'dd-mm-yyyy'});
+var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], { defval: "", raw: false, dateNF: 'dd-mm-yyyy' });
 
 //adding extra properties
 var i, length;
@@ -61,16 +57,17 @@ var oId = objOrg.oId;
 
 const salt = bcrypt.genSaltSync(10);
 
-for(i=0;i<length;i++){
-    var password = genId(6);
-    console.log(password);
-    var hashedPassword = bcrypt.hashSync(password, salt);
-    jsonData[i].password = hashedPassword,
+for (i = 0; i < length; i++) {
+  var password = genId(6);
+  console.log(password);
+  var hashedPassword = bcrypt.hashSync(password, salt);
+  jsonData[i].password = hashedPassword,
     jsonData[i].image = "",
     jsonData[i].addOn = "",
     jsonData[i].deduction = "",
     jsonData[i].empId = genId(6),
-    jsonData[i].oId = oId;
+    jsonData[i].oId = oId,
+    jsonData[i].pass = password
 }
 
 console.log(jsonData);
@@ -79,52 +76,59 @@ console.log(jsonData);
 
 //posting to Database
 router.post("/upload-to-db", (req, res) => {
-    Employee.insertMany(jsonData);
-    res.send("Employees uploaded!");
-    console.log("added!");
+  Employee.insertMany(jsonData);
+  res.send("Employees uploaded!");
+  console.log("added!");
 });
 
-//json to excel
-// var raw = JSON.parse(jsonData)
-// var files  = []
-// for (each in jsonData){
-//     files.push(jsonData[each])
-//     }  
-//    var obj = files.map((e) =>{
-//         return e
-//        })
 
-//    var newWB = XLSX.book_new()
-//    var newWS = XLSX.utils.json_to_sheet(obj)
-//    XLSX.utils.book_append_sheet(newWB,newWS,"login credentials")
-//    XLSX.writeFile(newWB,"EmpUp Employee Credentials.xlsx")
+router.post("/send-password-to-organisation", async (req, res) => {
 
-//req=> email of org from frontend
+  let result = jsonData.map(({ email, pass, name, department, designation }) => ({ email, pass, name, department, designation }));
+  console.log(result)
 
-router.post("/send-password-to-organisation", async(req,res)=>{
+  var newWB = XLSX.utils.book_new();
+  newWB.Props = {
+    Title: "EmpUp Employee Credentitals",
+    Subject: "Login Credentials",
+    Author: "Team EmpUp",
+    CreatedDate: new Date(2020, 11, 20)
+  };
+  var newWS = XLSX.utils.json_to_sheet(result)
+  XLSX.utils.book_append_sheet(newWB, newWS, "Login credentials")
+  XLSX.writeFile(newWB, "EmpUp Employee Credentials.xlsx")
 
+  //send mail
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: process.env.EMAIL , 
-      pass: process.env.PASSWORD, 
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
     },
   });
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Team EmpUp" <team@EmpUp.com>', 
-    to: req.body.email, 
-    subject: "Welcome to EmpUp!", 
+    from: '"Team EmpUp" <team@EmpUp.com>',
+    to: req.body.email,
+    subject: "Welcome to EmpUp!",
     html: `
     <h2>We are glad to have you on board.😊 </h2>
     <h3>Please find below the excel sheet of the employees' credentials. Use them to login to EmpUp</h3>
     <h3>Accountable, Adoptable, Affordable. EmpUp!</h3>
-`, 
+`,
+    attachments: [
+      {
+        filename: 'EmpUp Employee Credentials.xlsx',
+        path: 'EmpUp Employee Credentials.xlsx',
+        cid: 'uniq-EmpUpEmployeeCredentials.xlsx'
+      }
+    ]
   });
 
+  res.send("Message sent")
   console.log("Message sent: %s", info.messageId);
 
   // Preview only available when sending through an Ethereal account
