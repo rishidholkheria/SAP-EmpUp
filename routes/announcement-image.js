@@ -10,13 +10,19 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
+const verify = require('../middlewares/verify');
+const Employee = require('../schema/Employee');
+
 const app = express();
 const router = express.Router();
 dotenv.config();
 
 //Middleware
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+
 app.use(methodOverride('_method'));
 app.set('view engine','ejs');
 
@@ -30,7 +36,7 @@ let gfs;
 connect.once('open',()=>{
     //Init stream
     gfs = Grid(connect.db, mongoose.mongo);
-    gfs.collection('annnouncement-image');
+    gfs.collection('profile-image');
 });
 
 
@@ -47,7 +53,7 @@ const storage = new GridFsStorage({
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketName: 'annnouncement-image'
+          bucketName: 'profile-image'
         };
         resolve(fileInfo);
       });
@@ -75,12 +81,33 @@ router.get('/',(req,res)=>{
     });
 });
 
-//upload to DB
+// //upload to DB
 router.post('/upload',upload.single('file'),(req,res)=>{       //multer can upload even an array of files but its not needed rn. 'file is the filename written in the form in html in class custom-file mb-3'
-    //res.json({file: req.file});
-    console.log('uploaded!');
+    // res.json({file: req.file});
+    
+    console.log(req.file);
     res.redirect('/');
+
 });
+
+//acces token and filename
+router.post('/link-file-to-user',verify,(req,res) => {
+    Employee.findOneAndUpdate({_id : req.user.userid},{
+        $set :{
+            image: req.body.filename
+        }
+    }).then(data => {
+        console.log(data);
+        res.send('uploaded')
+    }).catch(err => {
+        console.log(err);
+        res.send('err');
+    });
+    
+    //response!
+})
+
+
 
 //display all files
 
@@ -94,7 +121,7 @@ router.get('/files',(req,res)=>{
         }
         console.log('files:'+files);
          //File exist
-         return res.json(file); 
+         return res.json(files); 
     });
 });
 
@@ -127,7 +154,7 @@ router.get('/image/:filename',(req,res)=>{
 //delete
 
 router.delete('/files/:id',(req,res)=>{
-    gfs.remove({_id: req.params.id, root:'uploads'},(err, gridStore)=>{
+    gfs.remove({_id: req.params.id, root:'profileimg'},(err, gridStore)=>{
         if(err) return res.status(404).json({err : err});
         res.redirect('/');
     });
@@ -135,4 +162,3 @@ router.delete('/files/:id',(req,res)=>{
 
 
 module.exports = router;
-
