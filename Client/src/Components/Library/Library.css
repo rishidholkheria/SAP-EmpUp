@@ -4,6 +4,7 @@
   /* min-width: fit-content; */
   min-width: 50vw;
   width: 50vw;
+  min-height: 100vh;
   background-color: #f2edf3;
   max-width: 50vw;
   /* overflow: hidden; */
@@ -15,11 +16,16 @@
 }
 
 .library__header {
-  position: sticky;
   top: 0;
-  width: 100%;
-  /* background-color: rgba(211, 131, 211, 0.795); */
+  /* background-color: white; */
   z-index: 100;
+  height: 100px;
+  overflow: hidden;
   border: 1px solid var(--twitter-background);
-  padding: 15px 20px;
+  /* padding: 15px 20px; */
+  padding-left: 20px;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  color: white;
+  border-radius: 10px;
+  margin: 4px 9px;
 }

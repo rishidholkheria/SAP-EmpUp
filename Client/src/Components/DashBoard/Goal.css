@@ -1,13 +1,19 @@
 .goal {
   background-color: white;
-  margin: 10px;
-  margin-bottom: 18px;
+  /* margin: 10px; */
+  margin: 0 auto 18px auto;
+
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
   height: 300px;
   overflow: hidden;
-  background-image: url("https://i.pinimg.com/originals/21/61/8e/21618e399ac27c80aac237c8e2e5021d.jpg");
+  background: radial-gradient(#000000c4, #000000c4), url("../Images/mgoal.jpg");
+  background-size: cover;
+  background-position: center;
   border-radius: 10px;
+  color: white;
+  letter-spacing: 0.1rem;
 }

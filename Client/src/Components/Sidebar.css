@@ -4,11 +4,10 @@
   /* min-width: 250px; */
   margin-top: 20px;
   background-color: #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 300px;
-  max-width: 300px;
-  min-width: 300px;
+  padding: 0 20px;
+  min-width: 20vw;
+  /* max-width: 300px;
+  min-width: 300px; */
 }
 
 .sidebar__twitterIcon {
@@ -20,7 +19,8 @@
 
 .sidebar__tweet {
   background-color: #f8ceec;
-  background-image: linear-gradient(315deg, #a761ff 0%, #a88beb 74%);
+  /* background-image: linear-gradient(315deg, #a761ff 0%, #a88beb 74%); */
+  background-image: linear-gradient(315deg, #a761ff 20%, #612dda 74%);
   border: none !important;
   color: white !important;
   font-weight: 900 !important;

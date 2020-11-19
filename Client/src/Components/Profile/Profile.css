@@ -3,15 +3,18 @@
 }
 
 .profile__header {
-  position: sticky;
   top: 0;
-  background-color: white;
+  /* background-color: white; */
   z-index: 100;
+  height: 100px;
+  overflow: hidden;
   border: 1px solid var(--twitter-background);
-  padding: 15px 20px;
-  min-width: 50vw;
-  width: 50vw;
-  max-width: 50vw;
+  /* padding: 15px 20px; */
+  padding-left: 20px;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  color: white;
+  border-radius: 10px;
+  margin: 4px 9px;
 }
 
 .profilecard {

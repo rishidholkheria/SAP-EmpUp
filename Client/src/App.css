@@ -18,7 +18,5 @@ body {
 
 .path_direction {
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
   /* padding: 0 10px; */
 }

@@ -1,0 +1,29 @@
+.feedback_card {
+  margin: 10px;
+  width: 480px;
+  max-width: 490px;
+  height: 350px;
+  max-height: 210px;
+  background-color: white;
+  max-height: 320px;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.feedback_title {
+  border-bottom: 1px solid lightgray;
+  font-size: 30px;
+}
+/* 
+.head__text {
+  margin-top: 10px;
+} */
+
+.feedback_desc {
+  padding-top: 10px;
+  line-height: 25px;
+  font-size: 14px;
+  padding-bottom: 10px;
+}

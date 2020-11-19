@@ -35,28 +35,44 @@
   } */
 
 .widgets {
-  padding: 8px;
   /* border: 1px solid red; */
   background-color: #f2edf3;
   border-radius: 5px;
-  width: calc(50vw - 320px);
-  max-width: calc(50vw - 320px);
+  /* width: calc(50vw - 320px);
+  max-width: calc(50vw - 320px); */
+  max-width: 30vw;
+  padding: 5px 9px;
 }
 
 .widgets .right-todo {
   /* border: 1px solid rgb(197, 197, 197); */
   padding: 0.5rem;
   background-color: white;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow-y: scroll;
   min-height: 55vh;
   height: 55vh;
   /* max-height: 500px; */
   border-radius: 8px;
   box-shadow: 3px 5px 8px rgb(197, 197, 197), -3px -2px 8px rgb(197, 197, 197);
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+  max-width: 100%;
+  margin: 10px auto;
 }
 
 .widgets .right-todo::-webkit-scrollbar {
-  display: none;
+  width: 10px;
+}
+
+.widgets .right-todo::-webkit-scrollbar-track {
+  background-color: rgb(228, 227, 227);
+  border-radius: 8px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.widgets .right-todo::-webkit-scrollbar-thumb {
+  background-color: indigo;
+  border-radius: 8px;
 }

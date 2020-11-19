@@ -13,6 +13,7 @@ import LibraryRight from "./Components/Library/LibraryRight";
 import RegisterOrg from "./Components/SignInSignUp/RegisterOrg";
 import AdminRegister from "./Components/SignInSignUp/AdminRegister";
 import EmpLogin from "./Components/SignInSignUp/EmpLogin";
+import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <HRDept />
+              <HRofficeRight />
             </div>
           </Route>
           <Route path="/feedback">
