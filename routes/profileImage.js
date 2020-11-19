@@ -36,7 +36,7 @@ let gfs;
 connect.once('open',()=>{
     //Init stream
     gfs = Grid(connect.db, mongoose.mongo);
-    gfs.collection('profile-image');
+    gfs.collection('profileimg');
 });
 
 
@@ -46,17 +46,12 @@ const storage = new GridFsStorage({
   url: mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const filename = file.originalname;
         const fileInfo = {
           filename: filename,
-          bucketName: 'profile-image'
+          bucketName: 'profileimg'
         };
         resolve(fileInfo);
-      });
     });
   }
 });
@@ -104,28 +99,27 @@ router.post('/link-file-to-user',verify,(req,res) => {
         res.send('err');
     });
     
-    //response!
 })
 
 
 
-//display all files
+// //display all images
 
-router.get('/files',(req,res)=>{
-    gfs.files.find().toArray((err, files)=>{
-        //if files r there
-        if(!files || files.length ===0){
-            return res.status(404).json({
-                err: 'No files exist'
-            });
-        }
-        console.log('files:'+files);
-         //File exist
-         return res.json(files); 
-    });
-});
+// router.get('/images',(req,res)=>{
+//     gfs.files.find().toArray((err, files)=>{
+//         //if files r there
+//         if(!files || files.length ===0){
+//             return res.status(404).json({
+//                 err: 'No files exist'
+//             });
+//         }
+//         console.log('files:'+files);
+//          //File exist
+//         return res.json(files); 
+//     });
+// });
 
-//display specific file
+//display specific image
 
 router.get('/image/:filename',(req,res)=>{
     gfs.files.findOne({filename: req.params.filename},(err, file)=>{
@@ -151,14 +145,31 @@ router.get('/image/:filename',(req,res)=>{
 });
 
 
+router.get('/files/:filename', (req, res) => {
+    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+      // Check if file
+      if (!file || file.length === 0) {
+        return res.status(404).json({
+          err: 'No file exists'
+        });
+      }
+      // If File exists this will get executed
+      const readstream = gfs.createReadStream(file.filename);
+      return readstream.pipe(res);
+    });
+  });
+
 //delete
 
-router.delete('/files/:id',(req,res)=>{
-    gfs.remove({_id: req.params.id, root:'profile-image'},(err, gridStore)=>{
-        if(err) return res.status(404).json({err : err});
-        res.redirect('/');
+router.delete('/files/:id', (req, res) => {
+    gfs.remove({ _id: req.params.id, root: 'profileimg' }, (err, gridStore) => {
+      if (err) {
+        return res.status(404).json({ err: err });
+      }
+  
+      res.redirect('/');
     });
-});
+  });
 
 
 module.exports = router;
