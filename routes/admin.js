@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
         token = await jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '3600s' });
         return res.json({
             accessToken: token,
-            message: 'Logged in as dveloper admin'
+            message: 'Logged in as developer admin'
         });
     }
 
