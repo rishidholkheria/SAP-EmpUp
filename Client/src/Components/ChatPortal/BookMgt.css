@@ -1,0 +1,25 @@
+.bookmgt {
+  margin: 20px 12px;
+  border-radius: 10px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  overflow: hidden;
+  box-shadow: 2px 2px 3px 3px rgb(196, 196, 196);
+}
+
+.name_date {
+  display: flex;
+  margin: 0px;
+  flex: 1;
+}
+
+.date {
+  float: right;
+}
+
+.dept {
+  flex: 1;
+  margin: 0px;
+}

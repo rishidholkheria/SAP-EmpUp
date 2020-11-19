@@ -1,8 +1,80 @@
+.chat_portal {
+  background-color: #f2edf3;
+}
+
 .hrd__header {
-  position: sticky;
   top: 0;
   background-color: white;
   z-index: 100;
   border: 1px solid var(--twitter-background);
   padding: 15px 20px;
+  min-width: 50vw;
+  width: 50vw;
+}
+
+.update_portal {
+  margin: 10px;
+  background-color: white;
+  padding: 10px;
+  /* box-shadow: 3px 5px 5px rgb(196, 196, 196); */
+  border-radius: 10px;
+}
+
+.update_portal_header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.update_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.update_portal_heading {
+  margin-left: 5px;
+}
+
+.update_portal_card {
+  /* border: 2px solid red; */
+
+  background-color: rgba(255, 255, 255, 0.356);
+  margin: 10px;
+  /* padding-left: 8px; */
+}
+
+.single_card {
+  margin: 20px 12px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px 3px rgb(196, 196, 196);
+}
+
+.tweet_box {
+  /* box-shadow: 1.5px 1.5px 2px 2px rgb(196, 196, 196); */
+  border: 0.5px solid rgba(128, 128, 128, 0.219);
+  border-radius: 10px;
+}
+
+.library_management {
+  margin: 20px 10px;
+  background-color: white;
+  padding: 10px;
+  /* box-shadow: 3px 5px 5px rgb(196, 196, 196); */
+  border-radius: 10px;
+}
+
+.library_header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.library_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 8px;
 }

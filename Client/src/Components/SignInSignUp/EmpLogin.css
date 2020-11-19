@@ -3,7 +3,7 @@
   padding: 20px;
 } */
 
-.wave {
+.admin_card .wave {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -147,8 +147,8 @@ div > .input-placeholder {
 }
 
 /* div.input-div:focus > div.i > i.fa-user {
-  color: #38d39f;
-} */
+    color: #38d39f;
+  } */
 
 .login-content form {
   width: 70%;

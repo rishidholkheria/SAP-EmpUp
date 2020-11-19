@@ -1,31 +1,12 @@
 import React from "react";
-import "./AdminRegister.css";
+import "./EmpLogin.css";
 import purplewave from "./img/purplewave.png";
 import login from "./img/login.svg";
 import profile from "./img/profile.svg";
 
-const AdminRegister = () => {
-  // const inputs = document.querySelectorAll(".input");
-
-  // function addcl() {
-  //   let parent = this.parentNode.parentNode;
-  //   parent.classList.add("focus");
-  // }
-
-  // function remcl() {
-  //   let parent = this.parentNode.parentNode;
-  //   if (this.value == "") {
-  //     parent.classList.remove("focus");
-  //   }
-  // }
-
-  // inputs.forEach((input) => {
-  //   input.addEventListener("focus", addcl);
-  //   input.addEventListener("blur", remcl);
-  // });
-
+const EmpLogin = () => {
   return (
-    <div className="admin_card">
+    <div>
       <img className="wave" src={purplewave} alt="Wave" />
       <div className="admin_container">
         <div className="img">
@@ -41,7 +22,7 @@ const AdminRegister = () => {
               </div>
               <div className="div">
                 {/* <h5 className="input-placeholder">Username</h5> */}
-                <input type="text" className="input" placeholder="Admin Name" />
+                <input type="text" className="input" placeholder="Username" />
               </div>
             </div>
             <div className="input-div pass">
@@ -53,12 +34,12 @@ const AdminRegister = () => {
                 <input
                   type="password"
                   className="input"
-                  placeholder="Enter Password"
+                  placeholder="Password"
                 />
               </div>
             </div>
-            {/* <a href="#">Forgot Password?</a> */}
-            <input type="submit" className="login" value="Register" />
+            <a href="#">Forgot Password?</a>
+            <input type="submit" className="login" value="Login" />
           </form>
         </div>
       </div>
@@ -66,4 +47,4 @@ const AdminRegister = () => {
   );
 };
 
-export default AdminRegister;
+export default EmpLogin;

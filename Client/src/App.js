@@ -12,6 +12,7 @@ import HomeRight from "./Components/DashBoard/HomeRight";
 import LibraryRight from "./Components/Library/LibraryRight";
 import RegisterOrg from "./Components/SignInSignUp/RegisterOrg";
 import AdminRegister from "./Components/SignInSignUp/AdminRegister";
+import EmpLogin from "./Components/SignInSignUp/EmpLogin";
 
 function App() {
   return (
@@ -63,6 +64,11 @@ function App() {
           <Route path="/admin">
             <div className="path_direction">
               <AdminRegister />
+            </div>
+          </Route>
+          <Route path="/emplogin">
+            <div className="path_direction">
+              <EmpLogin />
             </div>
           </Route>
           <Route path="/">

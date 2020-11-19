@@ -21,7 +21,6 @@
 .sidebar__tweet {
   background-color: #f8ceec;
   background-image: linear-gradient(315deg, #a761ff 0%, #a88beb 74%);
-
   border: none !important;
   color: white !important;
   font-weight: 900 !important;
