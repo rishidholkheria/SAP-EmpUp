@@ -15,6 +15,11 @@ const HRofficeRight = () => {
       </div>
       <div className="feedvack_section">
         <GetFeedback />
+        <GetFeedback />
+        <GetFeedback />
+        <GetFeedback />
+        <GetFeedback />
+        <GetFeedback />
       </div>
     </div>
   );

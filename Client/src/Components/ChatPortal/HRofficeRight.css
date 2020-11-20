@@ -1,20 +1,26 @@
 .hr_office_right {
   background-color: #f2edf3;
-  width: 100%;
+  max-width: 30vw;
+  padding: 0 10px;
 }
 
 .payroll {
   background-color: white;
-  margin: 10px;
+  margin: 10px auto;
   padding: 20px;
   height: 300px;
+  width: 100%;
   overflow: hidden;
+  background: radial-gradient(#000000c4, #000000c4),
+    url("https://i.pinimg.com/originals/21/61/8e/21618e399ac27c80aac237c8e2e5021d.jpg");
   /* background-image: url("https://i.pinimg.com/originals/21/61/8e/21618e399ac27c80aac237c8e2e5021d.jpg"); */
   border-radius: 10px;
+  color: white;
 }
 
 .payroll_desc {
-  color: rgba(0, 0, 0, 0.692);
+  /* color: rgba(0, 0, 0, 0.692); */
+  color: white;
 }
 
 .generate {

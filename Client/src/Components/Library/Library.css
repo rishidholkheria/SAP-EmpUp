@@ -9,6 +9,7 @@
   max-width: 50vw;
   /* overflow: hidden; */
   overflow-y: scroll;
+  padding: 0 9px;
 }
 
 .library::-webkit-scrollbar {
@@ -27,5 +28,5 @@
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   color: white;
   border-radius: 10px;
-  margin: 4px 9px;
+  margin: 4px 0px;
 }

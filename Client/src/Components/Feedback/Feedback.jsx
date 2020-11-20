@@ -18,7 +18,7 @@ const Feedback = () => {
   };
 
   return (
-    <div>
+    <div className="feedback_form">
       <div className="feedback__header">
         <h1>Feedback</h1>
       </div>
@@ -45,7 +45,9 @@ const Feedback = () => {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
 
-          <button type="submit">Submit</button>
+          <button className="feedback_submit" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>

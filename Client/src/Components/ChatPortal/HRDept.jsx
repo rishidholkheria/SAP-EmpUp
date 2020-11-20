@@ -49,6 +49,10 @@ const HRDept = () => {
           <h2 className="library_heading">Library Management</h2>
         </div>
         <BookMgt />
+        <BookMgt />
+        <BookMgt />
+        <BookMgt />
+        <BookMgt />
       </div>
     </div>
   );

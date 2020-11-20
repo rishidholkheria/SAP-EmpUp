@@ -1,13 +1,10 @@
 .news {
-  margin: 10px;
-  width: 480px;
-  max-width: 490px;
-  height: 350px;
-  background-color: #8ec5fc;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  max-height: 410px;
+  margin: 10px auto;
+  min-width: 90%;
+  max-width: 95%;
+  height: auto;
+  max-height: 500px;
   background-color: white;
-  max-height: 320px;
   padding: 30px;
   overflow: hidden;
   border: 1px solid lightgray;

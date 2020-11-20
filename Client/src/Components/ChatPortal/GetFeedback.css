@@ -1,20 +1,20 @@
 .feedback_card {
-  margin: 10px;
-  width: 480px;
-  max-width: 490px;
-  height: 350px;
-  max-height: 210px;
+  margin: 10px auto;
+  width: 100%;
+  max-width: 100%;
+  min-height: 150px;
+  max-height: 250px;
   background-color: white;
-  max-height: 320px;
-  padding: 30px;
-  overflow: hidden;
+  padding: 20px;
+  overflow: auto;
   border: 1px solid lightgray;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .feedback_title {
   border-bottom: 1px solid lightgray;
-  font-size: 30px;
+  font-size: 1.2rem;
+  margin: 0;
 }
 /* 
 .head__text {
@@ -26,4 +26,20 @@
   line-height: 25px;
   font-size: 14px;
   padding-bottom: 10px;
+}
+
+.feedback_card::-webkit-scrollbar {
+  width: 10px;
+}
+
+.feedback_card::-webkit-scrollbar-track {
+  background-color: rgb(228, 227, 227);
+  border-radius: 8px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.feedback_card::-webkit-scrollbar-thumb {
+  background-color: indigo;
+  border-radius: 8px;
 }

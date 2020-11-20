@@ -1,5 +1,9 @@
 .chat_portal {
+  min-width: 50vw;
+  width: 50vw;
   background-color: #f2edf3;
+  max-width: 50vw;
+  padding: 0px 9px;
 }
 
 .hrd__header {
@@ -14,9 +18,9 @@
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   color: white;
   border-radius: 10px;
-  margin: 4px 9px;
-  min-width: 50vw;
-  width: 50vw;
+  margin: 4px auto;
+  min-width: 95%;
+  max-width: 100%;
 }
 
 .update_portal {

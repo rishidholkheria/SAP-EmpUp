@@ -1,15 +1,22 @@
 import React from "react";
 import "./BookMgt.css";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { green } from "@material-ui/core/colors";
 
 const BookMgt = () => {
   return (
-    <div className="bookmgt">
-      <div className="name_date">
-        <h2>Harry Potter</h2>
-        <div className="date">date</div>
+    <div className="bookmgt_container">
+      <div className="bookmgt">
+        <div className="name">
+          <h4>Harry Potter</h4>
+        </div>
+        <div className="dept_date">
+          <h4>Department</h4>
+          <p className="date">date</p>
+        </div>
       </div>
-      <div className="dept">
-        <h4>Department</h4>
+      <div className="delete_book_icon">
+        <DeleteIcon style={({ fontSize: 40 }, { color: green[50] })} />
       </div>
     </div>
   );

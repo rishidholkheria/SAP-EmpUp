@@ -1,3 +1,11 @@
+.feedback_form {
+  min-width: 50vw;
+  width: 80vw;
+  background-color: #f2edf3;
+  max-width: 80vw;
+  padding: 0.2rem 4rem;
+}
+
 .feedback__header {
   top: 0;
   /* background-color: white; */
@@ -14,7 +22,7 @@
 }
 
 .form_container {
-  padding: 20px;
+  padding: 20px 50px;
   margin: 0px;
 }
 
@@ -59,11 +67,12 @@ textarea:focus {
   font-weight: bold;
 }
 
-.form > button {
+.feedback_submit {
   padding: 20px;
   border-radius: 20px;
   border: none;
-  background-color: rgb(2, 2, 110);
+  /* background-color: rgb(2, 2, 110); */
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   font-weight: 500;
   font-size: 20px;
   border-radius: 3px;
@@ -73,6 +82,14 @@ textarea:focus {
   margin-top: 10px;
 }
 
-.form > button:hover {
-  background-color: rgb(0, 0, 196);
+.form .feedback_submit:hover {
+  /* background-color: rgb(0, 0, 196); */
+  background-image: linear-gradient(
+    315deg,
+    #a761ff 0%,
+    #a761ff 0%,
+    #a761ff 0%,
+    #612dda 74%
+  );
+  background-position: left;
 }

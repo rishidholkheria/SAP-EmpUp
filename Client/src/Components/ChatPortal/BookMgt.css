@@ -1,25 +1,69 @@
+.bookmgt_container {
+  display: flex;
+}
+
 .bookmgt {
-  margin: 20px 12px;
+  margin: 10px;
   border-radius: 10px;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  height: 120px;
-  overflow: hidden;
+  padding: 5px;
+  /* height: 120px; */
+  /* overflow: hidden; */
   box-shadow: 2px 2px 3px 3px rgb(196, 196, 196);
 }
 
-.name_date {
-  display: flex;
+.name {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
   margin: 0px;
   flex: 1;
+  width: 100%;
+  padding: 0 20px;
 }
 
-.date {
+.name h4 {
+  color: black;
+  margin: 16px 0 8px 0;
+}
+
+/* .date {
   float: right;
-}
+} */
 
-.dept {
+.dept_date {
   flex: 1;
   margin: 0px;
+  padding: 0px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.dept_date h4 {
+  margin: 0;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.671);
+}
+
+.dept_date p {
+  color: rgba(0, 0, 0, 0.671);
+}
+
+.delete_book_icon {
+  display: flex;
+  width: 5%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* font-size: 2rem; */
+  background-color: crimson;
+  margin: 10px 5px;
+  border-radius: 10px;
+}
+
+/* fontSize="large" */
