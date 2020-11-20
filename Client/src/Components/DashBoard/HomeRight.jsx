@@ -4,12 +4,36 @@ import AddTodo from "../Todo/AddTodo";
 import TodoList from "../Todo/TodoList";
 import "./HomeRight.css";
 import Goal from "./Goal";
+import axios from "axios";
 
 const HomeRight = () => {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [goal, setGoal] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
+      .then((res) => {
+        setGoal(res.data.data.monthlyGoal);
+        console.log(res);
+        console.log(res.data.data.monthlyGoal);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
+      .then((res) => {
+        setGoal(res.data.data.monthlyGoal);
+        console.log(res.data.data.monthlyGoal);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     getFromLocalStorage();
@@ -52,7 +76,7 @@ const HomeRight = () => {
   return (
     <div className="widgets">
       <div className="monthly_goal">
-        <Goal />
+        <Goal goal={goal}></Goal>
       </div>
 
       <div className="right-todo">

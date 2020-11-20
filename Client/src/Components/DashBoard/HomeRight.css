@@ -41,6 +41,7 @@
   /* width: calc(50vw - 320px);
   max-width: calc(50vw - 320px); */
   max-width: 30vw;
+  min-width: 30vw;
   padding: 5px 9px;
 }
 
