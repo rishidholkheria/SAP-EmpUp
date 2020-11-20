@@ -9,6 +9,8 @@
   overflow: hidden;
   border: 1px solid lightgray;
   border-radius: 5px;
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #b197ee 74%);
 }
 
 .news__title {

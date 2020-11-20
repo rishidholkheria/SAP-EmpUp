@@ -18,6 +18,7 @@ router.post("/", (req, res) => {
     fDept: req.body.fDept,
     cDate: getDate(),
   });
+  console.log(req.body);
   feedback.save((err, data) => {
     if (err) {
       res.send("Error: " + err);

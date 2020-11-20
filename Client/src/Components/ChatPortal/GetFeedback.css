@@ -9,6 +9,8 @@
   overflow: auto;
   border: 1px solid lightgray;
   border-radius: 8px;
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #b197ee 74%);
 }
 
 .feedback_title {

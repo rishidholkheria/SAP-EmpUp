@@ -15,8 +15,8 @@ const LibraryRight = () => {
       )
       .then((res) => {
         setNews(res.data.articles);
-        console.log(res.data.articles);
-        console.log(res.data);
+        // console.log(res.data.articles);
+        // console.log(res.data);
       })
       .catch((error) => console.log(error));
   }, []);
