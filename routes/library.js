@@ -17,12 +17,12 @@ router.post("/upload-new-book", (req, res) => {
     // if (req.user.isHR || req.user.isAdmin) {
         const libBook = new Library({
             libId: libId,
-            name: req.body.name,
-            department: req.body.department,
+            name: req.body.bName,
+            department: req.body.bDept,
             file: req.body.file,
-            description: req.body.description
+            description: req.body.bDesc
         });
-        console.log(req.body);
+        console.log("text api: "+req.body);
         libBook.save((err, data) => {
             if (err) {
                 return res.send("Error: " + err);

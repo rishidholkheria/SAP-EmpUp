@@ -48,16 +48,13 @@ const storage = new GridFsStorage({
       const filename = file.originalname;
       const fileInfo = {
         filename: filename,
-        bucketName: "uploaded_images",
+        bucketName: "library_file",
       };
       resolve(fileInfo);
     });
   },
 });
 const upload = multer({ storage });
-
-
-
 
 router.get("/", (req, res) => {
   gfs.files.find().toArray((err, files) => {
@@ -68,16 +65,16 @@ router.get("/", (req, res) => {
         message: "Coudln't find the file you are looking!",
       });
     } else {
-    //   files.map((file) => {
-    //     if (
-    //       file.contentType === "image/jpeg" ||
-    //       file.contentType === "image/png"
-    //     ) {
-    //       file.isImage = true;
-    //     } else {
-    //       file.isImage = false;
-    //     }
-    //   });
+      //   files.map((file) => {
+      //     if (
+      //       file.contentType === "image/jpeg" ||
+      //       file.contentType === "image/png"
+      //     ) {
+      //       file.isImage = true;
+      //     } else {
+      //       file.isImage = false;
+      //     }
+      //   });
       res.json({
         data: { files: files },
         message: "File recieved!",
@@ -87,24 +84,27 @@ router.get("/", (req, res) => {
 });
 
 // //upload to DB
-router.post("/upload", upload.single("file"), (req, res) => {
-  // res.json({file: req.file});
+router.post("/upload", upload.single("real-file"), (req, res) => {
+  console.log('FILE API ');
   console.log(req.file);
+  res.json({ file: req.file });
   res.send("The file has been uploaded");
 });
 
 //acces token and filename
-router.post("/link-file-to-library", verify, (req, res) => {
+router.post("/link-file-to-library", (req, res) => {
+  console.log("data from frontend: ")
+  console.log(req.body);
   Library.findOneAndUpdate(
-    { _id: req.user.userid },
+    { _id: req.body.bookId },
     {
       $set: {
-        file: req.body.filename,
+        file: req.body.fileId,
       },
     }
   )
     .then((data) => {
-      console.log(data);
+      console.log("link api:"+data);
       res.send("uploaded");
     })
     .catch((err) => {
@@ -130,41 +130,16 @@ router.post("/link-file-to-library", verify, (req, res) => {
 // });
 
 // display specific image
-
-router.get("/image/:filename", (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    //if files r there
-    if (!file || file.length === 0) {
-      return res.status(404).json({
-        err: "No file exist",
-      });
-    }
-
-    // check if image
-    if ((file.contentType = "image/jpeg" || file.contentType == "image/png")) {
-      //create read stream to the browser
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
-    } else {
-      res.status(404).json({
-        err: "Not an image",
-      });
-    }
-  });
-});
-
-router.get("/files/:filename", (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    // Check if file
-    if (!file || file.length === 0) {
-      return res.status(404).json({
-        err: "No file exists",
-      });
-    }
-    // If File exists this will get executed
-    const readstream = gfs.createReadStream(file.filename);
-    return readstream.pipe(res);
-  });
+router.get('/image-id/:id',function(req , res) {
+  var id = gfs.tryParseObjectId(req.params.id);
+  var options = {_id: id, root: 'library_file'};
+  try{
+    gfs.createReadStream(options).pipe(res);
+  }
+  catch(err){
+    res.json(err);  
+    console.log(err);
+  }
 });
 
 //delete

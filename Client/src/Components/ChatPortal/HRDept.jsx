@@ -1,14 +1,87 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import "./HRDept.css";
 import TweetBox from "./TweetBox";
 import BookMgt from "./BookMgt";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
+import { useState } from "react";
+import axios from "axios";
 
 const HRDept = () => {
-  // const realFileBtn = document.getElementById("real-file");
-  // const customBtn = document.getElementById("custom-button");
-  // const customTxt = document.getElementById("custom-text");
+  const [bookName, setBookName] = useState("");
+  const [bookDesc, setBookDesc] = useState("");
+  const [bookDept, setBookDept] = useState("");
+  const [file, setFile] = useState(null);
+  // const [fileId, setFileId] = useState("rishi");
+  // const [bookId, setBookId] = useState("hello");
+  const [fileandbook, setFileAndBook] = useState("");
+
+  const apiOne = "http://localhost:4000/api/virtual-library/upload-new-book";
+  const apiTwo = "http://localhost:4000/api/virtual-library-file/upload";
+
+  const onAddBook = () => {
+    const bName = bookName;
+    const bDesc = bookDesc;
+    const bDept = bookDept;
+
+    var formData = new FormData();
+    // var imagefile = document.querySelector("#real-file");
+    // let nfile = file;
+    formData.append("real-file", file);
+    // axios.post("upload_file", formData, {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // });
+
+    const requestOne = axios.post(apiOne, { bName, bDesc, bDept });
+    const requestTwo = axios.post(apiTwo, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    // const requestThree = axios.post(apiThree);
+
+    axios
+      .all([requestOne, requestTwo])
+      .then(
+        axios.spread(async (...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+          // const responesThree = responses[2];
+
+          console.log("responseOne", responseOne);
+          console.log("responseTwo", responseTwo);
+          // console.log("responesThree", responesThree);
+          console.log(responseTwo.data.file);
+          // setBookId(responseOne.data.data._id);
+          // setFileId(responseTwo.data.file.id);
+          setFileAndBook({
+            fileId: responseTwo.data.file.id,
+            bookId: responseOne.data.data._id,
+          });
+
+          console.log(responseOne.data.data._id);
+          console.log(responseTwo.data.file.id);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+      });
+  };
+
+  useEffect(() => {
+    if (fileandbook.bookId !== "" && fileandbook.fileId !== "") {
+      axios
+        .post(
+          "http://localhost:4000/api/virtual-library-file/link-file-to-library",
+          fileandbook
+        )
+        .then((res) => {
+          console.log(res);
+        });
+    }
+  }, [fileandbook]);
 
   const Input = useRef(null);
   const file_name = useRef(null);
@@ -17,7 +90,13 @@ const HRDept = () => {
     Input.current.click();
   };
 
-  const clickFile = () => {
+  const clickFile = (e) => {
+    console.log(e.target.files, "$$$");
+    console.log(e.target.files[0], "$$$");
+
+    let file = e.target.files[0];
+    setFile(file);
+
     if (Input.current.value) {
       file_name.current.innerHTML = Input.current.value.match(
         /[\/\\]([\w\d\s\.\-\(\)]+)$/
@@ -74,8 +153,24 @@ const HRDept = () => {
           <h4>Add Book</h4>
 
           <div className="input_add_book">
-            <input type="text" placeholder="Book Name" />
-            <input type="text" placeholder="Department" />
+            {/* <form action="upload_file" role="form" method="post" ></form> */}
+            <input
+              type="text"
+              placeholder="Book Name"
+              value={bookName}
+              onChange={(e) => setBookName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Department"
+              value={bookDept}
+              onChange={(e) => setBookDept(e.target.value)}
+            />
+            <textarea
+              placeholder="Message"
+              value={bookDesc}
+              onChange={(e) => setBookDesc(e.target.value)}
+            ></textarea>
           </div>
 
           <div className="get_book_file">
@@ -85,7 +180,7 @@ const HRDept = () => {
               placeholder="Book Name"
               id="real-file"
               hidden="hidden"
-              onChange={clickFile}
+              onChange={(e) => clickFile(e)}
               ref={Input}
             />
 
@@ -100,6 +195,10 @@ const HRDept = () => {
             <span className="file_text" id="custom-text" ref={file_name}>
               No file
             </span>
+
+            <button className="add_book_btn" onClick={onAddBook}>
+              ADD
+            </button>
           </div>
         </div>
         <BookMgt />

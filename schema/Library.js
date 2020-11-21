@@ -10,10 +10,10 @@ var librarySchema = mongoose.Schema({
     department: {
         type: String
     },
-    file: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'GridFS'  
-    }],
+    file: {
+        type: String,
+        default: ""
+    },
     description:{
         type: String
     }

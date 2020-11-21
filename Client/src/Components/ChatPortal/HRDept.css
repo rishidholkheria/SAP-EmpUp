@@ -114,6 +114,14 @@
   width: 60%;
   background-color: rgba(0, 0, 0, 0.061);
   margin: 5px 0;
+  font-family: inherit;
+}
+
+.input_add_book textarea {
+  height: 150px;
+  max-width: 400px;
+  min-height: 100px;
+  font-family: inherit;
 }
 
 .get_book_file {
