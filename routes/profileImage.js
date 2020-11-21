@@ -47,9 +47,11 @@ const storage = new GridFsStorage({
   file: (req, file) => {
     return new Promise((resolve, reject) => {
         const filename = file.originalname;
+        const _id = file.filename
         const fileInfo = {
           filename: filename,
-          bucketName: 'profileimg'
+          bucketName: 'profileimg',
+          _id: _id
         };
         resolve(fileInfo);
     });
@@ -139,23 +141,15 @@ router.post('/link-file-to-user',verify,(req,res) => {
 // })
 
 router.get('/image-id/:id',function(req , res) {
-    var file_id = req.params.id;
-  
-    gfs.files.find({_id: file_id}).toArray(function (err, files) {
-      if (err) {
-        res.json(err);
-      }
-      if (files.length > 0) {
-        // var mime = files[0].contentType;
-        // var filename = files[0].filename;
-        // res.set('Content-Type', mime);
-        // res.set('Content-Disposition', "inline; filename=" + filename);
-        var read_stream = gfs.createReadStream({_id: file_id});
-        read_stream.pipe(res);
-      } else {
-        res.json('File Not Found');
-      }
-    });
+    var id = gfs.tryParseObjectId(req.params.id);
+    var options = {_id: id, root: 'profileimg'};
+    try{
+      gfs.createReadStream(options).pipe(res);
+    }
+    catch(err){
+      res.json(err);  
+      console.log(err);
+    }
   });
 
 router.get('/image/:filename',(req,res)=>{

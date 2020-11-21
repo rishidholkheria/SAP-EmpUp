@@ -112,7 +112,7 @@
               <% if(file.isImage) { %>
                 <img src="image/<%= file.filename %>" alt="">
                 <% } else { %>
-                  <a href = "/files/<%= file.filename %>" target = "_blank"><%= file.filename %></a>
+                  <a href = "/api/employee-profile-image/files/<%= file.filename %>" target = "_blank"><%= file.filename %></a>
                     <% } %>
                       <form method="DELETE" action="/files/<%= file._id %>?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Delete</button>

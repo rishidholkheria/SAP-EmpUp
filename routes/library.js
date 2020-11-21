@@ -13,8 +13,8 @@ router.use(express.json());
 
 var libId = genId(6);
 
-router.post("/upload-new-book", verify, (req, res) => {
-    if (req.user.isHR || req.user.isAdmin) {
+router.post("/upload-new-book", (req, res) => {
+    // if (req.user.isHR || req.user.isAdmin) {
         const libBook = new Library({
             libId: libId,
             name: req.body.name,
@@ -33,13 +33,13 @@ router.post("/upload-new-book", verify, (req, res) => {
             });
             console.log("created!");
         });
-    }
-    else {
-        return res.json({
-            data: null,
-            message: 'You are not authorised. What are you trying to do?'
-        });
-    }
+    // }
+    // else {
+    //     return res.json({
+    //         data: null,
+    //         message: 'You are not authorised. What are you trying to do?'
+    //     });
+    // }
 });
 
 //get all books/files

@@ -48,13 +48,16 @@ const storage = new GridFsStorage({
       const filename = file.originalname;
       const fileInfo = {
         filename: filename,
-        bucketName: "library_file",
+        bucketName: "uploaded_images",
       };
       resolve(fileInfo);
     });
   },
 });
 const upload = multer({ storage });
+
+
+
 
 router.get("/", (req, res) => {
   gfs.files.find().toArray((err, files) => {
@@ -151,7 +154,7 @@ router.get("/image/:filename", (req, res) => {
 });
 
 router.get("/files/:filename", (req, res) => {
-  gfs.files.findOne({ _id: req.params.filename }, (err, file) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
       return res.status(404).json({
