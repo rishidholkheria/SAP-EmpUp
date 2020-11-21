@@ -18,8 +18,8 @@ const HomeRight = () => {
       .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
       .then((res) => {
         setGoal(res.data.data.monthlyGoal);
-        console.log(res);
-        console.log(res.data.data.monthlyGoal);
+        // console.log(res);
+        // console.log(res.data.data.monthlyGoal);
       });
   }, []);
 
@@ -40,7 +40,7 @@ const HomeRight = () => {
   }, []);
 
   useEffect(() => {
-    console.log("hi");
+    // console.log("hi");
     filterHandler();
     saveToLocalStorage();
   }, [todos, status]);

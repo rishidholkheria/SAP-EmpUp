@@ -15,8 +15,8 @@ const NoticeBoard = () => {
       .then((res) => {
         res.data.data.notice.shift();
         setNotices(res.data.data.notice);
-        console.log(res);
-        console.log(res.data.data.notice);
+        // console.log(res);
+        // console.log(res.data.data.notice);
       })
       .catch(function (error) {
         console.log(error);

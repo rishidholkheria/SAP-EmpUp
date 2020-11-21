@@ -121,9 +121,54 @@ router.post('/link-file-to-user',verify,(req,res) => {
 
 //display specific image
 
+// router.get('/image-id/:_id',(req,res)=>{
+//     gfs.files.findOne({_id: req.params._id},(err,result)=>{
+//         if(err){
+//             return res.json({
+//                 data: {},
+//                 message: "Error: "+err
+//             });
+//         }
+
+//         res.json({
+//             data: result,
+//             message: "fetched!"
+//         })
+
+//     })
+// })
+
+router.get('/image-id/:id',function(req , res) {
+    var file_id = req.params.id;
+  
+    gfs.files.find({_id: file_id}).toArray(function (err, files) {
+      if (err) {
+        res.json(err);
+      }
+      if (files.length > 0) {
+        // var mime = files[0].contentType;
+        // var filename = files[0].filename;
+        // res.set('Content-Type', mime);
+        // res.set('Content-Disposition', "inline; filename=" + filename);
+        var read_stream = gfs.createReadStream({_id: file_id});
+        read_stream.pipe(res);
+      } else {
+        res.json('File Not Found');
+      }
+    });
+  });
+
 router.get('/image/:filename',(req,res)=>{
     gfs.files.findOne({filename: req.params.filename},(err, file)=>{
         //if files r there
+
+        if(err){
+            return res.json({
+                data: {},
+                message: "Error: "+err
+            });
+        }
+
         if(!file || file.length === 0){
             return res.status(404).json({
                 err: 'No file exist'
@@ -131,22 +176,23 @@ router.get('/image/:filename',(req,res)=>{
         }
 
         // check if image
-        if(file.contentType = 'image/jpeg'|| file.contentType == 'image/png'){
+        // if(file.contentType = 'image/jpeg'|| file.contentType == 'image/png'){
             //create read stream to the browser
             const readstream = gfs.createReadStream(file.filename);
             readstream.pipe(res);
-        } else{
-            res.status(404).json({
-                err:"Not an image"
-            });
-        }
+            res.send("hello")
+        // } else{
+        //     res.status(404).json({
+        //         err:"Not an image"
+        //     });
+        // }
     });
        
 });
 
 
 router.get('/files/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    gfs.files.findOne({ _id: req.params.filename }, (err, file) => {
       // Check if file
       if (!file || file.length === 0) {
         return res.status(404).json({

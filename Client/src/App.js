@@ -20,6 +20,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
+          {/* <Route path="/library/"></Route> */}
           <Route path="/library">
             <div className="path_direction">
               <Sidebar />

@@ -5,11 +5,14 @@ import axios from "axios";
 
 const Library = () => {
   const [books, setBooks] = useState([]);
+  const [data, setData] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/virtual-library").then((res) => {
       console.log(res);
       setBooks(res.data.data);
+      setData(res.data.data);
+      console.log(data);
     });
   }, []);
 
@@ -23,6 +26,7 @@ const Library = () => {
           bookTitle={newBook.name}
           bookDesc={newBook.description}
           bookDept={newBook.department}
+          data={newBook.file}
         />
       ))}
     </div>

@@ -4,7 +4,7 @@ import NotificationImportantIcon from "@material-ui/icons/NotificationImportant"
 import { red } from "@material-ui/core/colors";
 
 const Notice = ({ myNotice }) => {
-  console.log(myNotice);
+  // console.log(myNotice);
   return (
     <div className="notice">
       <div className="icon">

@@ -2,46 +2,20 @@ import React from "react";
 import { useState, useEffect, useParams } from "react";
 import "./Book.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Book = ({ bookTitle, bookDesc, bookDept }) => {
-  const [id, setId] = useState("");
-  // let one = "http://localhost:4000/api/virtual-library";
-  // let two = "http://localhost:4000/api/virtual-library-file/";
-
-  // const readBook = (e) => {
-  //   e.preventDefault();
-  // };
+const Book = ({ bookTitle, bookDesc, bookDept, data }) => {
   const onRead = (e) => {
     const requestOne = axios.get(
-      "http://localhost:4000/api/virtual-library/id"
+      `http://localhost:4000/api/employee-profile-image/${data}`
     );
     requestOne.then((response) => {
       // console.log(response.data);
       // console.log(response.data.data);
-      setId(response.data.data.libId);
-      console.log(response.data.data.libId);
+
+      console.log(response);
     });
-
-    // const filename = id;
-
-    const requestTwo = axios.get(
-      `http://localhost:4000/api/employee-file-image/files/${id}`
-    );
-
-    requestTwo.then((response) => {
-      console.log(response.data);
-    });
-
-    // e.preventDefault();
-    // axios
-    //   .get("http://localhost:4000/api/employee-file-image/files/filename")
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
   };
-
-  // const { filename } = useParams();
-  // console.log(filename);
 
   return (
     <div className="book">
@@ -56,9 +30,11 @@ const Book = ({ bookTitle, bookDesc, bookDept }) => {
           <h3>{bookTitle}</h3>
           <p className="p-trunc">{bookDesc}</p>
 
-          <button className="read_button" onClick={onRead}>
-            Read
-          </button>
+          <a href={`/api/employee-profile-image/image/${data}`}>
+            <button className="read_button" onClick={onRead}>
+              Read
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -66,3 +42,30 @@ const Book = ({ bookTitle, bookDesc, bookDept }) => {
 };
 
 export default Book;
+
+// let one = "http://localhost:4000/api/virtual-library";
+// let two = "http://localhost:4000/api/virtual-library-file/";
+
+// const readBook = (e) => {
+//   e.preventDefault();
+// };
+
+// const filename = id;
+
+// const requestTwo = axios.get(
+//   `http://localhost:4000/api/employee-file-image/files/${id}`
+// );
+
+// requestTwo.then((response) => {
+//   console.log(response.data);
+// });
+
+// e.preventDefault();
+// axios
+//   .get("http://localhost:4000/api/employee-file-image/files/filename")
+//   .then((res) => {
+//     console.log(res);
+//   });
+
+// const { filename } = useParams();
+// console.log(filename);
