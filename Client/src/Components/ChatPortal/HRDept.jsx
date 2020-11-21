@@ -68,6 +68,11 @@ const HRDept = () => {
       .catch((errors) => {
         console.log(errors);
       });
+
+      alert("Your file has been added to the library!!!");
+      setBookName("");
+      setBookDesc("");
+      setBookDept("");
   };
 
   useEffect(() => {
