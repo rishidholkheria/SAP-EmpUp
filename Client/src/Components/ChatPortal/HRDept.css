@@ -89,3 +89,53 @@
   justify-content: center;
   margin-right: 8px;
 }
+
+.add_book {
+  padding: 0 10px;
+}
+
+.add_book h4 {
+  padding-left: 5px;
+}
+
+.input_add_book {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_add_book input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 12px;
+  border-radius: 3px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.061);
+  margin: 5px 0;
+}
+
+.get_book_file {
+  padding: 15px 0;
+}
+
+.book_file_btn {
+  padding: 10px;
+  color: white;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+}
+
+.book_file_btn:hover {
+  background-position: right;
+}
+
+.file_text {
+  margin-left: 10px;
+  font-family: sans-serif;
+  color: #aaa;
+}

@@ -14,6 +14,7 @@ import RegisterOrg from "./Components/SignInSignUp/RegisterOrg";
 import AdminRegister from "./Components/SignInSignUp/AdminRegister";
 import EmpLogin from "./Components/SignInSignUp/EmpLogin";
 import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
+import ContactUs from "./Components/Profile/ContactUs";
 
 function App() {
   return (
@@ -72,6 +73,11 @@ function App() {
           <Route path="/emplogin">
             <div className="path_direction">
               <EmpLogin />
+            </div>
+          </Route>
+          <Route path="/contactus">
+            <div className="path_direction">
+              <ContactUs />
             </div>
           </Route>
           <Route path="/">
