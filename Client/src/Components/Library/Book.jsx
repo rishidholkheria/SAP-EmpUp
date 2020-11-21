@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Book = ({ bookTitle, bookDesc, bookDept, data }) => {
   const onRead = (e) => {
     const requestOne = axios.get(
-      `http://localhost:4000/api/employee-profile-image/image-id/${data}`
+      `http://localhost:4000/api/virtual-library-file/image-id/${data}`
     );
     requestOne.then((response) => {
       // console.log(response.data);
@@ -30,7 +30,7 @@ const Book = ({ bookTitle, bookDesc, bookDept, data }) => {
           <p className="p-trunc">{bookDesc}</p>
 
           <a
-            href={`http://localhost:4000/api/employee-profile-image/image-id/${data}`}
+            href={`http://localhost:4000/api/virtual-library-file/image-id/${data}`}
             target="_blank"
           >
             <button className="read_button" onClick={onRead}>
