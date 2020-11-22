@@ -1,10 +1,78 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./RegisterOrg.css";
+import axios from "axios";
 
 const RegisterOrg = () => {
-  //   const signUpHandler = () => {
-  //     container.classList.add("right-panel-active");
-  //   };
+  const [orgName, setOrgName] = useState("");
+  const [orgEmail, setOrgEmail] = useState("");
+  const [orgContact, setOrgContact] = useState("");
+  const [orgLocation, setOrgLocation] = useState("");
+  const [orgType, setOrgType] = useState("");
+  const [excel, setExcel] = useState(null);
+
+  const apiOne = "http://localhost:4000/api/organisation";
+  const apiTwo = "http://localhost:4000/api/upload-employee/upload";
+  const apiThree = "http://localhost:4000/api/upload-employee/upload-to-db";
+
+  const Input = useRef(null);
+
+  const clickExcelInput = (e) => {
+    let file = e.target.files[0];
+    setExcel(file);
+
+    // if (Input.current.value) {
+    //   file_name.current.innerHTML = Input.current.value.match(
+    //     /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    //   )[1];
+    // } else {
+    //   file_name.current.innerHTML = "No file chosen, yet.";
+    // }
+  };
+
+  const onConfirmRegister = () => {
+    var formData = new FormData();
+    formData.append("file", excel);
+
+    const requestOne = axios.post(apiOne, {
+      orgName,
+      orgEmail,
+      orgContact,
+      orgLocation,
+      orgType,
+    });
+    const requestTwo = axios.post(apiTwo, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    axios
+      .all([requestOne, requestTwo])
+      .then(
+        axios.spread(async (...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+          // const responesThree = responses[2];
+
+          console.log("responseOne", responseOne);
+          console.log("responseTwo", responseTwo);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+      });
+  };
+
+  const employeeToDb = () => {
+    axios
+      .post(apiThree, {})
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="register">
@@ -26,21 +94,27 @@ const RegisterOrg = () => {
               </a>
             </div>
 
-            <input type="text" placeholder="Organisation Type" />
-            <input type="text" placeholder="Upload Excel" />
+            <input
+              type="text"
+              placeholder="Organisation Type"
+              value={orgType}
+              onChange={(e) => setOrgType(e.target.value)}
+            />
+            <input
+              id="file"
+              type="file"
+              placeholder="Upload Excel"
+              ref={Input}
+              onChange={(e) => clickExcelInput(e)}
+            />
             {/* <input type="password" placeholder="Password" /> */}
             <span className="confirm_msg">
               Confirm your Registration to proceed.
             </span>
-            <button
-              onClick={() =>
-                document
-                  .getElementById("container")
-                  .classList.remove("right-panel-active")
-              }
-            >
+            <button className="confirm_register" onClick={onConfirmRegister}>
               Confirm Register
             </button>
+            <button onClick={employeeToDb}>ADD EMPLOYEE</button>
           </div>
         </div>
 
@@ -61,12 +135,33 @@ const RegisterOrg = () => {
               </a>
             </div>
             {/* <span>or use your account</span> */}
-            <input type="text" placeholder="Name" />
-            <input type="text" placeholder="Location" />
-            <input type="email" placeholder="Email" />
-            <input type="number" placeholder="Contact Number" />
+            <input
+              type="text"
+              placeholder="Name"
+              value={orgName}
+              onChange={(e) => setOrgName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Location"
+              value={orgLocation}
+              onChange={(e) => setOrgLocation(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={orgEmail}
+              onChange={(e) => setOrgEmail(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Contact Number"
+              value={orgContact}
+              onChange={(e) => setOrgContact(e.target.value)}
+            />
             <a href="#">Just few more things we need!</a>
             <button
+              className="nextSlide"
               onClick={() =>
                 document
                   .getElementById("container")
@@ -80,19 +175,40 @@ const RegisterOrg = () => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>How to Upload Excel?</h1>
-              <p>We will tell you biro.</p>
+              <h1>About Uploading Excel</h1>
+              <p>
+                The following format has to be strictly followed in order to
+                upload all of your employees smoothly.
+                <br /> 1.Email <br /> 2.Name <br /> 3.Designation
+                <br /> 4.Department <br /> 6.Type <br /> 7.BasicSalary
+              </p>
+
               {/* <button className="ghost" id="signIn">
                 Sign In
               </button> */}
+              <button
+                className="prevSlideBtn"
+                onClick={() =>
+                  document
+                    .getElementById("container")
+                    .classList.remove("right-panel-active")
+                }
+              >
+                Previous Slide
+              </button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>EmpUp</h1>
               <p>ADOBTABLE * ACCOUNTABLE * AFFORDABLE </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                doloribus nesciunt sunt eligendi autem rem vel quidem quis,
-                dolorem, voluptatibus, sed atque.{" "}
+                In these difficult times many businesses are struggling to keep
+                their doors open and trying to find ways to keep their employees
+                safe, comfortable and productive. Our team strives to facilitate
+                organizations with a complete virtual human resource office.
+                EmpUp fulfils their requirements in this pandemic.
+                <br />
+                EmpUp provides one stop solution to all the problems faced by
+                the HR department.{" "}
               </p>
               {/* <button className="ghost" id="signUp">
                 Sign Up

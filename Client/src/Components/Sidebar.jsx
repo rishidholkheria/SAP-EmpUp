@@ -14,22 +14,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
-  // const [auth, setAuth] = useState(false);
-
-  // setAuth(localStorage.getItem("isAuth"));
-
-  // let checkAuth = auth;
-  // useEffect(() => {
-  //   if (auth) {
-  //     <a href="/adminlogin">
-  //       <Button variant="outlined" className="sidebar__tweet" fullWidth>
-  //         HR Office
-  //       </Button>
-  //     </a>;
-  //   } else {
-  //     <p>NO NO</p>;
-  //   }
-  // }, []);
+  const [auth, setAuth] = useState(localStorage.getItem("isAuth"));
 
   return (
     <div className="sidebar">
@@ -56,6 +41,15 @@ function Sidebar() {
         <SidebarOption Icon={SearchIcon} text="Profile" />
       </Link>
 
+      {localStorage.getItem("isAuth") === "true" ? (
+        <a href="/register">
+          <Button variant="outlined" className="sidebar__tweet" fullWidth>
+            HR Office
+          </Button>
+        </a>
+      ) : (
+        <h1></h1>
+      )}
       {/* {showHrOffice} */}
     </div>
   );

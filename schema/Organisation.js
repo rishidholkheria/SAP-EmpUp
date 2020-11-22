@@ -14,7 +14,7 @@ var orgSchema = mongoose.Schema({
     orgEmail:{
         type: String
     },
-    orgWebsite:{
+    orgContact:{
         type: String
     },
     monthlyGoal:{

@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
     orgLocation: req.body.orgLocation,
     orgType: req.body.orgType,
     orgEmail: req.body.orgEmail,
-    orgWebsite: req.body.orgWebsite,
+    orgContact: req.body.orgContact,
     monthlyGoal: req.body.monthlyGoal,
     notice: req.body.notice,
   });

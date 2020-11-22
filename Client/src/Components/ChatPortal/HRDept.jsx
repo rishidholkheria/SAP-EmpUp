@@ -12,7 +12,10 @@ const HRDept = () => {
   const [bookDesc, setBookDesc] = useState("");
   const [bookDept, setBookDept] = useState("");
   const [file, setFile] = useState(null);
-  const [fileandbook, setFileAndBook] = useState("");
+  const [fileandbook, setFileAndBook] = useState({
+    bookId: "",
+    fileId: ""
+  });
   const [bookDelete, setBookDelete] = useState([]);
   const [notice, setNotice] = useState("");
   const [newgoal, setGoal] = useState("");
@@ -52,7 +55,7 @@ const HRDept = () => {
 
   useEffect(() => {
     axios.get("http://localhost:4000/api/virtual-library").then((res) => {
-      console.log(res);
+      // console.log(res);
       setBookDelete(res.data.data);
     });
   }, []);

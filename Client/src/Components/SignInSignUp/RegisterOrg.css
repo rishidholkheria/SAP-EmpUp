@@ -50,7 +50,22 @@ div.form a {
   margin: 15px 0;
 }
 
-div.form button {
+.nextSlide {
+  border-radius: 20px;
+  border: 0.5px solid #cd68ec;
+  background-color: #b621fe;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.confirm_register {
   border-radius: 20px;
   border: 0.5px solid #cd68ec;
   background-color: #b621fe;
@@ -91,6 +106,21 @@ div.form button:focus {
   padding: 0 50px;
   /* min-height: 100%; */
   text-align: center;
+}
+
+.prevSlideBtn {
+  border-radius: 20px;
+  border: 0.5px solid #b683f1;
+  background-color: #12b3e488;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
 }
 
 /* .register div.form_org {
