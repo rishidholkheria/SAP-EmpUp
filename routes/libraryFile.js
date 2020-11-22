@@ -43,7 +43,7 @@ connect.once("open", () => {
 
 const storage = new GridFsStorage({
   url: mongoURI,
-  file: (req, file) => {
+    file: (req, file) => {
     return new Promise((resolve, reject) => {
       const filename = file.originalname;
       const fileInfo = {
@@ -95,6 +95,14 @@ router.post("/upload", upload.single("real-file"), (req, res) => {
 router.post("/link-file-to-library", (req, res) => {
   console.log("data from frontend: ")
   console.log(req.body);
+
+  if(req.body.bookId === "" && req.body.fileId === ""){
+    return res.json({
+      data: {},
+      message: "Empty string!"
+    });
+  }
+
   Library.findOneAndUpdate(
     { _id: req.body.bookId },
     {

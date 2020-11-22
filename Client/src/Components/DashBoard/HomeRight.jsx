@@ -11,27 +11,17 @@ const HomeRight = () => {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
-  const [goal, setGoal] = useState([]);
+  const [goal, setGoal] = useState("");
 
   useEffect(() => {
+    const organisationId = localStorage.getItem("orgId");
+    console.log(organisationId);
     axios
-      .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
+      .get(`http://localhost:4000/api/organisation/${organisationId}`)
       .then((res) => {
         setGoal(res.data.data.monthlyGoal);
         // console.log(res);
         // console.log(res.data.data.monthlyGoal);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
-      .then((res) => {
-        setGoal(res.data.data.monthlyGoal);
-        console.log(res.data.data.monthlyGoal);
-      })
-      .catch(function (error) {
-        console.log(error);
       });
   }, []);
 

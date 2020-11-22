@@ -10,10 +10,11 @@ const NoticeBoard = () => {
   // const orgId = "5fb6916997ad6e18880002aa";
 
   useEffect(() => {
+    const organisationId = localStorage.getItem("orgId");
     axios
-      .get("http://localhost:4000/api/organisation/5fb6916997ad6e18880002aa")
+      .get(`http://localhost:4000/api/organisation/${organisationId}`)
       .then((res) => {
-        res.data.data.notice.shift();
+        // res.data.data.notice.shift();
         setNotices(res.data.data.notice);
         // console.log(res);
         // console.log(res.data.data.notice);
@@ -37,9 +38,12 @@ const NoticeBoard = () => {
     <div className="notice_board">
       <h3>NoticeBoard</h3>
       <div>
-        {[...notices].reverse().map((n) => (
-          <Notice myNotice={n} />
-        ))}
+        {[...notices]
+          .reverse()
+          .slice(0, 5)
+          .map((n) => (
+            <Notice myNotice={n} />
+          ))}
       </div>
     </div>
   );

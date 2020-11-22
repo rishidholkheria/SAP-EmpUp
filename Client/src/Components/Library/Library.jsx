@@ -21,7 +21,7 @@ const Library = () => {
       <div className="library__header">
         <h1>Library</h1>
       </div>
-      {[...books].map((newBook) => (
+      {[...books].reverse().map((newBook) => (
         <Book
           bookTitle={newBook.name}
           bookDesc={newBook.description}

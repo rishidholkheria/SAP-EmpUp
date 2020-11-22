@@ -63,6 +63,60 @@
   box-shadow: 2px 2px 3px 3px rgb(196, 196, 196);
 }
 
+.monthly_goal_input {
+  display: flex;
+}
+
+.notice_input {
+  display: flex;
+}
+
+.notice_input input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 12px;
+  border-radius: 3px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.061);
+  margin: 5px 0;
+  font-family: inherit;
+}
+
+.monthly_goal_input textarea {
+  height: 150px;
+  width: 450px;
+  max-width: 450px;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.notice_input button {
+  /* padding: 10px; */
+  margin-left: 20px 0;
+  color: white;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  height: 40px;
+}
+
+.monthly_goal_input button {
+  /* padding: 10px; */
+  margin-left: 20px 0;
+  color: white;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  height: 40px;
+}
+
 .tweet_box {
   /* box-shadow: 1.5px 1.5px 2px 2px rgb(196, 196, 196); */
   border: 0.5px solid rgba(128, 128, 128, 0.219);

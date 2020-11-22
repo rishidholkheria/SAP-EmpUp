@@ -19,15 +19,17 @@ router.post('/login', async (req, res) => {
     let payload = {};
     let token = '';
 
+    console.log(req.body);
+
     //employee login
-    const employee = await Employee.findOne({ email: req.body.email });
+    const employee = await Employee.findOne({ email: req.body.userName });
     if (!employee) return res.status(404).json({
         accessToken: null,
         message: 'User does not exist'
     });
 
     //cheking if password is correct
-    const validPassword = await bcrypt.compare(req.body.password, employee.password);
+    const validPassword = await bcrypt.compare(req.body.userPassword, employee.password);
     if (!validPassword) return res.status(400).json({
         accessToken: null,
         message: 'Wrong Credentials'
@@ -36,16 +38,18 @@ router.post('/login', async (req, res) => {
     //checking if HR or employee
     if (employee.type == 'HR') {
         payload = {
-            isAdmin: false,
+            isAuthorized: true,
             userid: employee._id,
-            isHR: true
+            // isHR: true,
+            orgId: employee.oId
         };
     }
     else {
         payload = {
-            isAdmin: false,
+            isAuthorized: false,
             userid: employee._id,
-            isHR: false
+            // isHR: false,
+            orgId: employee.oId
         };
     }
 
@@ -53,7 +57,8 @@ router.post('/login', async (req, res) => {
     token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '7200s' });
     res.json({
         accessToken: token,
-        message: "Successfully logged in!"
+        message: "Successfully logged in!",
+        payload
     });
 });
 

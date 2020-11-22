@@ -16,6 +16,9 @@ var librarySchema = mongoose.Schema({
     },
     description:{
         type: String
+    },
+    date:{
+        type: String
     }
 });
 

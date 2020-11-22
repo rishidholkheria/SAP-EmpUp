@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import "./Sidebar.css";
 import SidebarOption from "./SidebarOption";
@@ -14,44 +14,49 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
+  // const [auth, setAuth] = useState(false);
+
+  // setAuth(localStorage.getItem("isAuth"));
+
+  // let checkAuth = auth;
+  // useEffect(() => {
+  //   if (auth) {
+  //     <a href="/adminlogin">
+  //       <Button variant="outlined" className="sidebar__tweet" fullWidth>
+  //         HR Office
+  //       </Button>
+  //     </a>;
+  //   } else {
+  //     <p>NO NO</p>;
+  //   }
+  // }, []);
+
   return (
     <div className="sidebar">
       <TwitterIcon className="sidebar__twitterIcon" />
-
       <Link to="/">
         <SidebarOption active Icon={HomeIcon} text="Dashboard" />
       </Link>
-
       <Link to="/library">
         <SidebarOption Icon={SearchIcon} text="Library" />
       </Link>
-
       {/* <Link to="/payroll">
         <SidebarOption Icon={SearchIcon} text="Payroll" />
       </Link> */}
-
       <Link to="/commonroom">
         <SidebarOption Icon={SearchIcon} text="Common Room" />
       </Link>
-
       <Link to="/hrd">
         <SidebarOption Icon={SearchIcon} text="HR Department" />
       </Link>
-
       <Link to="/feedback">
         <SidebarOption Icon={SearchIcon} text="Feedback" />
       </Link>
-
       <Link to="/profile">
         <SidebarOption Icon={SearchIcon} text="Profile" />
       </Link>
 
-      {/* Button -> Tweet */}
-      <a href="/contactus">
-        <Button variant="outlined" className="sidebar__tweet" fullWidth>
-          HR Office
-        </Button>
-      </a>
+      {/* {showHrOffice} */}
     </div>
   );
 }

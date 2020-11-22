@@ -11,7 +11,7 @@ import Feedback from "./Components/Feedback/Feedback";
 import HomeRight from "./Components/DashBoard/HomeRight";
 import LibraryRight from "./Components/Library/LibraryRight";
 import RegisterOrg from "./Components/SignInSignUp/RegisterOrg";
-import AdminRegister from "./Components/SignInSignUp/AdminRegister";
+import AdminLogin from "./Components/SignInSignUp/AdminLogin";
 import EmpLogin from "./Components/SignInSignUp/EmpLogin";
 import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 import ContactUs from "./Components/Profile/ContactUs";
@@ -65,9 +65,9 @@ function App() {
               <RegisterOrg />
             </div>
           </Route>
-          <Route path="/admin">
+          <Route path="/adminlogin">
             <div className="path_direction">
-              <AdminRegister />
+              <AdminLogin />
             </div>
           </Route>
           <Route path="/emplogin">

@@ -12,9 +12,50 @@ const HRDept = () => {
   const [bookDesc, setBookDesc] = useState("");
   const [bookDept, setBookDept] = useState("");
   const [file, setFile] = useState(null);
-  // const [fileId, setFileId] = useState("rishi");
-  // const [bookId, setBookId] = useState("hello");
   const [fileandbook, setFileAndBook] = useState("");
+  const [bookDelete, setBookDelete] = useState([]);
+  const [notice, setNotice] = useState("");
+  const [newgoal, setGoal] = useState("");
+
+  const organisationId = localStorage.getItem("orgId");
+  const monthlyGoal = newgoal;
+  const onGoalSend = () => {
+    axios
+      .put(
+        `http://localhost:4000/api/organisation/monthly-goal/update/${organisationId}`,
+        { monthlyGoal }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("There is some Unexpected Error!!!");
+      });
+    setGoal("");
+    alert("Monthly Goal Added Successfully!!!");
+  };
+
+  const onNoticeSend = () => {
+    axios
+      .put(`http://localhost:4000/api/organisation/notices/${organisationId}`, {
+        notice,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("There is some Unexpected Error!!!");
+      });
+    setNotice("");
+    alert("Notice Added Successfully!!!");
+  };
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/virtual-library").then((res) => {
+      console.log(res);
+      setBookDelete(res.data.data);
+    });
+  }, []);
 
   const apiOne = "http://localhost:4000/api/virtual-library/upload-new-book";
   const apiTwo = "http://localhost:4000/api/virtual-library-file/upload";
@@ -69,10 +110,10 @@ const HRDept = () => {
         console.log(errors);
       });
 
-      alert("Your file has been added to the library!!!");
-      setBookName("");
-      setBookDesc("");
-      setBookDept("");
+    alert("Your file has been added to the library!!!");
+    setBookName("");
+    setBookDesc("");
+    setBookDept("");
   };
 
   useEffect(() => {
@@ -132,16 +173,31 @@ const HRDept = () => {
           </div>
 
           <div className="single_card">
-            <h4>Add Announcement</h4>
-            <div className="tweet_box">
-              <TweetBox />
+            <h4>Add Monthly Goal</h4>
+            <div className="monthly_goal_input">
+              <textarea
+                placeholder="Goal for this Month"
+                value={newgoal}
+                onChange={(e) => setGoal(e.target.value)}
+              ></textarea>
+              <button type="button" onClick={onGoalSend}>
+                ADD
+              </button>
             </div>
           </div>
 
           <div className="single_card">
-            <h4>Add Announcement</h4>
-            <div className="tweet_box">
-              <TweetBox />
+            <h4>Add Notice</h4>
+            <div className="notice_input">
+              <input
+                type="text"
+                placeholder="Add Notice"
+                value={notice}
+                onChange={(e) => setNotice(e.target.value)}
+              />
+              <button type="button" onClick={onNoticeSend}>
+                ADD
+              </button>
             </div>
           </div>
         </div>
@@ -206,11 +262,14 @@ const HRDept = () => {
             </button>
           </div>
         </div>
-        <BookMgt />
-        <BookMgt />
-        <BookMgt />
-        <BookMgt />
-        <BookMgt />
+
+        {[...bookDelete].reverse().map((dltBook) => (
+          <BookMgt
+            bookTitle={dltBook.name}
+            bookDept={dltBook.department}
+            date={dltBook.date}
+          />
+        ))}
       </div>
     </div>
   );
