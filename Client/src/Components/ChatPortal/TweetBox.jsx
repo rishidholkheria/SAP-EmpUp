@@ -9,10 +9,11 @@ const TweetBox = () => {
 
   const sendTweet = (e) => {
     e.preventDefault();
-
+    const organisationId = localStorage.getItem("orgId");
     const newPost = {
       aText: { tweetMessage },
       aImage: { tweetImage },
+      orgId: {organisationId}
     };
 
     axios

@@ -11,7 +11,8 @@ const Feed = () => {
   const [goal, setGoal] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/announcement").then((res) => {
+    const organisationId = localStorage.getItem("orgId");
+    axios.get(`http://localhost:4000/api/announcement/${organisationId}`).then((res) => {
       // console.log(res.data.data);
       setPosts(res.data.data);
     });

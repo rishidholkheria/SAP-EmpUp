@@ -13,6 +13,10 @@ var announcementSchema = mongoose.Schema({
     },
     aDate: {
         type: String
+    },
+    orgId:{
+        type: String,
+        default: ""
     }
 });
 
