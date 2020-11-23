@@ -15,6 +15,7 @@ import AdminLogin from "./Components/SignInSignUp/AdminLogin";
 import EmpLogin from "./Components/SignInSignUp/EmpLogin";
 import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 import ContactUs from "./Components/Profile/ContactUs";
+import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <CommonRoom />
+              <GroupChatSide />
             </div>
           </Route>
           <Route path="/hrd">

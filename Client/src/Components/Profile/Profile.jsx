@@ -11,6 +11,8 @@ const Profile = () => {
       </div>
       <ProfileCard />
 
+      <button className="logout"></button>
+
       <div className="bottombar">
         <BottombarOptions />
       </div>
