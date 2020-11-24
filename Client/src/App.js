@@ -16,6 +16,7 @@ import EmpLogin from "./Components/SignInSignUp/EmpLogin";
 import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 import ContactUs from "./Components/Profile/ContactUs";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
+import InfoPage from "./Components/SignInSignUp/InfoPage";
 
 function App() {
   return (
@@ -65,6 +66,11 @@ function App() {
           <Route path="/register">
             <div className="path_direction">
               <RegisterOrg />
+            </div>
+          </Route>
+          <Route path="/infopage">
+            <div className="path_direction">
+              <InfoPage />
             </div>
           </Route>
           <Route path="/adminlogin">

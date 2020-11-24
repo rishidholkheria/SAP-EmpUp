@@ -1,6 +1,5 @@
 .tweetBox {
   padding-bottom: 10px;
-  border-bottom: 8px solid var(--twitter-background);
   padding-right: 10px;
   margin: 10px;
   background-color: white;
@@ -29,14 +28,20 @@
 }
 
 .tweetBox__tweetButton {
-  background-color: var(--twitter-color) !important;
+  /* background-color: var(--twitter-color) !important; */
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   border: none !important;
   color: white !important;
-  font-weight: 900 !important;
+  font-weight: 500 !important;
+  font-family: inherit;
   text-transform: inherit !important;
-  border-radius: 30px !important;
-  width: 80px;
+  border-radius: 10px !important;
+  width: 100px;
   height: 40px !important;
   margin-top: 20px !important;
   margin-left: auto !important;
+}
+
+.tweetBox__tweetButton:hover {
+  background-position: right;
 }

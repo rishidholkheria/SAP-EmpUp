@@ -79,7 +79,7 @@ router.post("/upload-to-db", (req, res) => {
   // console.log(jsonData);
 
   Employee.insertMany(jsonData);
-  res.send("Employees uploaded!");
+  res.send("Employees of your Organisation Added!");
   console.log("added!");
 });
 
@@ -136,7 +136,7 @@ router.post("/send-password-to-organisation", async (req, res) => {
     ],
   });
 
-  res.send("Message sent");
+  res.send("Email to your org sent");
   console.log("Message sent: %s", info.messageId);
 
   // Preview only available when sending through an Ethereal account

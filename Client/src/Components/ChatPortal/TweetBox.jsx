@@ -13,7 +13,7 @@ const TweetBox = () => {
     const newPost = {
       aText: { tweetMessage },
       aImage: { tweetImage },
-      orgId: {organisationId}
+      orgId: { organisationId },
     };
 
     axios
@@ -54,7 +54,7 @@ const TweetBox = () => {
           onClick={sendTweet}
           className="tweetBox__tweetButton"
         >
-          Tweet
+          Post
         </Button>
       </form>
     </div>

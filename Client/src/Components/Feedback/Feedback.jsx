@@ -59,6 +59,10 @@ const Feedback = () => {
           <button className="feedback_submit" type="submit">
             Submit
           </button>
+          <h5>
+            Note: Feedback provided will be anonymously submited to the HR
+            Department
+          </h5>
         </form>
       </div>
     </div>

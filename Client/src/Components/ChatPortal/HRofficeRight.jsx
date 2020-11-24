@@ -30,9 +30,11 @@ const HRofficeRight = () => {
         <button className="generate">Generate</button>
       </div>
       <div className="feedback_section">
+        <h3>Feedback Portal</h3>
         {[...feedback].reverse().map((newFeedback) => (
           <GetFeedback
             feedback_Title={newFeedback.fTitle}
+            feedback_Dept={newFeedback.fDept}
             feedback_desc={newFeedback.feedback}
           />
         ))}

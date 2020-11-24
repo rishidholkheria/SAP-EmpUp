@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./RegisterOrg.css";
 import axios from "axios";
+import useHistory, { Link } from "react-router-dom";
 
 const RegisterOrg = () => {
   const [orgName, setOrgName] = useState("");
@@ -9,10 +10,15 @@ const RegisterOrg = () => {
   const [orgLocation, setOrgLocation] = useState("");
   const [orgType, setOrgType] = useState("");
   const [excel, setExcel] = useState(null);
+  const [res, setRes] = useState("");
+
+  // const history = useHistory();
 
   const apiOne = "http://localhost:4000/api/organisation";
   const apiTwo = "http://localhost:4000/api/upload-employee/upload";
   const apiThree = "http://localhost:4000/api/upload-employee/upload-to-db";
+  const apiFour =
+    "http://localhost:4000/api/upload-employee/send-password-to-organisation";
 
   const Input = useRef(null);
 
@@ -46,16 +52,24 @@ const RegisterOrg = () => {
       },
     });
 
+    const requestThree = axios.post(apiThree, {});
+    const requestFour = axios.post(apiFour, {});
+
     axios
-      .all([requestOne, requestTwo])
+      .all([requestOne, requestTwo, requestThree, requestFour])
       .then(
         axios.spread(async (...responses) => {
           const responseOne = responses[0];
           const responseTwo = responses[1];
+          const responseThree = responses[2];
+          const responseFour = responses[3];
           // const responesThree = responses[2];
 
           console.log("responseOne", responseOne);
           console.log("responseTwo", responseTwo);
+          console.log("responseThree", responseThree);
+          console.log("responseFour", responseFour);
+          setRes(responseThree);
         })
       )
       .catch((errors) => {
@@ -63,16 +77,16 @@ const RegisterOrg = () => {
       });
   };
 
-  const employeeToDb = () => {
-    axios
-      .post(apiThree, {})
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const employeeToDb = () => {
+  //   axios
+  //     .post(apiThree, {})
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="register">
@@ -111,10 +125,18 @@ const RegisterOrg = () => {
             <span className="confirm_msg">
               Confirm your Registration to proceed.
             </span>
-            <button className="confirm_register" onClick={onConfirmRegister}>
-              Confirm Register
-            </button>
-            <button onClick={employeeToDb}>ADD EMPLOYEE</button>
+
+            <Link to="/infopage">
+              <button
+                className="confirm_register"
+                onClick={onConfirmRegister}
+                addedResponse={res}
+              >
+                Confirm Register
+              </button>
+            </Link>
+
+            {/* <button onClick={employeeToDb}>ADD EMPLOYEE</button> */}
           </div>
         </div>
 

@@ -64,6 +64,7 @@
   background-color: crimson;
   margin: 10px 5px;
   border-radius: 10px;
+  box-shadow: 0.5px 1px 1px 1.8px rgb(228, 195, 195);
 }
 
 /* fontSize="large" */

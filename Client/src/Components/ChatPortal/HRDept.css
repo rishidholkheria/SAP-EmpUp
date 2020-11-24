@@ -94,7 +94,7 @@
 }
 
 .notice_input button {
-  /* padding: 10px; */
+  padding: 10px;
   margin-left: 20px 0;
   color: white;
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
