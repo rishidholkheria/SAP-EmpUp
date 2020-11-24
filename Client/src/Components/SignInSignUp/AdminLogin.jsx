@@ -15,16 +15,16 @@ const AdminRegister = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/admin/login", {
+      .post("http://localhost:4000/api/admin/", {
         adminEmail,
         adminPassword,
       })
       .then((res) => {
         console.log(res.data);
-        console.log(res.data.payload);
-        localStorage.setItem("adminToken", res.data.accessToken);
-        localStorage.setItem("orgId", res.data.payload.orgId);
-        localStorage.setItem("isAuth", res.data.payload.isAuthorized);
+        // console.log(res.data.payload);
+        // localStorage.setItem("adminToken", res.data.accessToken);
+        // localStorage.setItem("orgId", res.data.payload.orgId);
+        // localStorage.setItem("isAuth", res.data.payload.isAuthorized);
         history.push("/");
       })
       .catch((err) => {

@@ -36,28 +36,27 @@ router.post('/login', async (req, res) => {
     });
 
     //checking the roles
-    switch (employee.type) {
-        case 'Admin':
-            payload = {
-                isAuthorized: true,
-                userid: employee._id,
-                orgId: employee.oId
-            };
-        case 'HR':
-            payload = {
-                isAuthorized: true,
-                userid: employee._id,
-                orgId: employee.oId
-            };
-        case 'Employee':{
-            payload = {
-                isAuthorized: false,
-                userid: employee._id,
-                orgId: employee.oId
-            };
-        }
+    if (employee.type === 'Admin') {
+        payload = {
+            isAuthorized: true,
+            userid: employee._id,
+            orgId: employee.oId
+        };
     }
-
+    else if (employee.type === 'HR') {
+        payload = {
+            isAuthorized: true,
+            userid: employee._id,
+            orgId: employee.oId
+        };
+    }
+    else{
+        payload = {
+            isAuthorized: false,
+            userid: employee._id,
+            orgId: employee.oId
+        };
+    }
     //create and assign a token
     token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: '7200s' });
     res.json({
@@ -107,7 +106,7 @@ router.put('/forgot-password', async (req, res) => {
                     return res.json({ message: 'Email has been sent. Kidnly follow the instructions' });
                 });
             }
-            
+
         });
 
 
