@@ -91,4 +91,17 @@ router.get("/:id", (req, res) => {
   });
 });
 
+router.delete('/delete/:id', function (req, res) {
+  var id = req.params.id;
+  Library.deleteOne({ _id: id }, function (err, results) {
+    if (err){
+      return res.send(
+        "Error:"+ err
+      );
+    }
+    console.log("Deleted book!");
+    res.send("Book Deleted!");
+  });
+});
+
 module.exports = { router, libId };
