@@ -1,7 +1,0 @@
-.chat-messages {
-  padding: 30px;
-  height: 500px;
-  max-height: 500px;
-  flex: 1;
-  overflow-y: scroll;
-}

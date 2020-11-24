@@ -17,34 +17,34 @@ var aId = genId(6);
 //needs orgId in req
 router.post("/", (req, res) => {
   // if (req.user.isHR || req.user.isAdmin) {
-    const announcement = new Announcement({
-      aId: aId,
-      aText: req.body.newPost.aText.tweetMessage,
-      aImage: req.body.newPost.aImage.tweetImage,
-      aDate: getDate(),
-      oId: req.body.newPost.orgId.organisationId
-    });
-    console.log(req.body);
-    announcement.save((err, data) => {
-      if (err) {
-        res.send("Error: " + err);
-      }
-      res.send(data);
-      console.log("Announcement created!");
-    });
-//   }
-//   else {
-//     return res.json({
-//       data: null,
-//       message: 'You are not authorised. What are you trying to do?'
-//     });
-//   }
+  const announcement = new Announcement({
+    aId: aId,
+    aText: req.body.newPost.aText.tweetMessage,
+    aImage: req.body.newPost.aImage.tweetImage,
+    aDate: getDate(),
+    oId: req.body.newPost.orgId.organisationId
+  });
+  console.log(req.body);
+  announcement.save((err, data) => {
+    if (err) {
+      res.send("Error: " + err);
+    }
+    res.send(data);
+    console.log("Announcement created!");
+  });
+  //   }
+  //   else {
+  //     return res.json({
+  //       data: null,
+  //       message: 'You are not authorised. What are you trying to do?'
+  //     });
+  //   }
 });
 
 
 //get all announcements
 router.get("/:id", async (req, res) => {
-  const announcement = await Announcement.find({}, (err, result) => {
+  const announcement = await Announcement.find({ 'orgId': req.params.id }, (err, result) => {
     if (!err) {
       res.status(200).json({
         data: result,
@@ -85,4 +85,4 @@ router.get("/single/:id", (req, res) => {
   });
 });
 
-module.exports = {router, aId};
+module.exports = { router, aId };

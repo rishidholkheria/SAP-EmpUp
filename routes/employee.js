@@ -35,22 +35,27 @@ router.post('/login', async (req, res) => {
         message: 'Wrong Credentials'
     });
 
-    //checking if HR or employee
-    if (employee.type == 'HR') {
-        payload = {
-            isAuthorized: true,
-            userid: employee._id,
-            // isHR: true,
-            orgId: employee.oId
-        };
-    }
-    else {
-        payload = {
-            isAuthorized: false,
-            userid: employee._id,
-            // isHR: false,
-            orgId: employee.oId
-        };
+    //checking the roles
+    switch (employee.type) {
+        case 'Admin':
+            payload = {
+                isAuthorized: true,
+                userid: employee._id,
+                orgId: employee.oId
+            };
+        case 'HR':
+            payload = {
+                isAuthorized: true,
+                userid: employee._id,
+                orgId: employee.oId
+            };
+        case 'Employee':{
+            payload = {
+                isAuthorized: false,
+                userid: employee._id,
+                orgId: employee.oId
+            };
+        }
     }
 
     //create and assign a token
@@ -102,7 +107,7 @@ router.put('/forgot-password', async (req, res) => {
                     return res.json({ message: 'Email has been sent. Kidnly follow the instructions' });
                 });
             }
-
+            
         });
 
 
@@ -209,25 +214,6 @@ router.get('/:id', verify, async (req, res) => {
     }
 });
 
-// //update employee
-// router.put('/update/empId',(req,res)=>{
-//     Employee.findOne({empId: req.params.empId}, function (err, employee){
-//         if (err) {
-//            res.send(422,'update failed');
-//         } else {
-//            //update fields
-//            for (var field in Employee.schema.paths) {
-//               if ((field !== '_id') && (field !== '__v')) {
-//                  if (req.body[field] !== undefined) {
-//                     employee[field] = req.body[field];
-//                  }  
-//               }  
-//            }  
-//            employee.save();
-//         }
-//      });
-// });
-
 //update employee
 router.put('/update/:empId', verify, async (req, res) => {
 
@@ -258,10 +244,3 @@ router.put('/update/:empId', verify, async (req, res) => {
 
 
 module.exports = router;
-
-// AQ67te
-// crX9Sn
-// hqBRZy
-// 9a1yi6
-// C5kUZQ
-// F3zM9b

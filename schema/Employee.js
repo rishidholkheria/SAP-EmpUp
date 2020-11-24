@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
 var employeeSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    oId: {
+    orgId: {
         type: String
     },
     empId: {
@@ -16,15 +15,6 @@ var employeeSchema = mongoose.Schema({
     },
     name: {
             type: String
-        // lastName: String
-        // validate: {
-        //     validator: function(text){
-        //         if(text==null && text.length > 1)
-        //             return;
-        //         return true;    
-        //     },
-        //     message: 'Name must be entered in order to continue.'
-        // }
     },
     designation: {type: String},
     image: {type: String},
@@ -36,9 +26,6 @@ var employeeSchema = mongoose.Schema({
     resetLink: {
         data: String,
         default: ''
-    },
-    file:{
-        type: Buffer
     }
 });
  

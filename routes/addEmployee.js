@@ -43,47 +43,13 @@ router.post("/upload", function (req, res) {
   });
 });
 
+
 //posting to Database
 router.post("/upload-to-db", (req, res) => {
-  //convert to JSON
-  const workBook = XLSX.readFile(process.cwd() + "/upload/Employee.xlsx");
-  var sheet_name_list = workBook.SheetNames;
-  var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {
-    defval: "",
-    raw: false,
-    dateNF: "dd-mm-yyyy",
-  });
-
-  //adding extra properties
-  var i, length;
-  length = Object.keys(jsonData).length;
-  var oId = objOrg.oId;
-
+  var jsonData = excelToJson();
   // console.log(jsonData);
-
-  const salt = bcrypt.genSaltSync(10);
-
-  for (i = 0; i < length; i++) {
-    var password = genId(6);
-    // console.log(password);
-    var hashedPassword = bcrypt.hashSync(password, salt);
-    (jsonData[i].password = hashedPassword),
-      (jsonData[i].image = ""),
-      (jsonData[i].addOn = ""),
-      (jsonData[i].deduction = ""),
-      (jsonData[i].empId = genId(6)),
-      (jsonData[i].oId = oId),
-      (jsonData[i].pass = password);
-  }
-
-  // console.log(jsonData);
-
   Employee.insertMany(jsonData);
-  res.send("Employees of your Organisation Added!");
-  console.log("added!");
-});
-
-router.post("/send-password-to-organisation", async (req, res) => {
+  res.send("Employees of your organisation has been added successfully!");
   let result = jsonData.map(
     ({ email, pass, name, department, designation }) => ({
       email,
@@ -106,6 +72,11 @@ router.post("/send-password-to-organisation", async (req, res) => {
   XLSX.utils.book_append_sheet(newWB, newWS, "Login credentials");
   XLSX.writeFile(newWB, "EmpUp Employee Credentials.xlsx");
 
+  console.log("employees added!");
+});
+
+//need email of org from front end 
+router.post("/send-password-to-organisation", async (req, res) => {
   //send mail
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -120,7 +91,7 @@ router.post("/send-password-to-organisation", async (req, res) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"Team EmpUp" <team@EmpUp.com>',
-    to: req.body.email,
+    to: "samridhikots@gmail.com",
     subject: "Welcome to EmpUp!",
     html: `
     <h2>We are glad to have you on board.😊 </h2>
@@ -143,5 +114,38 @@ router.post("/send-password-to-organisation", async (req, res) => {
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
+
+const excelToJson = () => {
+  //convert to JSON
+  const workBook = XLSX.readFile(process.cwd() + "/upload/Employee.xlsx");
+  var sheet_name_list = workBook.SheetNames;
+  var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {
+    defval: "",
+    raw: false,
+    dateNF: "dd-mm-yyyy",
+  });
+
+  //adding extra properties
+  var i, length;
+  length = Object.keys(jsonData).length;
+  var oId = objOrg.oId;
+  // console.log(jsonData);
+
+  const salt = bcrypt.genSaltSync(10);
+
+  for (i = 0; i < length; i++) {
+    var password = `emp-${oId}-${i}`;
+    // console.log(password);
+    var hashedPassword = bcrypt.hashSync(password, salt);
+    (jsonData[i].password = hashedPassword),
+      (jsonData[i].image = ""),
+      (jsonData[i].addOn = ""),
+      (jsonData[i].deduction = ""),
+      (jsonData[i].empId = i.toString()),
+      (jsonData[i].orgId = oId),
+      (jsonData[i].pass = password);
+  }
+  return jsonData;
+}
 
 module.exports = router;

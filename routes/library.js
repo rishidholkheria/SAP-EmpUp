@@ -14,9 +14,11 @@ router.use(express.json());
 
 var libId = genId(6);
 
+//lib org id is needed from front end
 router.post("/upload-new-book", (req, res) => {
   // if (req.user.isHR || req.user.isAdmin) {
   const libBook = new Library({
+    orgId: req.body.oId,
     libId: libId,
     date: getDate(),
     name: req.body.bName,
@@ -45,8 +47,8 @@ router.post("/upload-new-book", (req, res) => {
 });
 
 //get all books/files
-router.get("/", async (req, res) => {
-  const library = await Library.find({}, (err, result) => {
+router.get("/:orgid", async (req, res) => {
+  const library = await Library.find({'orgId': req.params.orgid}, (err, result) => {
     if (!err) {
       res.status(200).json({
         data: result,
@@ -57,7 +59,7 @@ router.get("/", async (req, res) => {
         data: {},
         message: "Some error occured..",
       });
-    }
+    } 
   });
 });
 
