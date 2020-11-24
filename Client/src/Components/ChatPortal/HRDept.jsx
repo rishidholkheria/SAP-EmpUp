@@ -54,10 +54,12 @@ const HRDept = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/virtual-library").then((res) => {
-      // console.log(res);
-      setBookDelete(res.data.data);
-    });
+    axios
+      .get(`http://localhost:4000/api/virtual-library/${organisationId}`)
+      .then((res) => {
+        // console.log(res);
+        setBookDelete(res.data.data);
+      });
   }, []);
 
   const apiOne = "http://localhost:4000/api/virtual-library/upload-new-book";
@@ -78,7 +80,12 @@ const HRDept = () => {
     //   },
     // });
 
-    const requestOne = axios.post(apiOne, { bName, bDesc, bDept });
+    const requestOne = axios.post(apiOne, {
+      bName,
+      bDesc,
+      bDept,
+      organisationId,
+    });
     const requestTwo = axios.post(apiTwo, formData, {
       headers: {
         "Content-Type": "multipart/form-data",

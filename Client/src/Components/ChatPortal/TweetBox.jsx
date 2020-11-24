@@ -1,21 +1,29 @@
 import { Avatar, Button } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TweetBox.css";
 import axios from "axios";
 
 const TweetBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
+  const [organisationId, setOrg] = useState(null);
+
+  useEffect(() => {
+    const oId = localStorage.getItem("orgId");
+    setOrg(oId);
+    console.log(organisationId);
+  }, []);
 
   const sendTweet = (e) => {
     e.preventDefault();
-    const organisationId = localStorage.getItem("orgId");
+
+    console.log(organisationId);
     const newPost = {
       aText: { tweetMessage },
       aImage: { tweetImage },
       orgId: { organisationId },
     };
-
+    console.log(newPost);
     axios
       .post("http://localhost:4000/api/announcement", { newPost })
       .then((res) => {

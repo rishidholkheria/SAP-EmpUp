@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     aText: req.body.newPost.aText.tweetMessage,
     aImage: req.body.newPost.aImage.tweetImage,
     aDate: getDate(),
-    oId: req.body.newPost.orgId.organisationId
+    orgId: req.body.newPost.orgId.organisationId,
   });
   console.log(req.body);
   announcement.save((err, data) => {
@@ -41,22 +41,24 @@ router.post("/", (req, res) => {
   //   }
 });
 
-
 //get all announcements
 router.get("/:id", async (req, res) => {
-  const announcement = await Announcement.find({ 'orgId': req.params.id }, (err, result) => {
-    if (!err) {
-      res.status(200).json({
-        data: result,
-        message: "All announcements..",
-      });
-    } else {
-      res.status(400).json({
-        data: {},
-        message: "Some error occured..",
-      });
+  const announcement = await Announcement.find(
+    { orgId: req.params.id },
+    (err, result) => {
+      if (!err) {
+        res.status(200).json({
+          data: result,
+          message: "All announcements..",
+        });
+      } else {
+        res.status(400).json({
+          data: {},
+          message: "Some error occured..",
+        });
+      }
     }
-  });
+  );
 });
 
 //access token needed from frontend

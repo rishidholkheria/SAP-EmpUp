@@ -18,7 +18,7 @@ var libId = genId(6);
 router.post("/upload-new-book", (req, res) => {
   // if (req.user.isHR || req.user.isAdmin) {
   const libBook = new Library({
-    orgId: req.body.oId,
+    orgId: req.body.organisationId,
     libId: libId,
     date: getDate(),
     name: req.body.bName,
@@ -48,19 +48,22 @@ router.post("/upload-new-book", (req, res) => {
 
 //get all books/files
 router.get("/:orgid", async (req, res) => {
-  const library = await Library.find({'orgId': req.params.orgid}, (err, result) => {
-    if (!err) {
-      res.status(200).json({
-        data: result,
-        message: "All books..",
-      });
-    } else {
-      res.status(400).json({
-        data: {},
-        message: "Some error occured..",
-      });
-    } 
-  });
+  const library = await Library.find(
+    { orgId: req.params.orgid },
+    (err, result) => {
+      if (!err) {
+        res.status(200).json({
+          data: result,
+          message: "All books..",
+        });
+      } else {
+        res.status(400).json({
+          data: {},
+          message: "Some error occured..",
+        });
+      }
+    }
+  );
 });
 
 //get api for a specific file

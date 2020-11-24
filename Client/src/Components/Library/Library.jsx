@@ -7,13 +7,17 @@ const Library = () => {
   const [books, setBooks] = useState([]);
   const [data, setData] = useState("");
 
+  const organisationId = localStorage.getItem("orgId");
+
   useEffect(() => {
-    axios.get("http://localhost:4000/api/virtual-library").then((res) => {
-      console.log(res);
-      setBooks(res.data.data);
-      setData(res.data.data);
-      console.log(data);
-    });
+    axios
+      .get(`http://localhost:4000/api/virtual-library/${organisationId}`)
+      .then((res) => {
+        console.log(res);
+        setBooks(res.data.data);
+        setData(res.data.data);
+        console.log(data);
+      });
   }, []);
 
   return (
