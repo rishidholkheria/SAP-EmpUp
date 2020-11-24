@@ -35,14 +35,12 @@
   } */
 
 .widgets {
-  /* border: 1px solid red; */
   background-color: #f2edf3;
   border-radius: 5px;
-  /* width: calc(50vw - 320px);
-  max-width: calc(50vw - 320px); */
-  max-width: 30vw;
-  min-width: 30vw;
   padding: 5px 9px;
+  width: 28.9vw;
+  padding: 5px 9px;
+  box-sizing: border-box;
 }
 
 .widgets .right-todo {

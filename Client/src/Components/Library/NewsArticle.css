@@ -45,4 +45,8 @@
   font-size: 10px;
   color: rgb(122, 122, 122);
   margin-bottom: 10px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
 }
