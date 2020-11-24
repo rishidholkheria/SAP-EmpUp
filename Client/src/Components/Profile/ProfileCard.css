@@ -7,12 +7,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100vh;
+  min-width: 100%;
 }
 
 .card {
   position: relative;
-  width: 600px;
+  width: 85%;
   height: 550px;
   border-radius: 5px;
   box-shadow: 0 5px 15px 1px grey;
@@ -42,6 +42,12 @@
   position: absolute;
   height: 260px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_header div {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -64,7 +70,7 @@
   font-size: 1.2rem;
   color: #fff;
   font-weight: 500;
-  line-height: 1;
+  /* line-height: 1; */
   margin: 5px 0;
 }
 

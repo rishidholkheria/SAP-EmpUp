@@ -6,7 +6,7 @@
   max-height: 500px;
   background-color: white;
   padding: 30px;
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid lightgray;
   border-radius: 5px;
   background-color: #f8ceec;
@@ -40,13 +40,14 @@
 
 .news__source,
 .news__published {
-  display: inline-block;
+  /* display: inline-block; */
   margin-top: 10px;
   font-size: 10px;
   color: rgb(122, 122, 122);
   margin-bottom: 10px;
-  width: 100%;
+  /* min-width: 100%; */
   max-width: 100%;
+  word-break: break-all;
   height: auto;
-  overflow: hidden;
+  /* overflow: hidden; */
 }

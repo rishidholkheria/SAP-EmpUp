@@ -8,7 +8,7 @@ const NewsArticle = ({ title, description, source }) => {
       <p className="news__desc">{description}</p>
       {/* <span className="news__author">Author</span> <br />
       <span className="news__published">published at</span> */}
-      <span className="news__source">{source}</span>
+      <p className="news__source">{source}</p>
     </div>
   );
 };

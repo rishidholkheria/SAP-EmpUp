@@ -14,7 +14,7 @@ const HRDept = () => {
   const [file, setFile] = useState(null);
   const [fileandbook, setFileAndBook] = useState({
     bookId: "",
-    fileId: ""
+    fileId: "",
   });
   const [bookDelete, setBookDelete] = useState([]);
   const [notice, setNotice] = useState("");
@@ -183,9 +183,11 @@ const HRDept = () => {
                 value={newgoal}
                 onChange={(e) => setGoal(e.target.value)}
               ></textarea>
-              <button type="button" onClick={onGoalSend}>
-                ADD
-              </button>
+              <div className="mgi_btn">
+                <button type="button" onClick={onGoalSend}>
+                  ADD
+                </button>
+              </div>
             </div>
           </div>
 
@@ -217,52 +219,55 @@ const HRDept = () => {
           <h4>Add Book</h4>
 
           <div className="input_add_book">
-            {/* <form action="upload_file" role="form" method="post" ></form> */}
-            <input
-              type="text"
-              placeholder="Book Name"
-              value={bookName}
-              onChange={(e) => setBookName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Department"
-              value={bookDept}
-              onChange={(e) => setBookDept(e.target.value)}
-            />
-            <textarea
-              placeholder="Message"
-              value={bookDesc}
-              onChange={(e) => setBookDesc(e.target.value)}
-            ></textarea>
-          </div>
+            <div className="add_book_inputs">
+              <input
+                type="text"
+                placeholder="Book Name"
+                value={bookName}
+                onChange={(e) => setBookName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Department"
+                value={bookDept}
+                onChange={(e) => setBookDept(e.target.value)}
+              />
+              <textarea
+                placeholder="Message"
+                value={bookDesc}
+                onChange={(e) => setBookDesc(e.target.value)}
+              ></textarea>
 
-          <div className="get_book_file">
-            <input
-              className="book_file"
-              type="file"
-              placeholder="Book Name"
-              id="real-file"
-              hidden="hidden"
-              onChange={(e) => clickFile(e)}
-              ref={Input}
-            />
+              <div className="get_book_file">
+                <input
+                  className="book_file"
+                  type="file"
+                  placeholder="Book Name"
+                  id="real-file"
+                  hidden="hidden"
+                  onChange={(e) => clickFile(e)}
+                  ref={Input}
+                />
 
-            <button
-              className="book_file_btn"
-              type="button"
-              id="custom-button"
-              onClick={clickButton}
-            >
-              Choose
-            </button>
-            <span className="file_text" id="custom-text" ref={file_name}>
-              No file
-            </span>
+                <button
+                  className="book_file_btn"
+                  type="button"
+                  id="custom-button"
+                  onClick={clickButton}
+                >
+                  Choose
+                </button>
+                <span className="file_text" id="custom-text" ref={file_name}>
+                  No file
+                </span>
+              </div>
+            </div>
 
-            <button className="add_book_btn" onClick={onAddBook}>
-              ADD
-            </button>
+            <div className="add_book_btn_side">
+              <button className="add_book_btn" onClick={onAddBook}>
+                ADD
+              </button>
+            </div>
           </div>
         </div>
 

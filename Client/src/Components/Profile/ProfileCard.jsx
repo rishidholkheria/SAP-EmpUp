@@ -8,8 +8,10 @@ const ProfileCard = () => {
         <div className="card">
           <div className="main">
             <div className="card_header">
-              <div className="image"></div>
-              <h3 className="name">John Cena</h3>
+              <div>
+                <div className="image"></div>
+                <h3 className="name">John Cena</h3>
+              </div>
             </div>
           </div>
           <div className="content">

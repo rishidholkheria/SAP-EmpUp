@@ -12,13 +12,18 @@ import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
+import amazonLogo from "./DashBoard/amazonLogo.jpg";
 
 function Sidebar() {
   const [auth, setAuth] = useState(localStorage.getItem("isAuth"));
 
   return (
     <div className="sidebar">
-      <TwitterIcon className="sidebar__twitterIcon" />
+      {/* <TwitterIcon className="sidebar__twitterIcon" /> */}
+      <div className="amazon_logo_container">
+        <Avatar className="sidebar__twitterIcon" src={amazonLogo} />
+      </div>
       <Link to="/">
         <SidebarOption active Icon={HomeIcon} text="Dashboard" />
       </Link>

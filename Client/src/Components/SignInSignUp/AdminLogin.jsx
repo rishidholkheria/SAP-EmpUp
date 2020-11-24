@@ -74,7 +74,7 @@ const AdminRegister = () => {
               </div>
             </div>
             {/* <a href="#">Forgot Password?</a> */}
-            <input type="submit" className="login" value="Login" />
+            <input type="submit" className="login" value="Register" />
           </form>
         </div>
       </div>

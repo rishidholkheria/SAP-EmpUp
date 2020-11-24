@@ -5,25 +5,21 @@ import RepeatIcon from "@material-ui/icons/Repeat";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PublishIcon from "@material-ui/icons/Publish";
 import React from "react";
+import amazonLogo from "./amazonLogo.jpg";
 import "./Post.css";
 
-const Post = ({ displayName, text }) => {
+const Post = ({ text, date }) => {
   return (
     <div className="post">
       <div className="post__avatar">
-        <Avatar src="https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" />
+        <Avatar src={amazonLogo} />
       </div>
       <div className="post__body">
         <div className="post__header">
           <div className="post__headerText">
-            <h3>
-              {displayName}{" "}
-              {/* <span>
-                {verified && <VerifiedUserIcon className="post__badge" />}
-                {"  "}@{username}
-              </span> */}
-            </h3>
+            <h2>Amazon</h2>
           </div>
+          <p className="a_Date">{date}</p>
           <div className="post__headerDescription">
             <p>{text} </p>
           </div>

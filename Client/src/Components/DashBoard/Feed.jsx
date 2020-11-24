@@ -12,10 +12,12 @@ const Feed = () => {
 
   useEffect(() => {
     const organisationId = localStorage.getItem("orgId");
-    axios.get(`http://localhost:4000/api/announcement/${organisationId}`).then((res) => {
-      // console.log(res.data.data);
-      setPosts(res.data.data);
-    });
+    axios
+      .get(`http://localhost:4000/api/announcement/${organisationId}`)
+      .then((res) => {
+        // console.log(res.data.data);
+        setPosts(res.data.data);
+      });
   }, []);
 
   return (
@@ -39,12 +41,14 @@ const Feed = () => {
         .slice(0, 5)
         .map((post) => (
           <Post
-            displayName={post.aId}
+            // displayName={post.aId}
+            // displayName={"Amazon"}
+            text={post.aText}
+            date={post.aDate}
+            // avatar={amazonLogo}
             // username={post.username}
             // verified={post.verified}
-            text={post.aText}
             // image={post.image}
-            // avatar={post.avatar}
           />
         ))}
     </div>

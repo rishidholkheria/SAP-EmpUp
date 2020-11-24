@@ -86,6 +86,7 @@
 }
 
 .monthly_goal_input textarea {
+  flex: 2;
   height: 150px;
   width: 450px;
   max-width: 450px;
@@ -105,16 +106,24 @@
   height: 40px;
 }
 
+.mgi_btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .monthly_goal_input button {
   /* padding: 10px; */
-  margin-left: 20px 0;
   color: white;
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   border: 1px solid #000;
   border-radius: 5px;
   cursor: pointer;
-  width: 20%;
+  margin-bottom: 30px;
+  width: 70%;
   height: 40px;
+  font-family: inherit;
 }
 
 .tweet_box {
@@ -154,7 +163,30 @@
 
 .input_add_book {
   display: flex;
+  /* flex-direction: column; */
+}
+
+.add_book_inputs {
+  display: flex;
   flex-direction: column;
+  flex: 3;
+}
+
+.add_book_btn_side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_book_btn {
+  padding: 10px;
+  color: white;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
 }
 
 .input_add_book input {
@@ -165,7 +197,7 @@
   appearance: none;
   padding: 12px;
   border-radius: 3px;
-  width: 60%;
+  width: 70%;
   background-color: rgba(0, 0, 0, 0.061);
   margin: 5px 0;
   font-family: inherit;
@@ -173,7 +205,9 @@
 
 .input_add_book textarea {
   height: 150px;
-  max-width: 400px;
+  width: 100%;
+  margin-top: 8px;
+  max-width: 80%;
   min-height: 100px;
   font-family: inherit;
 }

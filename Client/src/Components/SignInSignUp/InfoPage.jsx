@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Email from "./img/Email.svg";
-import Guide from "./img/Guide.svg";
-import GifLoading from "./img/GifLoading.gif";
+import emailImage from "./img/emailImage.png";
+import infoImage from "./img/infoImage.png";
+import "./InfoPage.css";
+// import Guide from "./img/Guide.svg";
+// import GifLoading from "./img/GifLoading.gif";
 
 const InfoPage = ({ addedResponse }) => {
   if (addedResponse === null) {
-    return (
-      <div>
-        <img src={GifLoading} alt="" />
-      </div>
-    );
+    return <div>{/* <img src={GifLoading} alt="" /> */}</div>;
   }
   return (
     <div className="register">
@@ -20,7 +18,9 @@ const InfoPage = ({ addedResponse }) => {
         <div className="form-container sign-up-container">
           <div className="form">
             <h1>Working of EmpUp!</h1>
-            <button className="confirm_register">Proceed</button>
+            <Link to="/adminlogin">
+              <button className="confirm_register">Proceed</button>
+            </Link>
           </div>
         </div>
 
@@ -47,14 +47,14 @@ const InfoPage = ({ addedResponse }) => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <h1>About Uploading Excel</h1>
+              {/* <h1>About Uploading Excel</h1>
               <p>
                 The following format has to be strictly followed in order to
                 upload all of your employees smoothly.
                 <br /> 1.Email <br /> 2.Name <br /> 3.Designation
                 <br /> 4.Department <br /> 6.Type <br /> 7.BasicSalary
-              </p>
-
+              </p> */}
+              <img src={infoImage} alt="" />
               <button
                 className="prevSlideBtn"
                 onClick={() =>
@@ -79,7 +79,7 @@ const InfoPage = ({ addedResponse }) => {
                 EmpUp provides one stop solution to all the problems faced by
                 the HR department.{" "}
               </p> */}
-              <img src={Email} alt="Background" />
+              <img className="emailImage" src={emailImage} alt="Background" />
             </div>
           </div>
         </div>

@@ -17,6 +17,7 @@ import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 import ContactUs from "./Components/Profile/ContactUs";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
 import InfoPage from "./Components/SignInSignUp/InfoPage";
+import ErrorPage from "./Components/ErrorPage";
 
 function App() {
   return (
@@ -86,6 +87,11 @@ function App() {
           <Route path="/contactus">
             <div className="path_direction">
               <ContactUs />
+            </div>
+          </Route>
+          <Route path="/error">
+            <div className="path_direction">
+              <ErrorPage />
             </div>
           </Route>
           <Route path="/">
