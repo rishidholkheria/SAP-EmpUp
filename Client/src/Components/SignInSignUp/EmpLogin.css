@@ -83,6 +83,11 @@
   height: 45px;
 }
 
+.emp_error {
+  color: red;
+  width: 100%;
+}
+
 .input-div div .input-placeholder {
   position: absolute;
   left: 10px;
@@ -167,7 +172,7 @@ div > .input-placeholder {
   color: #38d39f;
 }
 
-.login-content form input.login {
+.emp_login_btn {
   display: block;
   width: 100%;
   height: 50px;

@@ -19,6 +19,8 @@ const HRDept = () => {
   const [bookDelete, setBookDelete] = useState([]);
   const [notice, setNotice] = useState("");
   const [newgoal, setGoal] = useState("");
+  const [disable, setDisabled] = useState(true);
+  const [nameError, setNameError] = useState(null);
 
   const organisationId = localStorage.getItem("orgId");
   const monthlyGoal = newgoal;
@@ -71,14 +73,7 @@ const HRDept = () => {
     const bDept = bookDept;
 
     var formData = new FormData();
-    // var imagefile = document.querySelector("#real-file");
-    // let nfile = file;
     formData.append("real-file", file);
-    // axios.post("upload_file", formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
 
     const requestOne = axios.post(apiOne, {
       bName,
@@ -139,16 +134,25 @@ const HRDept = () => {
     }
   }, [fileandbook]);
 
+  const firstRender = useRef(true);
   const Input = useRef(null);
   const file_name = useRef(null);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    setDisabled(validateInfo());
+  }, [bookName, bookDept, bookDesc, file]);
 
   const clickButton = () => {
     Input.current.click();
   };
 
   const clickFile = (e) => {
-    console.log(e.target.files, "$$$");
-    console.log(e.target.files[0], "$$$");
+    // console.log(e.target.files, "$$$");
+    // console.log(e.target.files[0], "$$$");
 
     let file = e.target.files[0];
     setFile(file);
@@ -162,15 +166,33 @@ const HRDept = () => {
     }
   };
 
-  const deleteBook = () => {
-    axios.delete(`http://localhost:4000/api/virtual-library/delete/${organisationId}`)
-    .then((res) => {
-      console.log(res);
-    }).catch((errors) => {
-      console.log(errors);
-    });
+  const validateInfo = () => {
+    if (
+      bookName === "" ||
+      bookDept === "" ||
+      bookDesc === "" ||
+      !Input.current.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)
+    ) {
+      setNameError("Fields are empty fill them add to Library.");
+      return true;
+    } else {
+      setNameError(null);
+      return false;
+    }
+  };
 
-  }
+  const deleteBook = () => {
+    axios
+      .delete(
+        `http://localhost:4000/api/virtual-library/delete/${organisationId}`
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((errors) => {
+        console.log(errors);
+      });
+  };
 
   return (
     <div className="chat_portal">
@@ -281,9 +303,13 @@ const HRDept = () => {
             </div>
 
             <div className="add_book_btn_side">
-              <button className="add_book_btn" onClick={onAddBook}>
-                ADD
-              </button>
+              {nameError ? (
+                <p>{nameError}</p>
+              ) : (
+                <button className="add_book_btn" onClick={onAddBook}>
+                  ADD
+                </button>
+              )}
             </div>
           </div>
         </div>

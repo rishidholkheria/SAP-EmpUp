@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./RegisterOrg.css";
 import axios from "axios";
 import useHistory, { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ const RegisterOrg = () => {
   const [orgType, setOrgType] = useState("");
   const [excel, setExcel] = useState(null);
   const [res, setRes] = useState("");
+  const [disable, setDisabled] = useState(true);
+  const [nameError, setNameError] = useState(null);
 
   // const history = useHistory();
 
@@ -20,19 +22,37 @@ const RegisterOrg = () => {
   const apiFour =
     "http://localhost:4000/api/upload-employee/send-password-to-organisation";
 
+  const firstRender = useRef(true);
   const Input = useRef(null);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    setDisabled(validateInfo());
+  }, [orgName, orgEmail, orgContact, orgLocation, orgType, excel]);
 
   const clickExcelInput = (e) => {
     let file = e.target.files[0];
     setExcel(file);
+  };
 
-    // if (Input.current.value) {
-    //   file_name.current.innerHTML = Input.current.value.match(
-    //     /[\/\\]([\w\d\s\.\-\(\)]+)$/
-    //   )[1];
-    // } else {
-    //   file_name.current.innerHTML = "No file chosen, yet.";
-    // }
+  const validateInfo = () => {
+    if (
+      !/\S+@\S+\.\S+/.test(orgEmail) ||
+      orgName === "" ||
+      orgLocation === "" ||
+      orgType === "" ||
+      orgContact.length !== 10 ||
+      !Input.current.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)
+    ) {
+      setNameError("Fields are empty fill them correctly to proceed.");
+      return true;
+    } else {
+      setNameError(null);
+      return false;
+    }
   };
 
   const onConfirmRegister = () => {
@@ -77,17 +97,6 @@ const RegisterOrg = () => {
       });
   };
 
-  // const employeeToDb = () => {
-  //   axios
-  //     .post(apiThree, {})
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   return (
     <div className="register">
       <div className="container" id="container">
@@ -126,17 +135,19 @@ const RegisterOrg = () => {
               Confirm your Registration to proceed.
             </span>
 
-            <Link to="/infopage">
-              <button
-                className="confirm_register"
-                onClick={onConfirmRegister}
-                addedResponse={res}
-              >
-                Confirm Register
-              </button>
-            </Link>
-
-            {/* <button onClick={employeeToDb}>ADD EMPLOYEE</button> */}
+            {nameError ? (
+              <p className="error_line">{nameError}</p>
+            ) : (
+              <Link to="/infopage">
+                <button
+                  className="confirm_register"
+                  onClick={onConfirmRegister}
+                  addedResponse={res}
+                >
+                  Confirm Register
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 
