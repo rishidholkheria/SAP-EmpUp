@@ -6,6 +6,7 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import { useState } from "react";
 import axios from "axios";
+import Payroll from "../Payroll";
 
 const HRDept = () => {
   const [bookName, setBookName] = useState("");
@@ -199,6 +200,7 @@ const HRDept = () => {
       <div className="hrd__header">
         <h1>HR Department</h1>
       </div>
+      <Payroll />
       <div className="update_portal">
         <div className="update_portal_header">
           <div className="update_icon">

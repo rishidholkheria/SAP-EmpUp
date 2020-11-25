@@ -6,6 +6,10 @@ import InfoIcon from "@material-ui/icons/Info";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 
+const removeFromLS = () => {
+  // localStorage.removeItem("isAuth");
+};
+
 const BottombarOptions = () => {
   return (
     <div>
@@ -23,10 +27,12 @@ const BottombarOptions = () => {
             <InfoIcon />
           </div>
         </Link>
-        <div className="Logout">
-          <ExitToAppIcon />
-          {/* <h6>Logout</h6> */}
-        </div>
+        <Link to="./emplogin">
+          <div className="Logout">
+            {removeFromLS}
+            <ExitToAppIcon />
+          </div>
+        </Link>
       </div>
     </div>
   );

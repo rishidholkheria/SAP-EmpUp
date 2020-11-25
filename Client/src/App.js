@@ -17,6 +17,8 @@ import HRofficeRight from "./Components/ChatPortal/HRofficeRight";
 import ContactUs from "./Components/Profile/ContactUs";
 import InfoPage from "./Components/SignInSignUp/InfoPage";
 import ErrorPage from "./Components/ErrorPage";
+import ProfileRight from "./Components/Profile/ProfileRight";
+import Payroll from "./Components/Payroll";
 
 function App() {
   return (
@@ -60,6 +62,12 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <Profile />
+              <ProfileRight />
+            </div>
+          </Route>
+          <Route path="/payroll">
+            <div className="path_direction">
+              <Payroll />
             </div>
           </Route>
           <Route path="/register">

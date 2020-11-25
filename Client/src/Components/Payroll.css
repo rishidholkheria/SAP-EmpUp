@@ -1,0 +1,219 @@
+.payroll_portal {
+  margin: 10px;
+  /* background-color: white; */
+  padding: 10px;
+  /* box-shadow: 3px 5px 5px rgb(196, 196, 196); */
+  border-radius: 10px;
+}
+
+.payroll_portal * {
+  padding: 0px;
+  margin: 0px;
+}
+
+.update_portal_header {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.update_icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.update_portal_heading {
+  margin-left: 5px;
+}
+
+.finance_detail {
+  background-color: white;
+  border-left: 2px solid purple;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 3px 5px 5px rgb(196, 196, 196);
+}
+
+.fin_info_box {
+  display: flex;
+}
+
+.total_emp_pay {
+  flex: 2;
+}
+
+.total_emp_pay h4 {
+  padding-top: 8px;
+}
+
+.net_pay {
+  font-size: 10px;
+  color: grey;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.payment_date {
+  flex: 2;
+}
+
+.payment_date h4 {
+  padding-top: 8px;
+}
+
+.pay_date {
+  font-size: 10px;
+  color: grey;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.view_more_fin_btn {
+  flex: 1;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  font-family: inherit;
+}
+
+.fin_notice {
+  margin-top: 18px;
+}
+
+.fin_notice p {
+  font-size: 10px;
+  color: grey;
+}
+
+.deduction_summary {
+  margin-top: 30px;
+}
+
+.deduction_header {
+  font-weight: 700;
+  padding-left: 8px;
+}
+
+.deduction_summary_cards {
+  display: flex;
+}
+
+.deduction_details {
+  flex: 3;
+  margin-top: 10px;
+  display: flex;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 3px 5px 5px rgb(196, 196, 196);
+}
+
+.epf {
+  flex: 1;
+  border-right: 0.5px solid rgba(128, 128, 128, 0.616);
+  /* margin-right: 10; */
+  padding-right: 20px;
+}
+
+.epf_word_one {
+  font-size: 12px;
+  color: rgb(255, 0, 76);
+  padding: 8px;
+  font-weight: 600;
+  margin-top: 3px;
+}
+.epf_word_two {
+  font-size: 12px;
+  color: blue;
+  padding: 8px;
+  font-weight: 600;
+}
+.epf_word_three {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(255, 0, 76);
+  padding: 8px;
+}
+
+.epf_amount_one {
+  padding-left: 8px;
+  color: rgb(255, 0, 76);
+  font-weight: bolder;
+}
+
+.epf_amount_two {
+  padding-left: 8px;
+  color: blue;
+  font-weight: bolder;
+}
+
+.epf_amount_three {
+  padding-left: 8px;
+  color: rgb(255, 0, 76);
+  font-weight: bolder;
+}
+
+.epf_icon {
+  padding: 8px;
+  font-size: 20px;
+  width: 40%;
+  border-radius: 50px;
+  background-color: rgba(205, 235, 241, 0.651);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.active_emp {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 3px 5px 5px rgb(196, 196, 196);
+  /* background-color: #8ec5fc;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%); */
+}
+
+.active_emp_header {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.active_emp_header p {
+  font-size: 14px;
+  color: grey;
+}
+
+.empno {
+  flex: 2;
+  width: 100%;
+  max-width: 100%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.empno h2 {
+  font-size: 50px;
+  color: rgb(68, 79, 231);
+}
