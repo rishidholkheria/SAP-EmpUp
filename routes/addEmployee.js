@@ -90,13 +90,9 @@ router.post("/send-password-to-organisation", async (req, res) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     from: '"Team EmpUp" <team@EmpUp.com>',
-    to: "samridhikots@gmail.com",
+    to: req.body.orgEmail,
     subject: "Welcome to EmpUp!",
-    html: `
-    <h2>We are glad to have you on board.😊 </h2>
-    <h3>Please find below the excel sheet of the employees' credentials. Use them to login to EmpUp</h3>
-    <h3>Accountable, Adoptable, Affordable. EmpUp!</h3>
-`,
+    html: { path: 'welcome/welcome.html' },
     attachments: [
       {
         filename: "EmpUp Employee Credentials.xlsx",
