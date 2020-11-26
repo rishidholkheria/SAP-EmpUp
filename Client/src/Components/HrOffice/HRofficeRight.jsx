@@ -6,7 +6,11 @@ import axios from "axios";
 const HRofficeRight = () => {
   const [feedback, setFeedback] = useState([]);
   const [csv, setCsv] = useState(null);
-  const [csvName, setCsvName] = useState("");
+  const [payrollMail, setPayrollMail] = useState("");
+
+  const apiOne = "http://localhost:4000/api/payroll/send-payroll";
+  const apiTwo = "http://localhost:4000/api/payroll/upload";
+  // const apiThree = "http://localhost:4000/api/upload-employee/upload-to-db";
 
   useEffect(() => {
     axios
@@ -20,9 +24,6 @@ const HRofficeRight = () => {
         console.log(error);
       });
   }, []);
-
-  var formData = new FormData();
-  formData.append("csv-file", csv);
 
   const orgCsv = useRef(null);
   const csv_name = useRef(null);
@@ -44,6 +45,37 @@ const HRofficeRight = () => {
     }
   };
 
+  const generatePayroll = () => {
+    var formData = new FormData();
+    formData.append("file", csv);
+    const email = payrollMail;
+    alert("Payroll Generated and sent to your Email!");
+
+    const rOne = axios.post(apiTwo, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const rTwo = axios.post(apiOne, {
+      email,
+    });
+
+    axios
+      .all([rOne, rTwo])
+      .then(
+        axios.spread(async (...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+
+          console.log("responseOne", responseOne);
+          console.log("responseTwo", responseTwo);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+        // alert(errors);
+      });
+  };
   return (
     <div className="hr_office_right">
       <div className="payroll">
@@ -56,7 +88,7 @@ const HRofficeRight = () => {
           className="csv_file"
           type="file"
           placeholder="Org Income Details"
-          id="csv-file"
+          id="file"
           hidden="hidden"
           onChange={(e) => clickFile(e)}
           ref={orgCsv}
@@ -65,19 +97,20 @@ const HRofficeRight = () => {
           type="text"
           className="generate_email"
           placeholder="Email Address"
-          value={csvName}
-          onChange={(e) => setCsvName(e.target.value)}
+          value={payrollMail}
+          onChange={(e) => setPayrollMail(e.target.value)}
         />
         <input
           type="text"
           className="generate_email"
-          placeholder="CSV File"
-          value={csvName}
+          placeholder="Excel File"
           // onChange={(e) => setCsvName(e.target.value)}
           onClick={onCsvInput}
         />
         <span className="file_text" id="custom-text" ref={csv_name}></span>
-        <button className="generate">Generate</button>
+        <button className="generate" onClick={generatePayroll}>
+          Generate
+        </button>
       </div>
       <div className="feedback_section">
         <h3>Feedback Portal</h3>
