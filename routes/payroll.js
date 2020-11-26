@@ -5,9 +5,6 @@ router.use(express.json());
 const XLSX = require("xlsx");
 const multer = require("multer");
 
-const payroll = require('../payroll/payroll');
-const { json } = require("express");
-
 //upload the file
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -20,7 +17,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single("file");
 
-router.post("/upload", function (req, res) {
+router.post('/upload', function (req, res) {
     upload(req, res, function (err) {
         if (err instanceof multer.MulterError) {
             return res.status(500).json(err);
@@ -33,7 +30,7 @@ router.post("/upload", function (req, res) {
 
 
 //sending to frontend
-router.get('/data', payroll, (req, res) => {
+router.get('/data', (req, res) => {
     var jsonData = excelToJson();
     console.log(jsonData);
     res.json({

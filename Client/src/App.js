@@ -19,6 +19,7 @@ import InfoPage from "./Components/SignInSignUp/InfoPage";
 import ErrorPage from "./Components/ErrorPage";
 import ProfileRight from "./Components/Profile/ProfileRight";
 import Payroll from "./Components/Payroll";
+import GroupChatSide from "./Components/CommonRoom/GroupChatSide"
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <div className="path_direction">
               <Sidebar />
               <CommonRoom />
+              <GroupChatSide/>
             </div>
           </Route>
           <Route path="/hrd">

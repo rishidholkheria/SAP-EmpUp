@@ -2,36 +2,80 @@ import React from "react";
 import "./GroupChatSide.css";
 import io from "socket.io-client";
 import { useState } from "react";
-import Message from "./Message";
+import Message from "./Message"
 import { useEffect } from "react";
 
 let socket;
-const CommonRoomRight = () => {
-  // const chatForm = document.getElementById("chat-form");
-  const [messages, setMessages] = useState([]);
-  const [chatMessage, setChatMessage] = useState("");
-  const [rName, setRoomName] = useState("");
-  const [eName, setEname] = useState("");
-  const [socketState, setSocket] = useState("");
-  const [temp, setTemp] = useState("");
+// const CommonRoomRight = () => {
+//   // const chatForm = document.getElementById("chat-form");
+//   const [messages, setMessages] = useState(["me"]);
+//   const [chatMessage, setChatMessage] = useState("");
+//   const [rName, setRoomName] = useState("");
+//   const [eName, setEname] = useState("");
+//   const [socketState, setSocket] = useState("");
+//   const [temp, setTemp] = useState([]);
 
-  useEffect(() => {
+  class GroupChatSide extends React.Component{
+
+    constructor(props){
+      super(props);
+      this.state = {
+        messages: [],
+        chatMessage: "", 
+        rName: "",
+        eName: ""
+      }
+  
+  }
+  componentDidMount(){
     socket = io("http://localhost:4000");
 
     socket.on("message", (message) => {
-      //   console.log(message);
-      //   console.log(messages);
+        console.log(message);
+        this.setState({messages: [...this.state.messages, message]})
+        // console.log(messages);
       // outputMessage(message);
       //setChatMessage(message);
-      //   setMessages((prev) => [...messages, message]);
-      setTemp(message);
-      // Scroll down
-      // chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
-  }, []);
+        console.log(this.state.messages);
+
+       
+        return () => {
+          socket.close();
+        };
+  })
+
+  }
+
+  // useEffect(() => {
+  //   socket = io("http://localhost:4000");
+
+  //   socket.on("message", (message) => {
+  //       console.log(message);
+  //       console.log(messages);
+  //     // outputMessage(message);
+  //     //setChatMessage(message);
+  //       setMessages([...messages, message]);
+
+  //       console.log(messages);
+
+       
+  //       return () => {
+  //         socket.close();
+  //       };
+
+  //     // setTemp(message);
+  //     // Scroll down
+  //     // chatMessages.scrollTop = chatMessages.scrollHeight;
+  //   });
+  // }, []);
+
+  // useEffect(()=>{
+   
+  // },[])
+
   // Join chatroom
-  const joinRoomChat = () => {
-    socket.emit("joinRoom", { eName, rName });
+  joinRoomChat = () => {
+    socket.emit("joinRoom", { eName: this.state.eName, rName: this.state.rName });
     //setSocket(socket);
   };
 
@@ -43,16 +87,17 @@ const CommonRoomRight = () => {
 
   // Message from server
 
-  const sendChatMsg = (e) => {
+   sendChatMsg = (e) => {
     e.preventDefault();
 
     //console.log(chatMessage);
-    if (!chatMessage) {
+    if (!this.state.chatMessage) {
       return false;
-    }
+    }   
 
-    socket.emit("chatMessage", chatMessage);
-    setChatMessage("");
+    socket.emit("chatMessage", this.state.chatMessage);
+    //setChatMessage("");
+    this.setState({chatMessage: ""})
   };
 
   // Output message to DOM
@@ -76,6 +121,8 @@ const CommonRoomRight = () => {
   //   });
   // }
 
+ render(){
+  const {chatMessage, eName, rName, messages} = this.state
   return (
     <div className="group_chat_container">
       <div className="join_side">
@@ -90,7 +137,7 @@ const CommonRoomRight = () => {
                 placeholder="Enter username..."
                 // required
                 value={eName}
-                onChange={(e) => setEname(e.target.value)}
+                onChange={(e) => this.setState({eName: e.target.value})}
               />
             </div>
             <div className="form-control">
@@ -100,7 +147,7 @@ const CommonRoomRight = () => {
                 id="room"
                 className="room_select"
                 value={rName}
-                onChange={(e) => setRoomName(e.target.value)}
+                onChange={(e) => this.setState({rName: e.target.value})}
               >
                 <option value="JavaScript">JavaScript</option>
                 <option value="Python">Python</option>
@@ -114,7 +161,7 @@ const CommonRoomRight = () => {
           <button
             type="submit"
             className="join_chat_btn"
-            onClick={joinRoomChat}
+            onClick={this.joinRoomChat}
           >
             Join Chat
           </button>
@@ -129,7 +176,7 @@ const CommonRoomRight = () => {
           </a>
         </header>
         <main className="chat-main">
-          {[...messages, temp].map((msg) => (
+          {[...messages].map((msg) => (
             <Message
               text={msg.text}
               time={msg.time}
@@ -147,11 +194,11 @@ const CommonRoomRight = () => {
               type="text"
               placeholder="Enter Message"
               value={chatMessage}
-              onChange={(e) => setChatMessage(e.target.value)}
+              onChange={(e) => this.setState({chatMessage: e.target.value})}
               // required
               autocomplete="off"
             />
-            <button className="send_chat_btn" onClick={sendChatMsg}>
+            <button className="send_chat_btn" onClick={this.sendChatMsg}>
               Send
             </button>
           </form>
@@ -159,6 +206,7 @@ const CommonRoomRight = () => {
       </div>
     </div>
   );
+ }
 };
 
-export default CommonRoomRight;
+export default GroupChatSide;
