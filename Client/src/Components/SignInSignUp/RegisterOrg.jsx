@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import "./RegisterOrg.css";
 import axios from "axios";
 import useHistory, { Link } from "react-router-dom";
+require('dotenv').config();
 
 const RegisterOrg = () => {
   const [orgName, setOrgName] = useState("");
@@ -16,11 +17,11 @@ const RegisterOrg = () => {
 
   // const history = useHistory();
 
-  const apiOne = "http://localhost:4000/api/organisation";
-  const apiTwo = "http://localhost:4000/api/upload-employee/upload";
-  const apiThree = "http://localhost:4000/api/upload-employee/upload-to-db";
+  const apiOne = process.env.REACT_APP_SERVER + "/organisation";
+  const apiTwo = process.env.REACT_APP_SERVER + "/upload-employee/upload";
+  const apiThree = process.env.REACT_APP_SERVER + "/upload-employee/upload-to-db";
   const apiFour =
-    "http://localhost:4000/api/upload-employee/send-password-to-organisation";
+  process.env.REACT_APP_SERVER + "/upload-employee/send-password-to-organisation";
 
   const firstRender = useRef(true);
   const Input = useRef(null);

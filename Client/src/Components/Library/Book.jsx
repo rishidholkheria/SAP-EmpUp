@@ -3,11 +3,12 @@ import { useState, useEffect, useParams } from "react";
 import "./Book.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+require('dotenv').config();
 
 const Book = ({ bookTitle, bookDesc, bookDept, data }) => {
   const onRead = (e) => {
     const requestOne = axios.get(
-      `http://localhost:4000/api/virtual-library-file/image-id/${data}`
+      process.env.REACT_APP_SERVER + `/virtual-library-file/image-id/${data}`
     );
     requestOne.then((response) => {
       // console.log(response.data);
@@ -30,7 +31,7 @@ const Book = ({ bookTitle, bookDesc, bookDept, data }) => {
           <p className="p-trunc">{bookDesc}</p>
 
           <a
-            href={`http://localhost:4000/api/virtual-library-file/image-id/${data}`}
+            href={process.env.REACT_APP_SERVER + `/virtual-library-file/image-id/${data}`}
             target="_blank"
           >
             <button className="read_button" onClick={onRead}>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Book from "./Book";
 import "./Library.css";
 import axios from "axios";
+require('dotenv').config();
 
 const Library = () => {
   const [books, setBooks] = useState([]);
@@ -11,7 +12,7 @@ const Library = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/virtual-library/${organisationId}`)
+      .get(process.env.REACT_APP_SERVER + `/virtual-library/${organisationId}`)
       .then((res) => {
         console.log(res);
         setBooks(res.data.data);

@@ -5,6 +5,7 @@ import purplewave from "./img/purplewave.png";
 import login from "./img/login.svg";
 import profile from "./img/profile.svg";
 import axios from "axios";
+require('dotenv').config();
 
 const AdminRegister = () => {
   const [adminEmail, setAdminEmail] = useState("");
@@ -39,7 +40,7 @@ const AdminRegister = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/api/admin/", {
+      .post(process.env.REACT_APP_SERVER + "/admin/", {
         adminEmail,
         adminPassword,
       })

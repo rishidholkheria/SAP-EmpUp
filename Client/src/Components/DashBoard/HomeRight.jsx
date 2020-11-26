@@ -5,6 +5,7 @@ import TodoList from "../Todo/TodoList";
 import "./HomeRight.css";
 import Goal from "./Goal";
 import axios from "axios";
+require('dotenv').config();
 
 const HomeRight = () => {
   const [inputText, setInputText] = useState("");
@@ -17,7 +18,7 @@ const HomeRight = () => {
     const organisationId = localStorage.getItem("orgId");
     console.log(organisationId);
     axios
-      .get(`http://localhost:4000/api/organisation/${organisationId}`)
+      .get(process.env.REACT_APP_SERVER + `/organisation/${organisationId}`)
       .then((res) => {
         setGoal(res.data.data.monthlyGoal);
         // console.log(res);
