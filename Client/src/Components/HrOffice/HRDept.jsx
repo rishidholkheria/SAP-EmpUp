@@ -22,6 +22,7 @@ const HRDept = () => {
   const [newgoal, setGoal] = useState("");
   const [disable, setDisabled] = useState(true);
   const [nameError, setNameError] = useState(null);
+  const [payrollData, setPayrollData] = useState([]);
 
   const organisationId = localStorage.getItem("orgId");
   const monthlyGoal = newgoal;
@@ -182,19 +183,6 @@ const HRDept = () => {
     }
   };
 
-  const deleteBook = () => {
-    axios
-      .delete(
-        `http://localhost:4000/api/virtual-library/delete/${organisationId}`
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((errors) => {
-        console.log(errors);
-      });
-  };
-
   return (
     <div className="chat_portal">
       <div className="hrd__header">
@@ -321,14 +309,9 @@ const HRDept = () => {
             bookTitle={dltBook.name}
             bookDept={dltBook.department}
             date={dltBook.date}
+            bookId={dltBook._id}
           />
         ))}
-
-        {/* <button className="delete_book_icon" onClick={deleteBook}>
-          </button> 
-        <div className="delete_book_icon_side"> 
-        
-        </div> */}
       </div>
     </div>
   );

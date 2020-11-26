@@ -48,6 +48,7 @@ const EmpLogin = () => {
         localStorage.setItem("orgId", res.data.payload.orgId);
         localStorage.setItem("empId", res.data.payload.userid);
         localStorage.setItem("isAuth", res.data.payload.isAuthorized);
+        localStorage.setItem("empName", res.data.payload.name);
         history.push("/");
       })
       .catch((err) => {

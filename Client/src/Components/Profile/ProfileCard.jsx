@@ -2,6 +2,8 @@ import React from "react";
 import "./ProfileCard.css";
 
 const ProfileCard = () => {
+  const employeeName = localStorage.getItem("empName");
+
   return (
     <div className="profile_card">
       <div className="card_container">
@@ -10,7 +12,9 @@ const ProfileCard = () => {
             <div className="card_header">
               <div>
                 <div className="image"></div>
-                <h3 className="name">John Cena</h3>
+                <h3 className="name">
+                  {!employeeName ? "UserName" : employeeName}
+                </h3>
               </div>
             </div>
           </div>
