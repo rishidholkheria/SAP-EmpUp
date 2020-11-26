@@ -8,7 +8,6 @@
   background-color: white;
   margin: 10px auto;
   padding: 20px;
-  height: 300px;
   width: 100%;
   overflow: hidden;
   background: radial-gradient(#000000c4, #000000c4),
@@ -41,8 +40,24 @@
   margin-top: 25px;
   cursor: pointer;
   transition: 0.5s;
+  margin-bottom: 8px;
 }
 
 .generate:hover {
   background-position: right;
+}
+
+.generate_email {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 12px;
+  border-radius: 3px;
+  width: 70%;
+  background-color: rgba(214, 205, 205, 0.144);
+  margin: 5px 0;
+  font-family: inherit;
+  color: white;
 }

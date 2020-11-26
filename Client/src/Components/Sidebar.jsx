@@ -47,7 +47,7 @@ function Sidebar() {
       </Link>
 
       {localStorage.getItem("isAuth") === "true" ? (
-        <a href="/register">
+        <a href="/hroffice">
           <Button variant="outlined" className="sidebar__tweet" fullWidth>
             HR Office
           </Button>
