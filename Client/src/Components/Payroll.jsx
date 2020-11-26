@@ -6,6 +6,7 @@ import MoneyOffIcon from "@material-ui/icons/MoneyOff";
 import EcoOutlinedIcon from "@material-ui/icons/EcoOutlined";
 import SecurityOutlinedIcon from "@material-ui/icons/SecurityOutlined";
 import axios from "axios";
+import { Link } from "@material-ui/core";
 
 const Payroll = () => {
   const [tds, setTds] = useState(null);
@@ -59,7 +60,9 @@ const Payroll = () => {
             <p className="pay_date">Payment Date</p>
             <h4>30/11/2020</h4>
           </div>
-          <button className="view_more_fin_btn">View More</button>
+          <Link to="/payrolldetails">
+            <button className="view_more_fin_btn">View More</button>
+          </Link>
         </div>
         <div className="fin_notice">
           <p>

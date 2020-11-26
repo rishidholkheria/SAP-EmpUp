@@ -22,7 +22,6 @@ const HRDept = () => {
   const [newgoal, setGoal] = useState("");
   const [disable, setDisabled] = useState(true);
   const [nameError, setNameError] = useState(null);
-  const [payrollData, setPayrollData] = useState([]);
 
   const organisationId = localStorage.getItem("orgId");
   const monthlyGoal = newgoal;

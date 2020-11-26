@@ -20,6 +20,7 @@ import ErrorPage from "./Components/ErrorPage";
 import ProfileRight from "./Components/Profile/ProfileRight";
 import Payroll from "./Components/Payroll";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
+import PayrollDetails from "./Components/HrOffice/PayrollDetails";
 
 function App() {
   return (
@@ -100,6 +101,11 @@ function App() {
           <Route path="/contactus">
             <div className="path_direction">
               <ContactUs />
+            </div>
+          </Route>
+          <Route path="/payrolldetails">
+            <div className="path_direction">
+              <PayrollDetails />
             </div>
           </Route>
           <Route path="/error">
