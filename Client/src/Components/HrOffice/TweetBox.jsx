@@ -2,6 +2,7 @@ import { Avatar, Button } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import "./TweetBox.css";
 import axios from "axios";
+require('dotenv').config();
 
 const TweetBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
@@ -25,7 +26,7 @@ const TweetBox = () => {
     };
     console.log(newPost);
     axios
-      .post("http://localhost:4000/api/announcement", { newPost })
+      .post(process.env.REACT_APP_SERVER + "/announcement", { newPost })
       .then((res) => {
         console.log(res);
         console.log(res.data);

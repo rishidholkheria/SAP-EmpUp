@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Feedback.css";
 import axios from "axios";
+require('dotenv').config();
 
 const Feedback = () => {
   const [title, setTitle] = useState("");
@@ -13,9 +14,9 @@ const Feedback = () => {
     const fTitle = title;
     const fDept = dept;
     const feedback = message;
-
+    const orgId = localStorage.getItem("orgId");
     axios
-      .post("http://localhost:4000/api/feedback", { fTitle, fDept, feedback })
+      .post(process.env.REACT_APP_SERVER + "/feedback", { fTitle, fDept, feedback, orgId})
       .then((res) => {
         console.log(res.data);
       })

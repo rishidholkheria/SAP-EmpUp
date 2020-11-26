@@ -7,8 +7,9 @@ import EcoOutlinedIcon from "@material-ui/icons/EcoOutlined";
 import SecurityOutlinedIcon from "@material-ui/icons/SecurityOutlined";
 import axios from "axios";
 import { Link } from "@material-ui/core";
+require('dotenv').config();
 
-const Payroll = () => {
+const Payroll = ({date}) => {
   const [tds, setTds] = useState(null);
   const [netIncome, setNetIncome] = useState(null);
   const [esi, setEsi] = useState(null);
@@ -17,6 +18,8 @@ const Payroll = () => {
 
   const handleLoop = (response) => {
     var length = response.length;
+    console.log(response);
+
     setEmpNumber(length);
     var i;
 
@@ -39,7 +42,7 @@ const Payroll = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/payroll/data")
+      .get(process.env.REACT_APP_SERVER + "/payroll/data")
       .then((res) => {
         handleLoop(res.data.data);
       })
@@ -58,7 +61,7 @@ const Payroll = () => {
           </div>
           <div className="payment_date">
             <p className="pay_date">Payment Date</p>
-            <h4>30/11/2020</h4>
+            <h4>{date}</h4>
           </div>
           <Link to="/payrolldetails">
             <button className="view_more_fin_btn">View More</button>

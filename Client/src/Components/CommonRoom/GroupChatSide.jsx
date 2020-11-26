@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { useState } from "react";
 import Message from "./Message"
 import { useEffect } from "react";
+require('dotenv').config();
 
 let socket;
 // const CommonRoomRight = () => {
@@ -28,7 +29,7 @@ let socket;
   
   }
   componentDidMount(){
-    socket = io("http://localhost:4000");
+    socket = io(process.env.REACT_APP_SOCKET);
 
     socket.on("message", (message) => {
         console.log(message);

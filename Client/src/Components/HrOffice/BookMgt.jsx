@@ -4,6 +4,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { green } from "@material-ui/core/colors";
 import axios from "axios";
 import { useState } from "react";
+require('dotenv').config();
 
 const BookMgt = ({ bookTitle, bookDept, date, bookId }) => {
   const [singleId, setSingleId] = useState("");
@@ -11,7 +12,7 @@ const BookMgt = ({ bookTitle, bookDept, date, bookId }) => {
   const deleteBook = () => {
     console.log(bookId);
     axios
-      .delete(`http://localhost:4000/api/virtual-library/delete/${bookId}`)
+      .delete(process.env.REACT_APP_SERVER + `/virtual-library/delete/${bookId}`)
       .then((res) => {
         console.log(res);
       })

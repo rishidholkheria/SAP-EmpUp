@@ -4,6 +4,7 @@ import Notice from "./Notice";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+require('dotenv').config();
 
 const NoticeBoard = () => {
   const [notices, setNotices] = useState([]);
@@ -12,7 +13,7 @@ const NoticeBoard = () => {
   useEffect(() => {
     const organisationId = localStorage.getItem("orgId");
     axios
-      .get(`http://localhost:4000/api/organisation/${organisationId}`)
+      .get(process.env.REACT_APP_SERVER+`/organisation/${organisationId}`)
       .then((res) => {
         // res.data.data.notice.shift();
         setNotices(res.data.data.notice);

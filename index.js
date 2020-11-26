@@ -12,7 +12,6 @@ dotenv.config();
 mongoose.set("debug");
 var cors = require("cors");
 app.use(cors());
-app.set("view engine", "ejs");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,7 +46,6 @@ const payroll = require("./routes/payroll");
 
 //middlewares
 app.use("/api/organisation", organisation);
-// app.use("/api/upload-employee-data", uploadXLRoute);
 app.use("/api/upload-employee", uploadEmployee);
 app.use("/api/admin", admin);
 app.use("/api/employee", employee);
@@ -58,9 +56,7 @@ app.use("/api/feedback", feedback);
 app.use("/api/motivation", motivation);
 app.use("/api/virtual-library", library);
 app.use("/api/virtual-library-file", libraryFile);
-//app.use("/api/group-chat", groupChat);
 app.use("/api/payroll",payroll);
-// app.use('/',library);
 
 //listening on port
 const PORT = 4000 || process.env.PORT;

@@ -2,3 +2,4 @@
 /.env
 /Client/node_modules
 /EmpUp Employee Credentials.xlsx
+/Client/.env

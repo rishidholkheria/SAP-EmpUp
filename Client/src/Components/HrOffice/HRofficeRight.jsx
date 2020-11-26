@@ -1,20 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import GetFeedback from "./GetFeedback";
+import Payroll from "../Payroll";
 import "./HRofficeRight.css";
 import axios from "axios";
+require('dotenv').config();
 
 const HRofficeRight = () => {
   const [feedback, setFeedback] = useState([]);
   const [csv, setCsv] = useState(null);
   const [payrollMail, setPayrollMail] = useState("");
+  const [date, setDate] = useState("");
 
-  const apiOne = "http://localhost:4000/api/payroll/send-payroll";
-  const apiTwo = "http://localhost:4000/api/payroll/upload";
+  const apiOne = process.env.REACT_APP_SERVER + "/payroll/send-payroll";
+  const apiTwo = process.env.REACT_APP_SERVER + "/payroll/upload";
   // const apiThree = "http://localhost:4000/api/upload-employee/upload-to-db";
 
+  const organisationId = localStorage.getItem("orgId");
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/feedback")
+      .get(process.env.REACT_APP_SERVER + `/feedback/${organisationId}`)
       .then((res) => {
         setFeedback(res.data.data);
         // console.log(res.data.data.feedback);
@@ -45,10 +49,18 @@ const HRofficeRight = () => {
     }
   };
 
+  const getDate = ()=>{
+    var d = new Date();
+    var month = d.getMonth() + 1;
+    var systemDate = d.getDate() + '-' + month  + '-' + d.getFullYear();
+    setDate(systemDate);
+  }
+
   const generatePayroll = () => {
     var formData = new FormData();
     formData.append("file", csv);
     const email = payrollMail;
+    getDate();
     alert("Payroll Generated and sent to your Email!");
 
     const rOne = axios.post(apiTwo, formData, {
@@ -77,6 +89,7 @@ const HRofficeRight = () => {
       });
   };
   return (
+    
     <div className="hr_office_right">
       <div className="payroll">
         <h2>Payroll Generator</h2>
@@ -100,6 +113,13 @@ const HRofficeRight = () => {
           value={payrollMail}
           onChange={(e) => setPayrollMail(e.target.value)}
         />
+        {/* <input
+          type="text"
+          className="generate_email"
+          placeholder="Payment Period"
+          value={payPeriod}
+          onChange={(e) => setPayPeriod(e.target.value)}
+        /> */}
         <input
           type="text"
           className="generate_email"
@@ -108,7 +128,7 @@ const HRofficeRight = () => {
           onClick={onCsvInput}
         />
         <span className="file_text" id="custom-text" ref={csv_name}></span>
-        <button className="generate" onClick={generatePayroll}>
+        <button className="generate" onClick={generatePayroll} >
           Generate
         </button>
       </div>
@@ -122,7 +142,9 @@ const HRofficeRight = () => {
           />
         ))}
       </div>
+      
     </div>
+    
   );
 };
 

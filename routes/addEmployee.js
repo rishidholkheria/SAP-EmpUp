@@ -43,7 +43,6 @@ router.post("/upload", function (req, res) {
   });
 });
 
-
 //posting to Database
 router.post("/upload-to-db", (req, res) => {
   var jsonData = excelToJson();
@@ -75,7 +74,7 @@ router.post("/upload-to-db", (req, res) => {
   console.log("employees added!");
 });
 
-//need email of org from front end 
+//need email of org from front end
 router.post("/send-password-to-organisation", async (req, res) => {
   //send mail
   let transporter = nodemailer.createTransport({
@@ -146,6 +145,6 @@ const excelToJson = () => {
       (jsonData[i].pass = password);
   }
   return jsonData;
-}
+};
 
 module.exports = router;

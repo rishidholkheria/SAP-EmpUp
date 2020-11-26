@@ -13,6 +13,9 @@ var feedbackSchema = mongoose.Schema({
   },
   cDate: {
     type: String,
+  },
+  orgId: {
+    type: String
   }
 });
 

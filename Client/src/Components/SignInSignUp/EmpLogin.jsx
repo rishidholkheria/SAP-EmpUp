@@ -6,6 +6,7 @@ import login from "./img/login.svg";
 import profile from "./img/profile.svg";
 import axios from "axios";
 import { useEffect } from "react";
+require('dotenv').config();
 
 const EmpLogin = () => {
   const [userName, setUserName] = useState("");
@@ -38,7 +39,7 @@ const EmpLogin = () => {
   const userLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/api/employee/login", {
+      .post(process.env.REACT_APP_SERVER + "/employee/login", {
         userName,
         userPassword,
       })

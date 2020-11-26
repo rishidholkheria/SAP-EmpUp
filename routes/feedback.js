@@ -12,25 +12,27 @@ router.use(express.json());
 const connect = require("../index");
 
 router.post("/", (req, res) => {
+  console.log(req.body.orgId);
   const feedback = new Feedback({
     feedback: req.body.feedback,
     fTitle: req.body.fTitle,
     fDept: req.body.fDept,
     cDate: getDate(),
+    orgId: req.body.orgId
   });
-  console.log(req.body);
+  
   feedback.save((err, data) => {
     if (err) {
       res.send("Error: " + err);
     }
-    res.send(data);
+    res.send(data); 
     console.log("created!");
   });
 });
 
 //get all feedback
-router.get("/", async (req, res) => {
-  const feedback = await Feedback.find({}, (err, result) => {
+router.get("/:id", async (req, res) => {
+  const feedback = await Feedback.find({orgId: req.params.id}, (err, result) => {
     if (!err) {
       res.status(200).json({
         data: result,
@@ -46,7 +48,7 @@ router.get("/", async (req, res) => {
 });
 
 //get api for a specific feedback
-router.get("/:id", (req, res) => {
+router.get("/single/:id", (req, res) => {
   Feedback.findOne({ _id: req.params.id }, (err, result) => {
     //check if feedback exists
     if (!result)

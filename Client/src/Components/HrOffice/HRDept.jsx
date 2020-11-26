@@ -7,6 +7,7 @@ import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import { useState } from "react";
 import axios from "axios";
 import Payroll from "../Payroll";
+require('dotenv').config();
 
 const HRDept = () => {
   const [bookName, setBookName] = useState("");
@@ -28,7 +29,7 @@ const HRDept = () => {
   const onGoalSend = () => {
     axios
       .put(
-        `http://localhost:4000/api/organisation/monthly-goal/update/${organisationId}`,
+        process.env.REACT_APP_SERVER + `/organisation/monthly-goal/update/${organisationId}`,
         { monthlyGoal }
       )
       .then((res) => {
@@ -43,7 +44,7 @@ const HRDept = () => {
 
   const onNoticeSend = () => {
     axios
-      .put(`http://localhost:4000/api/organisation/notices/${organisationId}`, {
+      .put(process.env.REACT_APP_SERVER + `/organisation/notices/${organisationId}`, {
         notice,
       })
       .then((res) => {
@@ -58,15 +59,15 @@ const HRDept = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/virtual-library/${organisationId}`)
+      .get(process.env.REACT_APP_SERVER + `/virtual-library/${organisationId}`)
       .then((res) => {
         // console.log(res);
         setBookDelete(res.data.data);
       });
   }, []);
 
-  const apiOne = "http://localhost:4000/api/virtual-library/upload-new-book";
-  const apiTwo = "http://localhost:4000/api/virtual-library-file/upload";
+  const apiOne = process.env.REACT_APP_SERVER + "/virtual-library/upload-new-book";
+  const apiTwo = process.env.REACT_APP_SERVER + "/virtual-library-file/upload";
 
   const onAddBook = () => {
     const bName = bookName;
@@ -126,7 +127,7 @@ const HRDept = () => {
     if (fileandbook.bookId !== "" && fileandbook.fileId !== "") {
       axios
         .post(
-          "http://localhost:4000/api/virtual-library-file/link-file-to-library",
+          process.env.REACT_APP_SERVER + "/virtual-library-file/link-file-to-library",
           fileandbook
         )
         .then((res) => {
