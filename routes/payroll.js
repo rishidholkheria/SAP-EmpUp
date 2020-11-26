@@ -29,6 +29,26 @@ router.post("/upload", function (req, res) {
 });
 
 //sending to frontend
+
+router.get('/data', (req, res) => {
+    var jsonData = excelToJson();
+    console.log(jsonData);
+    res.json({
+        json: jsonData,
+        message: "Payroll data sent"
+    });
+    var newWB = XLSX.utils.book_new();
+  newWB.Props = {
+    Title: "Payroll",
+    Subject: "Payroll",
+    Author: "Team EmpUp",
+    CreatedDate: new Date(2020, 11, 20),
+  };
+  var newWS = XLSX.utils.json_to_sheet(result);
+  XLSX.utils.book_append_sheet(newWB, newWS, "Payroll");
+  XLSX.writeFile(newWB, "EmpUp Payroll.xlsx");
+
+
 router.get("/data", (req, res) => {
   var jsonData = excelToJson();
   console.log(jsonData);
@@ -36,7 +56,50 @@ router.get("/data", (req, res) => {
     data: jsonData,
     message: "Payroll data sent",
   });
+
 });
+
+//need email of org from front end 
+router.post("/send-payroll", async (req, res) => {
+    //send mail
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+  
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Team EmpUp" <team@EmpUp.com>',
+      to: "samridhikots@gmail.com",
+      subject: "Welcome to EmpUp!",
+      html: `
+      <h2>This month's payroll is here!😊 </h2>
+      <h3>Please find below the excel sheet of the payroll having all the details for the same.</h3>
+      <h3>Accountable, Adoptable, Affordable. EmpUp!</h3>
+  `,
+      attachments: [
+        {
+          filename: "EmpUp Payroll.xlsx",
+          path: "EmpUp Payroll.xlsx",
+          cid: "uniq-EmpUp Payroll.xlsx",
+        },
+      ],
+    });
+  
+    res.send("Email to your org sent");
+    console.log("Message sent: %s", info.messageId);
+  
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  });
+  
+
 
 const excelToJson = () => {
   //convert to JSON
