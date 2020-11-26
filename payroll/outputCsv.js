@@ -2,19 +2,10 @@ const fs = require('fs');
 const stringify = require('csv-stringify');
 const stream = require('stream');
 
-
-/**
- * Writes information into the CSV file
- *
- * Input format:
- *      firstName, lastName, annualSalary, superRate, payPeriod,
- *      payPeriod, grossIncome, incomeTax, netIncome, superIncome
- */
 //writes to csv
 class PayrollOutputCSV extends stream.Transform {
-    constructor(filename) {
+    constructor(filename ) {
         super({ objectMode: true });
-
         this._file = fs.createWriteStream(filename);
     }
 
