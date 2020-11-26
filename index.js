@@ -43,6 +43,7 @@ const motivation = require("./routes/motivation");
 const libraryRoute = require("./routes/library");
 var library = libraryRoute.router;
 const libraryFile = require("./routes/libraryFile");
+const payroll = require("./routes/payroll");
 
 //middlewares
 app.use("/api/organisation", organisation);
@@ -58,7 +59,7 @@ app.use("/api/motivation", motivation);
 app.use("/api/virtual-library", library);
 app.use("/api/virtual-library-file", libraryFile);
 //app.use("/api/group-chat", groupChat);
-
+app.use("/api/payroll",payroll);
 // app.use('/',library);
 
 //listening on port

@@ -11,22 +11,10 @@ var extend = require('util')._extend;
 //Income Tax formula for FY (2020 – 2021) = (Basic + Allowances – Deductions (ESI)) * 12 – (IT Declarations)
 //Only ESI is considered as a deduction
 //TDS=(Basic + Allowances – Deductions) * 12 – (IT Declarations + Standard deduction)
-//
 
-//input: payperiod,firstname,empId,basic,allowance(including hra and others), lop dependent allowance, IT declarations, standard deduction
-//output: incme tax, tds, net pay
-//input: name,basic, allowance, 
-/**
- * Input format:
- *      firstName, lastName, annualSalary, superRate, payPeriod
- *
- * Output format:
- *      firstName, lastName, annualSalary, superRate, payPeriod,
- *      payPeriod               - per calendar month
- *      grossIncome             - annual salary/12 months
- *      incomeTax               - based on the tax table
- *      netIncome               - gross income - income tax
- *      superIncome             - gross income x super rate
+/*
+ Input format: name, basic, allowance, IT, standardDeduction, PF, payPeriod
+ Output format: name, payPeriod, grossIncome, PF, TDS, ESI, incomeTax, netIncome
  */
 class Payroll extends stream.Transform {
     constructor() {
@@ -69,12 +57,6 @@ class Payroll extends stream.Transform {
         // let netIncome = grossIncome-(ESI+TDS+PF);
         let netIncome = grossIncome - ESI;
         let incomeTax = (basic+allowance-ESI)*12 -(IT);
-        
-        // // Calculate result
-        // let grossIncome = Math.round(annualSalary/12);
-        // let incomeTax = Math.round( (taxInfo.taxBase + (annualSalary - taxInfo.min)*taxInfo.taxPerDollar)/12 );
-        // let netIncome = grossIncome - incomeTax;
-        // let superIncome = Math.round(grossIncome * data.superRate);
 
         return extend(data, {
             grossIncome : grossIncome,
