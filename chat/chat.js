@@ -9,7 +9,7 @@ const {
 
 // Set static folder
 
-const botName = "Chatify Bot";
+const botName = "EmpCord Bot";
 
 // Run when client connects
 const ioEvents = (io) => {
@@ -21,7 +21,7 @@ const ioEvents = (io) => {
       socket.join(user.room);
 
       // Welcome current user
-      socket.emit("message", formatMessage(botName, "Welcome to Chatify!"));
+      socket.emit("message", formatMessage(botName, "Welcome to EmpCord!!!"));
 
       // Broadcast when a user connects
       socket.broadcast

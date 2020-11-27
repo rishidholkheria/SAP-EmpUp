@@ -1,0 +1,21 @@
+/* https://cdn.vox-cdn.com/thumbor/9t-PRrkFmBTS8CuJ4ZNTan97hck=/0x0:1152x768/1200x800/filters:focal(484x292:668x476)/cdn.vox-cdn.com/uploads/chorus_image/image/60847707/logo_one_icon.0.jpg */
+.our_services {
+  width: 320px;
+  min-height: 350px;
+  overflow: hidden;
+  padding: 18px;
+  background-color: rgba(181, 196, 238, 0.596);
+  margin: 10px 20px;
+  /* background-image: url("https://cdn.vox-cdn.com/thumbor/9t-PRrkFmBTS8CuJ4ZNTan97hck=/0x0:1152x768/1200x800/filters:focal(484x292:668x476)/cdn.vox-cdn.com/uploads/chorus_image/image/60847707/logo_one_icon.0.jpg"); */
+}
+
+.one_word {
+  font-size: 55px;
+  font-weight: 900;
+  font-family: inherit;
+  margin: 0;
+}
+
+.service_one_heading {
+  margin: 0px;
+}

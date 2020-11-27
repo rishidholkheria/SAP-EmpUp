@@ -43,6 +43,8 @@ class HrChatPortal extends React.Component {
       rName: this.state.rName,
     });
     //setSocket(socket);
+
+    this.setState({ messages: [] });
   };
 
   sendChatMsg = (e) => {
@@ -59,21 +61,21 @@ class HrChatPortal extends React.Component {
   };
 
   changeA = () => {
-    let room = "HR Dept A";
+    var room = "HR Dept A";
     this.setState({ rName: room });
     {
       this.joinRoomChat();
     }
   };
   changeB = () => {
-    let room = "HR Dept B";
+    var room = "HR Dept B";
     this.setState({ rName: room });
     {
       this.joinRoomChat();
     }
   };
   changeC = () => {
-    let room = "HR Dept C";
+    var room = "HR Dept C";
     this.setState({ rName: room });
     {
       this.joinRoomChat();
