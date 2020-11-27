@@ -41,7 +41,9 @@ const ioEvents = (io) => {
     // Listen for chatMessage
     socket.on("chatMessage", (msg) => {
       const user = getCurrentUser(socket.id);
-
+      console.log(msg);
+      console.log(user);
+      console.log(user.room);
       io.in(user.room).emit("message", formatMessage(user.username, msg));
     });
 

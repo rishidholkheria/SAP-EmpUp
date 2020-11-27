@@ -10,8 +10,8 @@ function userJoin(id, username, room) {
 }
 
 // Get current user
-async function getCurrentUser(id) {
-  const a = await users.find((user) => user.id === id);
+function getCurrentUser(id) {
+  const a = users.find((user) => user.id === id);
   console.log(a);
   return a;
 }
