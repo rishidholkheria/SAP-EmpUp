@@ -77,11 +77,7 @@ router.post("/send-payroll", async (req, res) => {
     from: '"Team EmpUp" <team@EmpUp.com>',
     to: req.body.email,
     subject: "Welcome to EmpUp!",
-    html: `
-      <h2>This month's payroll is here!😊 </h2>
-      <h3>Please find below the excel sheet of the payroll having all the details for the same.</h3>
-      <h3>Accountable, Adoptable, Affordable. EmpUp!</h3>
-  `,
+    html: { path: 'utils/welcome.html' },
     attachments: [
       {
         filename: "EmpUp Payroll.xlsx",

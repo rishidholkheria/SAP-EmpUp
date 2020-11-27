@@ -74,7 +74,7 @@ const RegisterOrg = () => {
     });
 
     const requestThree = axios.post(apiThree, {});
-    const requestFour = axios.post(apiFour, {});
+    const requestFour = axios.post(apiFour, {orgEmail});
 
     axios
       .all([requestOne, requestTwo, requestThree, requestFour])
