@@ -21,6 +21,7 @@ import ProfileRight from "./Components/Profile/ProfileRight";
 import Payroll from "./Components/Payroll";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
 import PayrollDetails from "./Components/HrOffice/PayrollDetails";
+import HrChatPortal from "./Components/HRchat/HrChatPortal";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/hrd">
             <div className="path_direction">
               <Sidebar />
+              <HrChatPortal />
             </div>
           </Route>
           <Route path="/feedback">

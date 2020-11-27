@@ -1,13 +1,14 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import "./Message.css";
 
 const Message = ({ text, userName, time }) => {
   return (
     <div className="message">
-      <p>{userName}</p>
-      <p>{text}</p>
-      <p>{time}</p>
+      <div className="name_text">
+        <p className="chat_username">{userName}</p>
+        <p className="chat_text">{text}</p>
+      </div>
+      <p className="chat_time">{time}</p>
     </div>
   );
 };

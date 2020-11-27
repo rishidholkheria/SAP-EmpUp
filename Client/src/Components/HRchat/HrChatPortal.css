@@ -1,0 +1,105 @@
+.hrchat {
+  min-width: 50vw;
+  width: 80vw;
+  background-color: #f2edf3;
+  max-width: 80vw;
+  padding: 0.2rem 4rem;
+  min-height: 100vh;
+}
+
+.hrchat_header {
+  top: 0;
+  /* background-color: white; */
+  z-index: 100;
+  height: 100px;
+  overflow: hidden;
+  border: 1px solid var(--twitter-background);
+  /* padding: 15px 20px; */
+  padding-left: 20px;
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  color: white;
+  border-radius: 10px;
+  margin: 4px 9px;
+}
+
+.hrchat_portal {
+  display: flex;
+}
+.hr_room {
+  flex: 2;
+  background-color: white;
+  border-radius: 10px;
+  margin: 10px;
+  /* background-color: #0093e9; */
+  background: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.hr_contacts {
+  min-height: 60px;
+  padding: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  /* background-color: #0093e9; */
+  /* background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%); */
+}
+
+.hr_contacts h2 {
+  padding-left: 10px;
+  margin: 0;
+  /* color: white; */
+}
+
+.contacts {
+  /* display: flex; */
+  /* background-color: yellow; */
+  box-shadow: 3px 5px 5px rgb(196, 196, 196);
+  background-color: #ebf9fb;
+  padding: 10px;
+  margin: 12px 13px;
+  border-radius: 10px;
+}
+
+.contacts h3 {
+  margin: 0;
+  padding: 8px;
+  font-weight: bolder;
+}
+
+.contacts p {
+  margin: 0;
+  padding: 0 8px 8px 8px;
+  font-size: 14px;
+}
+
+.hr_message {
+  flex: 2;
+  flex: 2;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  background: radial-gradient(#ffffff7a, #f5f1f162), url("./chatbg.jpg");
+}
+
+.hrmsg_header {
+  min-height: 60px;
+  padding: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: white; */
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+}
+
+.chatbg {
+  max-width: 100%;
+}

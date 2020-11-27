@@ -14,7 +14,7 @@ class GroupChatSide extends React.Component {
     this.state = {
       messages: [],
       chatMessage: "",
-      rName: "",
+      rName: "Room",
       eName: "",
     };
   }
@@ -63,8 +63,11 @@ class GroupChatSide extends React.Component {
       <div className="group_chat_container">
         <div className="join_side">
           <main className="join-main">
+            <div className="uchat_header">
+              <h2>UChat!</h2>
+            </div>
             <form action="form" className="join_chat_form">
-              <div className="form-control">
+              {/* <div className="form-control">
                 <label htmlFor="username">Username</label>
                 <input
                   type="text"
@@ -75,7 +78,7 @@ class GroupChatSide extends React.Component {
                   value={eName}
                   onChange={(e) => this.setState({ eName: e.target.value })}
                 />
-              </div>
+              </div> */}
               <div className="form-control">
                 <label htmlFor="room">Room</label>
                 <select
@@ -85,12 +88,13 @@ class GroupChatSide extends React.Component {
                   value={rName}
                   onChange={(e) => this.setState({ rName: e.target.value })}
                 >
-                  <option value="JavaScript">JavaScript</option>
-                  <option value="Python">Python</option>
-                  <option value="PHP">PHP</option>
-                  <option value="C#">C#</option>
-                  <option value="Ruby">Ruby</option>
-                  <option value="Java">Java</option>
+                  <option value="URoom">UChat</option>
+                  <option value="Scribbl">Scribbl</option>
+                  <option value="UNO">UNO</option>
+                  <option value="MegaProRacer">MegaProRacer</option>
+                  <option value="Miniclip">Miniclip Games</option>
+                  <option value="Chess">Chess</option>
+                  <option value="Agame Games">Agame</option>
                 </select>
               </div>
             </form>

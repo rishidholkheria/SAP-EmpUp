@@ -1,0 +1,35 @@
+.message {
+  /* background-color: #00dbde;
+  background-image: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%); */
+  /* background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%); */
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+
+  padding: 10px;
+  display: flex;
+  border-radius: 10px;
+  margin: 6px;
+}
+
+.name_text {
+  flex: 4;
+  font-size: 16px;
+  /* padding: 3px; */
+}
+
+.chat_username {
+  font-size: 13px;
+  font-weight: 600;
+  color: blue;
+}
+
+.chat_time {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 3px; */
+  font-size: 12px;
+  font-weight: 500;
+}

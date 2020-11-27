@@ -94,14 +94,21 @@
   font-family: inherit;
 }
 
+.notice_input {
+  display: flex;
+  align-items: center;
+}
+
 .notice_input button {
   padding: 10px;
-  margin-left: 20px 0;
+  margin-left: 20px;
   color: white;
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+  border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: inherit;
   width: 20%;
   height: 40px;
 }
@@ -113,11 +120,15 @@
   align-items: center;
 }
 
+.mgi_btn button {
+  border: none;
+}
+
 .monthly_goal_input button {
   /* padding: 10px; */
   color: white;
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 30px;
@@ -183,7 +194,7 @@
   padding: 10px;
   color: white;
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   border-radius: 5px;
   cursor: pointer;
   width: 80%;
