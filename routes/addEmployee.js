@@ -99,6 +99,66 @@ router.post("/send-password-to-organisation", async (req, res) => {
         path: "EmpUp Employee Credentials.xlsx",
         cid: "uniq-EmpUpEmployeeCredentials.xlsx",
       },
+      // {
+      //   filename: "facebook2x.png",
+      //   path: "welcome/images",
+      //   cid: "uniq-facebook2x",
+      // },
+      // {
+      //   filename: "Logo_18.png",
+      //   path: "welcome/images",
+      //   cid: "uniq-logo18",
+      // },
+      // {
+      //   filename: "image-01_10.png",
+      //   path: "welcome/images",
+      //   cid: "uniq-image-01_10",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // },
+      // {
+      //   filename: "EmpUp Employee Credentials.xlsx",
+      //   path: "EmpUp Employee Credentials.xlsx",
+      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      // }
     ],
   });
 
