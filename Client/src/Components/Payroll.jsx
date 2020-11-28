@@ -19,6 +19,8 @@ const Payroll = ({ date }) => {
   const handleLoop = (response) => {
     var length = response.length;
     console.log(response);
+    // setPdata(response);
+    // console.log(pData);
 
     setEmpNumber(length);
     var i;
@@ -38,6 +40,8 @@ const Payroll = ({ date }) => {
     setNetIncome(netIncomeSum);
     setEpf(epfSum);
     setEsi(esiSum);
+    console.log(tds);
+    console.log(tdsSum);
   };
 
   useEffect(() => {
@@ -45,6 +49,11 @@ const Payroll = ({ date }) => {
       .get(process.env.REACT_APP_SERVER + "/payroll/data")
       .then((res) => {
         handleLoop(res.data.data);
+        console.log(res.data.data);
+        // setPdata(res.data.data);
+        // console.log(pData);
+        // setPdata(res.data.data)
+        // console.log(pData);
       })
       .catch((err) => {
         console.log(err);
