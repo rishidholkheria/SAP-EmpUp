@@ -47,7 +47,7 @@ router.get("/data", (req, res) => {
   };
   var newWS = XLSX.utils.json_to_sheet(jsonData);
   XLSX.utils.book_append_sheet(newWB, newWS, "Payroll");
-  XLSX.writeFile(newWB, "EmpUp Payroll.xlsx");
+  XLSX.writeFile(newWB, process.cwd() + "/upload/EmpUp Payroll.xlsx");
 });
 
 // router.get("/data", (req, res) => {
