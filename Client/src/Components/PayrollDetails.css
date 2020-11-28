@@ -1,0 +1,12 @@
+.payrolldetails {
+  min-width: 100vw;
+  max-width: 100vw;
+}
+
+.place_ind_payroll {
+  /* max-width: 30%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}

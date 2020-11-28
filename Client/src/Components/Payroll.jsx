@@ -6,10 +6,10 @@ import MoneyOffIcon from "@material-ui/icons/MoneyOff";
 import EcoOutlinedIcon from "@material-ui/icons/EcoOutlined";
 import SecurityOutlinedIcon from "@material-ui/icons/SecurityOutlined";
 import axios from "axios";
-import { Link } from "@material-ui/core";
-require('dotenv').config();
+import { Link } from "react-router-dom";
+require("dotenv").config();
 
-const Payroll = ({date}) => {
+const Payroll = ({ date }) => {
   const [tds, setTds] = useState(null);
   const [netIncome, setNetIncome] = useState(null);
   const [esi, setEsi] = useState(null);

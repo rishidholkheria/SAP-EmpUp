@@ -7,9 +7,9 @@ const HeroSectionLeft = () => {
     <div className="herosection_left">
       <div className="written_part_left">
         <div className="wpf_para">
-          <p className="para_one">One stop solution</p>
-          <p className="para_two">for endless</p>
-          <p className="para_three">Organisation Problems</p>
+          <p className="para_one">EmpUp welcomes you to</p>
+          <p className="para_two">dive deep into the</p>
+          <p className="para_three">Virtual Working Experience!</p>
         </div>
       </div>
 

@@ -74,6 +74,8 @@
 
 .view_more_fin_btn {
   flex: 1;
+  padding: 8px;
+  border: none;
   color: white;
   border-radius: 10px;
   cursor: pointer;

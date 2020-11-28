@@ -1,9 +1,12 @@
 .hero_right {
   display: flex;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 500px;
-  background-color: white;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  /* background-color: url("./solutionImage.png"); */
+  background: radial-gradient(#ffffff3d, #f5f1f13a), url("./solImage.jpg");
+  background-position: left;
+  background-size: cover;
 }

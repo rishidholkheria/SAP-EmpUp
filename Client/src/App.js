@@ -20,7 +20,7 @@ import ErrorPage from "./Components/ErrorPage";
 import ProfileRight from "./Components/Profile/ProfileRight";
 import Payroll from "./Components/Payroll";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
-import PayrollDetails from "./Components/HrOffice/PayrollDetails";
+import PayrollDetails from "./Components/PayrollDetails";
 import HrChatPortal from "./Components/HRchat/HrChatPortal";
 import HeroSectionLeft from "./Components/HeroSectionLeft";
 import HeroSectionRight from "./Components/HeroSectionRight";

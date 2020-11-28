@@ -47,11 +47,11 @@ function Sidebar() {
       </Link>
 
       {localStorage.getItem("isAuth") === "true" ? (
-        <a href="/hroffice">
+        <Link to="/hroffice">
           <Button variant="outlined" className="sidebar__tweet" fullWidth>
             HR Office
           </Button>
-        </a>
+        </Link>
       ) : (
         <h1></h1>
       )}

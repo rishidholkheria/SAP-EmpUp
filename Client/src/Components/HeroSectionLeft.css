@@ -1,8 +1,8 @@
 .herosection_left {
   /* background-color: white; */
   display: flex;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   min-height: 800px;
   background-color: #f5f8fd;
 }
@@ -15,15 +15,16 @@
 }
 
 .para_one {
-  font-size: 55px;
+  font-size: 45px;
   text-align: center;
   font-weight: 900;
   margin: 0px;
   color: #413e66;
+  font-family: inherit;
 }
 
 .para_two {
-  font-size: 40px;
+  font-size: 35px;
   text-align: center;
   font-weight: 900;
   margin: 0px;
@@ -31,7 +32,7 @@
 }
 
 .para_three {
-  font-size: 40px;
+  font-size: 35px;
   text-align: center;
   font-weight: 900;
   margin: 0px;

@@ -1,6 +1,7 @@
 import React from "react";
 import OurServices from "./OurServices";
 import "./MiddleSection.css";
+// import solutionImage from "./solutionImage.png";
 
 const MiddleSection = () => {
   return (
