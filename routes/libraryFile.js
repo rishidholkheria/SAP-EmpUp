@@ -157,7 +157,7 @@ router.delete("/files/:id", (req, res) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
-    res.send("deleted!");
+    return res.send("deleted!");
   });
 });
 

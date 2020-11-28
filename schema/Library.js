@@ -6,12 +6,14 @@ var librarySchema = mongoose.Schema({
   },
   name: {
     type: String,
+    required: [true, 'Name required']
   },
   orgId: {
     type: String,
   },
   department: {
     type: String,
+    required: [true, "Department required"]
   },
   file: {
     type: String,
@@ -19,6 +21,7 @@ var librarySchema = mongoose.Schema({
   },
   description: {
     type: String,
+    required: [true, 'Description required']
   },
   date: {
     type: String,

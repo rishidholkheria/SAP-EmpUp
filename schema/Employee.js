@@ -20,9 +20,9 @@ var employeeSchema = mongoose.Schema({
     image: {type: String},
     department: {type: String},
     type: {type: String},
-    basicSalary: {type: Number},
-    addOn: {type: Number},
-    deduction: {type: Number},
+    // basicSalary: {type: Number},
+    // addOn: {type: Number},
+    // deduction: {type: Number},
     resetLink: {
         data: String,
         default: ''
