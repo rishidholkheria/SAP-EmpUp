@@ -21,6 +21,12 @@ import ProfileRight from "./Components/Profile/ProfileRight";
 import Payroll from "./Components/Payroll";
 import GroupChatSide from "./Components/CommonRoom/GroupChatSide";
 import PayrollDetails from "./Components/HrOffice/PayrollDetails";
+import HrChatPortal from "./Components/HRchat/HrChatPortal";
+import HeroSectionLeft from "./Components/HeroSectionLeft";
+import HeroSectionRight from "./Components/HeroSectionRight";
+import MiddleSection from "./Components/MiddleSection";
+import Header from "./Components/Header";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
@@ -51,6 +57,7 @@ function App() {
           <Route path="/hrd">
             <div className="path_direction">
               <Sidebar />
+              <HrChatPortal />
             </div>
           </Route>
           <Route path="/feedback">
@@ -106,6 +113,15 @@ function App() {
           <Route path="/payrolldetails">
             <div className="path_direction">
               <PayrollDetails />
+            </div>
+          </Route>
+          <Route path="/welcome">
+            <div>
+              {/* <Header /> */}
+              <Navbar />
+              <HeroSectionLeft />
+              <MiddleSection />
+              <HeroSectionRight />
             </div>
           </Route>
           <Route path="/error">

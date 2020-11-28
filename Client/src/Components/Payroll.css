@@ -116,9 +116,9 @@
 
 .epf {
   flex: 1;
-  border-right: 0.5px solid rgba(128, 128, 128, 0.616);
+  border-right: 2px solid rgba(218, 216, 216, 0.616);
   /* margin-right: 10; */
-  padding-right: 20px;
+  padding: 0 15px;
 }
 
 .epf_word_one {
@@ -162,7 +162,7 @@
 .epf_icon {
   padding: 8px;
   font-size: 20px;
-  width: 40%;
+  width: 50px;
   border-radius: 50px;
   background-color: rgba(205, 235, 241, 0.651);
   display: flex;
