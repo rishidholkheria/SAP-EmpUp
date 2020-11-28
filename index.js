@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const app = express();
 const server = require("./chat/chat")(app);
+const path = require("path");
 //configure
 
 const router = express.Router();
@@ -54,10 +55,21 @@ app.use("/api/feedback", feedback);
 app.use("/api/motivation", motivation);
 app.use("/api/virtual-library", library);
 app.use("/api/virtual-library-file", libraryFile);
-app.use("/api/payroll",payroll);
+app.use("/api/payroll", payroll);
 
-//listening on port
-const PORT = 4000 || process.env.PORT;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("Client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "Client", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => console.log(`🚀 EMPUP SERVER STARTED AT ${PORT}`));
+// server.timeout = 20000;
+
+// //listening on port
+// const PORT = 4000 || process.env.PORT;
+// server.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });

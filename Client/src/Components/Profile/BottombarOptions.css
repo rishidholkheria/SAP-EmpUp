@@ -24,11 +24,12 @@
 }
 
 .About {
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
   padding: 8px;
   margin: 5px;
+  color: black;
 }
 
 .Logout {

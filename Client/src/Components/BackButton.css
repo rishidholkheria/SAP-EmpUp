@@ -1,0 +1,23 @@
+.backbtn {
+  display: block;
+  width: 13%;
+  height: 40px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  /* background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f); */
+  background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
+  background-size: 200%;
+  font-size: 1.2rem;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  /* margin: 1rem 0; */
+  margin: 25px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.backbtn:hover {
+  background-position: right;
+}

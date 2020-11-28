@@ -22,17 +22,19 @@ const BottombarOptions = () => {
           <HelpIcon />
           {/* <h6>Guide</h6> */}
         </div>
-        <Link to="/contactus">
-          <div className="About">
+
+        <div className="About">
+          <Link to="/contactus">
             <InfoIcon />
-          </div>
-        </Link>
-        <Link to="./emplogin">
-          <div className="Logout">
+          </Link>
+        </div>
+
+        <div className="Logout">
+          <Link to="./emplogin" style={{ textDecoration: "none" }}>
             {removeFromLS}
             <ExitToAppIcon />
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     </div>
   );

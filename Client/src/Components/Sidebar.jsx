@@ -14,6 +14,7 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import amazonLogo from "./DashBoard/amazonLogo.jpg";
+import EmpUpLogo from "./EmpUpLogo.png";
 
 function Sidebar() {
   const [auth, setAuth] = useState(localStorage.getItem("isAuth"));
