@@ -32,8 +32,9 @@
   background-image: linear-gradient(315deg, #a761ff 0%, #612dda 74%);
   border: none !important;
   color: white !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   font-family: inherit;
+  font-size: 14px;
   text-transform: inherit !important;
   border-radius: 10px !important;
   width: 100px;

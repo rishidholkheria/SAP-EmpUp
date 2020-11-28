@@ -84,7 +84,8 @@
 }
 
 .emp_error {
-  color: red;
+  color: rgb(255, 51, 0);
+  font-weight: 500;
   width: 100%;
 }
 
@@ -129,7 +130,7 @@ div > .input-placeholder {
 }
 
 .input-div.focus > .i > i {
-  color: #38d39f;
+  color: #d338ac;
 }
 
 .input-div > div > input {
@@ -169,7 +170,7 @@ div > .input-placeholder {
 }
 
 .login-content form a:hover {
-  color: #38d39f;
+  color: #c638d3;
 }
 
 .emp_login_btn {

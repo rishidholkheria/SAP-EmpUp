@@ -228,3 +228,9 @@ div > .input-placeholder {
     justify-content: center;
   }
 }
+
+.setup_ur_admin {
+  color: #612dda;
+  font-weight: 700;
+  font-size: 18px;
+}

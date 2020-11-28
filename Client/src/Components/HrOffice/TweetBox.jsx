@@ -2,7 +2,7 @@ import { Avatar, Button } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import "./TweetBox.css";
 import axios from "axios";
-require('dotenv').config();
+require("dotenv").config();
 
 const TweetBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
@@ -58,13 +58,20 @@ const TweetBox = () => {
           type="text"
         />
 
-        <Button
+        {/* <Button
           type="submit"
           onClick={sendTweet}
           className="tweetBox__tweetButton"
         >
           Post
-        </Button>
+        </Button> */}
+        <button
+          type="submit"
+          onClick={sendTweet}
+          className="tweetBox__tweetButton"
+        >
+          Post
+        </button>
       </form>
     </div>
   );

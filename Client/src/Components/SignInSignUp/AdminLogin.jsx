@@ -5,7 +5,7 @@ import purplewave from "./img/purplewave.png";
 import login from "./img/login.svg";
 import profile from "./img/profile.svg";
 import axios from "axios";
-require('dotenv').config();
+require("dotenv").config();
 
 const AdminRegister = () => {
   const [adminEmail, setAdminEmail] = useState("");
@@ -68,7 +68,7 @@ const AdminRegister = () => {
               {nameError ? (
                 <p className="error_line">{nameError}</p>
               ) : (
-                <p>EmpUp always there to help you!</p>
+                <h3 className="setup_ur_admin">Setup your Admin</h3>
               )}
             </div>
             <div className="input-div one">

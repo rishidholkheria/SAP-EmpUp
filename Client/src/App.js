@@ -27,6 +27,7 @@ import HeroSectionRight from "./Components/HeroSectionRight";
 import MiddleSection from "./Components/MiddleSection";
 import Header from "./Components/Header";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -122,6 +123,7 @@ function App() {
               <HeroSectionLeft />
               <MiddleSection />
               <HeroSectionRight />
+              <Footer />
             </div>
           </Route>
           <Route path="/error">

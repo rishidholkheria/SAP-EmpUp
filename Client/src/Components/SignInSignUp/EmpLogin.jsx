@@ -6,7 +6,7 @@ import login from "./img/login.svg";
 import profile from "./img/profile.svg";
 import axios from "axios";
 import { useEffect } from "react";
-require('dotenv').config();
+require("dotenv").config();
 
 const EmpLogin = () => {
   const [userName, setUserName] = useState("");
@@ -113,7 +113,9 @@ const EmpLogin = () => {
               className="emp_login_btn"
               value="Login"
               disabled={disable}
-            />
+            >
+              LOGIN
+            </button>
           </form>
         </div>
       </div>

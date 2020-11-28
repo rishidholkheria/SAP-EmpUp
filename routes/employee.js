@@ -44,21 +44,21 @@ router.post("/login", async (req, res) => {
     payload = {
       isAuthorized: true,
       userid: employee._id,
-      orgId: employee.oId,
+      orgId: employee.orgId,
       name: "Admin",
     };
   } else if (employee.type === "HR") {
     payload = {
       isAuthorized: true,
       userid: employee._id,
-      orgId: employee.oId,
+      orgId: employee.orgId,
       name: employee.name,
     };
   } else {
     payload = {
       isAuthorized: false,
       userid: employee._id,
-      orgId: employee.oId,
+      orgId: employee.orgId,
       name: employee.name,
     };
   }

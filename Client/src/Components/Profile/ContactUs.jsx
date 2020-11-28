@@ -8,9 +8,9 @@ const ContactUs = () => {
         <div class="contact-info">
           <h2>OUR TEAM</h2>
           <p>
-            We are Team of two young develepors dedicated towards learning.We
-            mainly focus on Web and Android applications.Feel free to contact
-            us.{" "}
+            We are a Team of two young develepors dedicated towards learning. We
+            mainly focus on Web and Android applications. Looking for a quick answer to your question?  
+            Feel free to contact us.{" "}
           </p>
           <br />
           <h4>Samridhi , Rishi</h4>
