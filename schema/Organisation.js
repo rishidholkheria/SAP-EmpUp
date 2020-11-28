@@ -3,19 +3,23 @@ const mongoose = require('mongoose');
 var orgSchema = mongoose.Schema({
     oId: String,
     orgName:{
-        type: String
+        type: String,
+        required: [true, 'Organisation name required!']
     },
     orgLocation:{
-        type: String
+        type: String,
+        required: [true, 'Organisation location required!']
     },
     orgType:{
         type: String
     },
     orgEmail:{
-        type: String
+        type: String,
+        required: [true, 'Organisation email required!!']
     },
     orgContact:{
-        type: String
+        type: String,
+        required: [true, 'Organisation contact required']
     },
     monthlyGoal:{
         type: String,

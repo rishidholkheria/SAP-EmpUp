@@ -64,7 +64,7 @@ router.post("/login", async (req, res) => {
   }
   //create and assign a token
   token = jwt.sign(payload, process.env.TOKEN_SECRET, { expiresIn: "7200s" });
-  res.json({
+  return res.json({
     accessToken: token,
     message: "Successfully logged in!",
     payload,
@@ -176,12 +176,12 @@ router.get("/all-employees", verify, async (req, res) => {
   if (req.user.isHR || req.user.isAdmin) {
     const employees = await Employee.find({}, (err, employees) => {
       if (!err) {
-        res.json({
+        return res.json({
           data: employees,
           message: "All employees..",
         });
       } else {
-        res.status(500).json({
+        return res.status(500).json({
           data: {},
           message: "Some error occured..",
         });

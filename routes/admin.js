@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
 
   admin.save((err, data) => {
     if (err) {
-      res.send("Error: " + err);
+      return res.send("Error: " + err);
     }
     res.send(data);
     console.log("Admin created!");

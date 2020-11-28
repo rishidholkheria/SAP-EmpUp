@@ -52,12 +52,12 @@ router.get("/:orgid", async (req, res) => {
     { orgId: req.params.orgid },
     (err, result) => {
       if (!err) {
-        res.status(200).json({
+        return res.status(200).json({
           data: result,
           message: "All books..",
         });
       } else {
-        res.status(400).json({
+        return res.status(400).json({
           data: {},
           message: "Some error occured..",
         });
@@ -78,12 +78,12 @@ router.get("/:id", (req, res) => {
 
     //if exist and no err
     if (!err) {
-      res.status(200).json({
+      return res.status(200).json({
         data: result,
         message: "Book fetched!",
       });
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         data: {},
         message: "Some unexpected error occurred.",
       });
@@ -100,7 +100,7 @@ router.delete('/delete/:id', function (req, res) {
       );
     }
     console.log("Deleted book!");
-    res.send("Book Deleted!");
+    return res.send("Book Deleted!");
   });
 });
 

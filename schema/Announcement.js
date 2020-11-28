@@ -5,7 +5,8 @@ var announcementSchema = mongoose.Schema({
         type: String
     },
     aText: {
-        type: String
+        type: String,
+        required: [true, "Announcement's text can't be empty!"]
     },
     aImage: {
         type: String,

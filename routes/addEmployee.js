@@ -17,9 +17,6 @@ dotenv.config();
 console.log(objOrg.oId);
 router.use(express.json());
 
-//connect to DB
-const connect = require("../index");
-
 //upload the file
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -69,13 +66,20 @@ router.post("/upload-to-db", (req, res) => {
   };
   var newWS = XLSX.utils.json_to_sheet(result);
   XLSX.utils.book_append_sheet(newWB, newWS, "Login credentials");
-  XLSX.writeFile(newWB, "EmpUp Employee Credentials.xlsx");
+  XLSX.writeFile(
+    newWB,
+    process.cwd() + "/upload/EmpUp Employee Credentials.xlsx"
+  );
 
   console.log("employees added!");
 });
 
 //need email of org from front end
 router.post("/send-password-to-organisation", async (req, res) => {
+  // if (req.body.orgEmail === "") {
+  //   return res.send("Email should not be empty!!!!!");
+  // }
+  console.log(req.body.orgEmail);
   //send mail
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -89,85 +93,27 @@ router.post("/send-password-to-organisation", async (req, res) => {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Team EmpUp" <team@EmpUp.com>',
-    to: req.body.orgEmail,
-    subject: "Welcome to EmpUp!",
-    html: { path: 'welcome/welcome.html' },
-    attachments: [
-      {
-        filename: "EmpUp Employee Credentials.xlsx",
-        path: "EmpUp Employee Credentials.xlsx",
-        cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      },
-      // {
-      //   filename: "facebook2x.png",
-      //   path: "welcome/images",
-      //   cid: "uniq-facebook2x",
-      // },
-      // {
-      //   filename: "Logo_18.png",
-      //   path: "welcome/images",
-      //   cid: "uniq-logo18",
-      // },
-      // {
-      //   filename: "image-01_10.png",
-      //   path: "welcome/images",
-      //   cid: "uniq-image-01_10",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // },
-      // {
-      //   filename: "EmpUp Employee Credentials.xlsx",
-      //   path: "EmpUp Employee Credentials.xlsx",
-      //   cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-      // }
-    ],
+    // try: {
+      from: '"Team EmpUp" <team@EmpUp.com>',
+      to: req.body.orgEmail,
+      subject: "Welcome to EmpUp!",
+      html: { path: "welcome/welcome.html" },
+      attachments: [
+        {
+          filename: "EmpUp Employee Credentials.xlsx",
+          path: process.cwd() + "/upload/EmpUp Employee Credentials.xlsx",
+          cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+        },
+      ],
+  //   },
+  //   catch(err) {
+  //     res.send("Error in sending email: "+ err);
+  //     next(err);
+  //   },
   });
 
   res.send("Email to your org sent");
   console.log("Message sent: %s", info.messageId);
-
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 });
 
 const excelToJson = () => {
@@ -190,12 +136,11 @@ const excelToJson = () => {
 
   for (i = 0; i < length; i++) {
     var password = `emp-${oId}-${i}`;
-    // console.log(password);
     var hashedPassword = bcrypt.hashSync(password, salt);
     (jsonData[i].password = hashedPassword),
-      (jsonData[i].image = ""),
-      (jsonData[i].addOn = ""),
-      (jsonData[i].deduction = ""),
+      // (jsonData[i].image = ""),
+      // (jsonData[i].addOn = ""),
+      // (jsonData[i].deduction = ""),
       (jsonData[i].empId = i.toString()),
       (jsonData[i].orgId = oId),
       (jsonData[i].pass = password);

@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
   // console.log(req.body);
   organisation.save((err, data) => {
     if (err) {
-      res.send("Error: " + err);
+      return res.send("Error: " + err);
     }
     res.send(data);
     console.log("Organisation created!");
@@ -88,12 +88,12 @@ router.get("/", async (req, res) => {
   // if (req.user.isAdmin) {
   const organisation = await Organisation.find({}, (err, result) => {
     if (!err) {
-      res.status(200).json({
+      return res.status(200).json({
         data: result,
         message: "All organisation..",
       });
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         data: {},
         message: "Some error occured..",
       });
@@ -119,12 +119,12 @@ router.get("/:id", (req, res) => {
 
     //if exist and no err
     if (!err) {
-      res.status(200).json({
+      return res.status(200).json({
         data: result,
         message: "Organisation fetched!",
       });
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         data: {},
         message: "Some unexpected error occurred.",
       });

@@ -61,6 +61,10 @@ router.get("/data", (req, res) => {
 
 //need email of org from front end
 router.post("/send-payroll", async (req, res) => {
+
+  if(req.body.email === ""){
+    return res.send("Email can't be empty!!!!!");
+  }
   //send mail
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -74,25 +78,26 @@ router.post("/send-payroll", async (req, res) => {
 
   // send mail with defined transport object
   let info = await transporter.sendMail({
-    from: '"Team EmpUp" <team@EmpUp.com>',
-    to: req.body.email,
-    subject: "Welcome to EmpUp!",
-    html: { path: 'utils/welcome.html' },
-    attachments: [
+    // try:{
+      from: '"Team EmpUp" <team@EmpUp.com>',
+      to: req.body.email,
+      subject: "Welcome to EmpUp!",
+      html: { path: 'welcome/payroll.html' },
+      attachments: [
       {
         filename: "EmpUp Payroll.xlsx",
-        path: "EmpUp Payroll.xlsx",
+        path:  process.cwd() + "/upload/EmpUp Payroll.xlsx",
         cid: "uniq-EmpUp Payroll.xlsx",
       },
-    ],
+      ],
+    // },
+    // catch(err){
+    // res.send("Error: " + err);  
+    // }
   });
 
-  res.send("Email to your org sent");
-  console.log("Message sent: %s", info.messageId);
-
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  res.send("Email to your account sent");
+  console.log("Message sent: %s", info.messageId);   
 });
 
 const excelToJson = () => {
