@@ -5,6 +5,8 @@ import TodoList from "../Todo/TodoList";
 import "./HomeRight.css";
 import Goal from "./Goal";
 import axios from "axios";
+import Calendar from "./Calendar";
+
 require('dotenv').config();
 
 const HomeRight = () => {
@@ -85,7 +87,10 @@ const HomeRight = () => {
           todos={todos}
         />
       </div>
-      <div className="right-calender"></div>
+      <div className="right-calender">
+        {/* <Calendar/> */}
+        <div id="root"></div>
+      </div>
     </div>
   );
 };
