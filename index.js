@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const app = express();
-const server = require("./chat/groupChat")(app);
-const server1 = require("./chat/chat")(app);
+const server = require("./chat/chat")(app);
 //configure
 
 const router = express.Router();
@@ -29,7 +28,6 @@ module.exports = connect;
 //import routes
 const objOrg = require("./routes/organisation");
 var organisation = objOrg.router;
-const uploadXLRoute = require("./routes/uploadXL");
 const uploadEmployee = require("./routes/addEmployee");
 const admin = require("./routes/admin");
 const employee = require("./routes/employee");
@@ -60,6 +58,6 @@ app.use("/api/payroll",payroll);
 
 //listening on port
 const PORT = 4000 || process.env.PORT;
-server1.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
