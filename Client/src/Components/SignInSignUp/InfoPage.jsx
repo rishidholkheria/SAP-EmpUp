@@ -14,10 +14,29 @@ const InfoPage = ({ addedResponse }) => {
     <div className="register">
       <div className="container" id="container">
         {/* Working Info */}
-
         <div className="form-container sign-up-container">
           <div className="form">
-            <h1>Working of EmpUp!</h1>
+            <h1>Working of EmpUp</h1>
+            <p>
+              There would be mainly 3 types of users of our platform:
+              <br /> 1. Admin: <br />
+              There would be an admin who would be having the access from
+              anything to everything. Everything that can be done on the
+              platform is accessible by the admin.
+              <br /> 2. Human Resource Department: <br /> The HR would be having
+              access to a lot of facilities such as posting the
+              announcements/notices, getting all the feedbacks, uploading the
+              resources to the virtual library, to name a few.
+              <br /> 3. Employees: <br /> Every employee would be having the
+              portal in which he can view the important notices, announcements,
+              create their TODO, give 360 degree anonymous feedbacks to name a
+              few. <br /> The employee will not have access to posting anything
+              on the portal.
+            </p>
+            <h3>
+              On clicking the proceed button you will be redirected to create an
+              Admin of your organisation.
+            </h3>
             <Link to="/adminlogin">
               <button className="confirm_register">Proceed</button>
             </Link>
@@ -28,10 +47,16 @@ const InfoPage = ({ addedResponse }) => {
 
         <div className="form-container sign-in-container">
           <div className="form">
-            <h1>Your Employees are Added!</h1>
-
+            <h1>Your Employees are successfully added to EmpUp!</h1>
+            <h4>
+              {" "}
+              An email containing the credentials of the employees has been sent
+              to you.
+            </h4>
+            Use the credentials to login to EmpUp!
+            <br />
+            Accountable, Adoptable, Affordable. EmpUp!
             {/* <span>or use your account</span> */}
-
             <button
               className="nextSlide"
               onClick={() =>
@@ -54,6 +79,11 @@ const InfoPage = ({ addedResponse }) => {
                 <br /> 1.Email <br /> 2.Name <br /> 3.Designation
                 <br /> 4.Department <br /> 6.Type <br /> 7.BasicSalary
               </p> */}
+              <h3>
+                EmpUp welcomes you to dive deep into the virtual working
+                experience.<br/> In the time of social distancing we help you to come
+                closer. With you, For your, Forever.{" "}
+              </h3>
               <img src={infoImage} alt="" />
               <button
                 className="prevSlideBtn"

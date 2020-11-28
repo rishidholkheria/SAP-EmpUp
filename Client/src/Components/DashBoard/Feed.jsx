@@ -10,7 +10,7 @@ require('dotenv').config();
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [goal, setGoal] = useState("");
-
+  const [orgId, setOrgId] = useState("");
   useEffect(() => {
     const organisationId = localStorage.getItem("orgId");
     axios
