@@ -74,7 +74,8 @@ router.post("/upload-to-db", (req, res) => {
   XLSX.utils.book_append_sheet(newWB, newWS, "Login credentials");
   XLSX.writeFile(
     newWB,
-    process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`
+    process.cwd() +
+      `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`
   );
 
   console.log("employees added!");
@@ -107,7 +108,9 @@ router.post("/send-password-to-organisation", async (req, res) => {
     attachments: [
       {
         filename: `${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
-        path: process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+        path:
+          process.cwd() +
+          `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
         cid: `uniq-${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
       },
     ],
@@ -124,7 +127,9 @@ router.post("/send-password-to-organisation", async (req, res) => {
 
 const excelToJson = () => {
   //convert to JSON
-  const workBook = XLSX.readFile(process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`);
+  const workBook = XLSX.readFile(
+    process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}.xlsx`
+  );
   var sheet_name_list = workBook.SheetNames;
   var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {
     defval: "",

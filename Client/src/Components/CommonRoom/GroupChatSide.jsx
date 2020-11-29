@@ -7,6 +7,7 @@ import { useEffect } from "react";
 require("dotenv").config();
 
 let socket;
+const employeeName = localStorage.getItem("empName");
 
 class GroupChatSide extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class GroupChatSide extends React.Component {
   }
   componentDidMount() {
     socket = io(process.env.REACT_APP_SOCKET);
+    this.setState({ eName: employeeName });
 
     socket.on("message", (message) => {
       console.log(message);
@@ -64,7 +66,7 @@ class GroupChatSide extends React.Component {
         <div className="join_side">
           <main className="join-main">
             <div className="uchat_header">
-              <h2>UChat!</h2>
+              <h2>EmpCord</h2>
             </div>
             <form action="form" className="join_chat_form">
               {/* <div className="form-control">

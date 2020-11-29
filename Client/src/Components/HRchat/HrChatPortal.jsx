@@ -120,21 +120,23 @@ class HrChatPortal extends React.Component {
               </p>
             </div>
           </div>
-          <div className="hr_message">
-            {/* <img className="chatbg" src={chatbg} alt="" /> */}
-            <div className="hrmsg_header">
-              <h2>{rName}</h2>
+          <div className="hr_msg_container">
+            <div className="hr_message">
+              {/* <img className="chatbg" src={chatbg} alt="" /> */}
+              <div className="hrmsg_header">
+                <h2>{rName}</h2>
+              </div>
+              <div className="hrchat_container">
+                {[...messages].map((msg) => (
+                  <Message
+                    text={msg.text}
+                    time={msg.time}
+                    userName={msg.username}
+                  ></Message>
+                ))}
+              </div>
             </div>
-            <div className="hrchat_container">
-              {[...messages].map((msg) => (
-                <Message
-                  text={msg.text}
-                  time={msg.time}
-                  userName={msg.username}
-                ></Message>
-              ))}
-            </div>
-            <div className="chat-form-container">
+            <div className="hr_chat-form-container">
               <form id="chat-form">
                 <input
                   id="msg"
@@ -147,7 +149,11 @@ class HrChatPortal extends React.Component {
                   // required
                   autocomplete="off"
                 />
-                <button className="send_chat_btn" onClick={this.sendChatMsg}>
+                <button
+                  type="submit"
+                  className="send_chat_btn"
+                  onClick={this.sendChatMsg}
+                >
                   Send
                 </button>
               </form>

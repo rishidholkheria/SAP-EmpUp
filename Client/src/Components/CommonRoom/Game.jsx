@@ -15,7 +15,7 @@ const Game = ({ gameName, imageUrl, gameType, pageUrl }) => {
           <a href={pageUrl} target="_blank">
             {" "}
             <button
-              className="btn"
+              className="Gbtn"
               // onClick={(e) => {
               //   e.preventDefault();
               //   window.location.href({ pageUrl });

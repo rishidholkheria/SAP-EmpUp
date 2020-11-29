@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import "./RegisterOrg.css";
 import axios from "axios";
 import useHistory, { Link } from "react-router-dom";
-require('dotenv').config();
+require("dotenv").config();
 
 const RegisterOrg = () => {
   const [orgName, setOrgName] = useState("");
@@ -19,9 +19,11 @@ const RegisterOrg = () => {
 
   const apiOne = process.env.REACT_APP_SERVER + "/organisation";
   const apiTwo = process.env.REACT_APP_SERVER + "/upload-employee/upload";
-  const apiThree = process.env.REACT_APP_SERVER + "/upload-employee/upload-to-db";
+  const apiThree =
+    process.env.REACT_APP_SERVER + "/upload-employee/upload-to-db";
   const apiFour =
-  process.env.REACT_APP_SERVER + "/upload-employee/send-password-to-organisation";
+    process.env.REACT_APP_SERVER +
+    "/upload-employee/send-password-to-organisation";
 
   const firstRender = useRef(true);
   const Input = useRef(null);
@@ -56,46 +58,63 @@ const RegisterOrg = () => {
     }
   };
 
-  const onConfirmRegister = () => {
+  const onConfirmRegister = async () => {
     var formData = new FormData();
     formData.append("file", excel);
 
-    const requestOne = axios.post(apiOne, {
-      orgName,
-      orgEmail,
-      orgContact,
-      orgLocation,
-      orgType,
-    });
-    const requestTwo = axios.post(apiTwo, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    const requestThree = axios.post(apiThree, {});
-    const requestFour = axios.post(apiFour, {orgEmail});
-
-    axios
-      .all([requestOne, requestTwo, requestThree, requestFour])
-      .then(
-        axios.spread(async (...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
-          const responseThree = responses[2];
-          const responseFour = responses[3];
-          // const responesThree = responses[2];
-
-          console.log("responseOne", responseOne);
-          console.log("responseTwo", responseTwo);
-          console.log("responseThree", responseThree);
-          console.log("responseFour", responseFour);
-          setRes(responseThree);
-        })
-      )
-      .catch((errors) => {
-        console.log(errors);
+    const requestOne = await axios
+      .post(apiOne, {
+        orgName,
+        orgEmail,
+        orgContact,
+        orgLocation,
+        orgType,
+      })
+      .then((responseOne) => {
+        console.log("responseOne", responseOne);
       });
+
+    const requestTwo = await axios
+      .post(apiTwo, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((responseTwo) => {
+        console.log("responseTwo", responseTwo);
+      });
+
+    const requestThree = await axios
+      .post(apiThree, {})
+      .then((responesThree) => {
+        console.log("responesThree", responesThree);
+      });
+    const requestFour = await axios
+      .post(apiFour, { orgEmail })
+      .then((responseFour) => {
+        console.log("responseFour", responseFour);
+      });
+
+    // axios
+    //   .all([requestOne, requestTwo, requestThree, requestFour])
+    //   .then(
+    //     axios.spread(async (...responses) => {
+    //       const responseOne = responses[0];
+    //       const responseTwo = responses[1];
+    //       const responseThree = responses[2];
+    //       const responseFour = responses[3];
+    //       // const responesThree = responses[2];
+
+    //       console.log("responseOne", responseOne);
+    //       console.log("responseTwo", responseTwo);
+    //       console.log("responseThree", responseThree);
+    //       console.log("responseFour", responseFour);
+    //       setRes(responseThree);
+    //     })
+    //   )
+    //   .catch((errors) => {
+    //     console.log(errors);
+    //   });
   };
 
   return (

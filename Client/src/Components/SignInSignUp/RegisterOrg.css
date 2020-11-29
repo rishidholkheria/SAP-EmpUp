@@ -10,7 +10,17 @@
   background-size: cover;
 }
 
+div.form {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
 div.form h1 {
+  text-align: center;
   font-weight: bold;
   margin: 0;
 }
@@ -111,7 +121,7 @@ div.form button:focus {
   transition: transform 80ms ease-in;
 }
 
-/* .register div.form_org {
+.register div.form_org {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -120,7 +130,7 @@ div.form button:focus {
   padding: 0 50px;
   min-height: 100%;
   text-align: center;
-} */
+}
 
 div.form input {
   background-color: #eee;
