@@ -1,4 +1,4 @@
-module.exports = function getDate() {
+module.exports.getDate = function getDate() {
   var d = new Date();
   var month = d.getMonth() + 1;
   // var mins = d.getMinutes() > 9 ? d.getMinutes() : '0' + d.getMinutes();

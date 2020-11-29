@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Feedback = require("../schema/Feedback");
-const getDate = require("../utils/Date");
+const getDate = require("../utils/Date").getDate;
 const genId = require("../utils/random");
 router.use(express.json());
 

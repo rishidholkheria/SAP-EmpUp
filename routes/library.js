@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 
 const Library = require("../schema/Library");
 const genId = require("../utils/random");
-const getDate = require("../utils/Date");
+const getDate = require("../utils/Date").getDate;
 const verify = require("../middlewares/verify");
 
 router.use(express.json());
@@ -91,13 +91,11 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.delete('/delete/:id', function (req, res) {
+router.delete("/delete/:id", function (req, res) {
   var id = req.params.id;
   Library.deleteOne({ _id: id }, function (err, results) {
-    if (err){
-      return res.send(
-        "Error:"+ err
-      );
+    if (err) {
+      return res.send("Error:" + err);
     }
     console.log("Deleted book!");
     return res.send("Book Deleted!");

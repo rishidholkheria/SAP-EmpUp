@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Motivation = require("../schema/Motivation");
-const getDate = require("../utils/Date");
+const getDate = require("../utils/Date").getDate;
 router.use(express.json());
 
 //connect to DB

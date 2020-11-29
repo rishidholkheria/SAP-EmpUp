@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Announcement = require("../schema/Announcement");
 const genId = require("../utils/random");
-const getDate = require("../utils/Date");
+const getDate = require("../utils/Date").getDate;
 router.use(express.json());
 
 const { verify } = require("jsonwebtoken");
