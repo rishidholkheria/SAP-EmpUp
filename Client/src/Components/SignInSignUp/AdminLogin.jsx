@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import purplewave from "./img/purplewave.png";
 import login from "./img/login.svg";
 import profile from "./img/profile.svg";
+import { useToasts } from "react-toast-notifications";
 import axios from "axios";
 require("dotenv").config();
 
@@ -14,6 +15,8 @@ const AdminRegister = () => {
   const [nameError, setNameError] = useState(null);
 
   const firstRender = useRef(true);
+
+  const { addToast } = useToasts();
 
   useEffect(() => {
     if (firstRender.current) {
@@ -46,10 +49,26 @@ const AdminRegister = () => {
       })
       .then((res) => {
         // console.log(res.data);
-        history.push("/");
+        history.push("/welcome");
+        addToast("ORGANISATION REGISTERED!!!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        addToast("ADMIN SETUP DONE!!!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        addToast("DOWNLOAD EMPUP TO LOGIN!!!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       })
       .catch((err) => {
-        alert("WRONG ADMIN USERNAME PASSWORD!!!");
+        // alert("WRONG ADMIN USERNAME PASSWORD!!!");
+        addToast("ERROR!!", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   };
 

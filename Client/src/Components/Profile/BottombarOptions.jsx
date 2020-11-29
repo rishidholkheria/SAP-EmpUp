@@ -7,7 +7,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Link } from "react-router-dom";
 
 const removeFromLS = () => {
-  localStorage.removeItem("isAuth");
+  // localStorage.removeItem("isAuth");
+  localStorage.clear();
 };
 
 const BottombarOptions = () => {
