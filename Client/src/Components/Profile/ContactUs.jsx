@@ -28,7 +28,7 @@ const ContactUs = () => {
 
           <div class="contact">
             <h1 class="contact_heading">Contact Us</h1>
-            <form className="form">
+            <form className="contact_form">
               <input placeholder="Subject" />
               <input placeholder="Department" />
               <textarea placeholder="Message"></textarea>

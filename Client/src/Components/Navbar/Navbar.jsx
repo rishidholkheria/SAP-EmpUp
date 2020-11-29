@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { MenuItems } from "./MenuItems";
 import { Button } from "../Button";
 import "./Navbar.css";
+import { Avatar } from "@material-ui/core";
+import boostLogo from "../boostLogo.png";
 
 class Navbar extends Component {
   state = { clicked: false };
@@ -14,7 +16,10 @@ class Navbar extends Component {
     return (
       <nav className="NavbarItems">
         <h1 className="navbar-logo">
-          EmpUp<i className="fab fa-react"></i>
+          EmpUp
+          <div className="nav_logo_container">
+            <Avatar className="sidebar__twitterIcon" src={boostLogo} />
+          </div>
         </h1>
         <div className="menu-icon" onClick={this.handleClick}>
           <i

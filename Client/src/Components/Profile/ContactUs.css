@@ -117,17 +117,17 @@
   margin-bottom: 5px;
 }
 
-.form {
+.contact_form {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.form > h1 {
+.contact_form > h1 {
   margin-bottom: 30px;
 }
 
-.form > input,
+.contact_form > input,
 textarea {
   padding: 20px;
   border-radius: 3px;
@@ -141,18 +141,18 @@ textarea {
   outline: none;
 }
 
-.form > input:focus,
+.contact_form > input:focus,
 textarea:focus {
   border: 1px solid rgb(0, 0, 196);
 }
 
-.form > textarea {
+.contact_form > textarea {
   height: 150px;
   max-width: 400px;
   min-height: 100px;
 }
 
-.form > label {
+.contact_form > label {
   padding-bottom: 10px;
   color: rgb(0, 0, 32);
   font-weight: bold;

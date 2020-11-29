@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@material-ui/core";
 import amazonLogo from "./DashBoard/amazonLogo.jpg";
 import EmpUpLogo from "./EmpUpLogo.png";
+import boostLogo from "./boostLogo.png";
 
 function Sidebar() {
   const [auth, setAuth] = useState(localStorage.getItem("isAuth"));
@@ -23,7 +24,7 @@ function Sidebar() {
     <div className="sidebar">
       {/* <TwitterIcon className="sidebar__twitterIcon" /> */}
       <div className="amazon_logo_container">
-        <Avatar className="sidebar__twitterIcon" src={amazonLogo} />
+        <Avatar className="sidebar__twitterIcon" src={boostLogo} />
       </div>
       <Link to="/">
         <SidebarOption active Icon={HomeIcon} text="Dashboard" />
