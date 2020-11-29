@@ -3,5 +3,3 @@
 /Client/node_modules
 /Client/.env
 /welcome
-/upload
-*.xlsx

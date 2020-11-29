@@ -70,7 +70,7 @@ const Payroll = ({ date }) => {
           </div>
           <div className="payment_date">
             <p className="pay_date">Payment Date</p>
-            <h4>{date}</h4>
+            <h4>01/12/20</h4>
           </div>
           <Link to="/payrolldetails">
             <button className="view_more_fin_btn">View More</button>

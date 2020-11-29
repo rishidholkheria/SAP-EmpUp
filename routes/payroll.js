@@ -5,6 +5,10 @@ router.use(express.json());
 const XLSX = require("xlsx");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
+const genId = require("../utils/random");
+
+const random = genId(6);
+var date = getDate();
 
 //upload the file
 var storage = multer.diskStorage({
@@ -12,7 +16,7 @@ var storage = multer.diskStorage({
     cb(null, "upload");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, `EmpUp_${random}_Payroll_${date}.xlsx`);
   },
 });
 
@@ -47,7 +51,7 @@ router.get("/data", (req, res) => {
   };
   var newWS = XLSX.utils.json_to_sheet(jsonData);
   XLSX.utils.book_append_sheet(newWB, newWS, "Payroll");
-  XLSX.writeFile(newWB, process.cwd() + "/upload/EmpUp Payroll.xlsx");
+  XLSX.writeFile(newWB, process.cwd() + `/upload/EmpUp_${random}_Payroll_${date}.xlsx`);
 });
 
 // router.get("/data", (req, res) => {
@@ -84,9 +88,9 @@ router.post("/send-payroll", async (req, res) => {
     html: { path: "welcome/payroll.html" },
     attachments: [
       {
-        filename: "EmpUp Payroll.xlsx",
-        path: process.cwd() + "/upload/EmpUp Payroll.xlsx",
-        cid: "uniq-EmpUp Payroll.xlsx",
+        filename: `EmpUp_${random}_Payroll_${date}.xlsx`,
+        path: process.cwd() + `/upload/EmpUp_${random}_Payroll_${date}.xlsx`,
+        cid: `uniq-EmpUp_${random}_Payroll_${date}.xlsx`,
       },
     ],
     // },
@@ -94,13 +98,13 @@ router.post("/send-payroll", async (req, res) => {
     // res.send("Error: " + err);
     // }
   });
-  res.staus(200).send("Email to your account sent");
+  res.status(200).send("Email to your account sent");
   console.log("Message sent: %s", info.messageId);
 });
 
 const excelToJson = () => {
   //convert to JSON
-  const workBook = XLSX.readFile(process.cwd() + "/upload/Payroll.xlsx");
+  const workBook = XLSX.readFile(process.cwd() + `/upload/EmpUp_${random}_Payroll_${date}.xlsx`);
   var sheet_name_list = workBook.SheetNames;
   var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {
     defval: "",
@@ -159,4 +163,12 @@ const excelToJson = () => {
   // console.log(jsonData);
   return jsonData;
 };
+
+function getDate() {
+  var d = new Date();
+  var month = d.getMonth() + 1;
+  var date = d.getDate() + "-" + month + "-" + d.getFullYear();
+  return date;
+}
+
 module.exports = router;

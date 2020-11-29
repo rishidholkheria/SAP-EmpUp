@@ -59,7 +59,7 @@ const HRofficeRight = () => {
     setDate(systemDate);
   };
 
-  const generatePayroll = () => {
+  const generatePayroll = async () => {
     var formData = new FormData();
     formData.append("file", csv);
     const email = payrollMail;
@@ -71,38 +71,51 @@ const HRofficeRight = () => {
       autoDismiss: true,
     });
 
-    const rOne = axios.post(apiTwo, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    const rTwo = axios.post(apiOne, {
-      email,
-    });
+    const rOne = await axios
+      .post(apiTwo, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((responseOne) => {
+        console.log("responseOne", responseOne);
+      });
 
-    axios
-      .all([rOne, rTwo])
-      .then(
-        axios.spread(async (...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
-
-          console.log("responseOne", responseOne);
-          console.log("responseTwo", responseTwo);
-          addToast("Payroll generated successfully!!!", {
-            appearance: "success",
-            autoDismiss: true,
-          });
-        })
-      )
-      .catch((errors) => {
-        console.log(errors);
-
-        addToast("Error in generating Payroll!!!", {
-          appearance: "error",
+    const rTwo = axios
+      .post(apiOne, {
+        email,
+      })
+      .then((responseTwo) => {
+        console.log("responseTwo", responseTwo);
+        addToast("Payroll generated successfully!!!", {
+          appearance: "success",
           autoDismiss: true,
         });
       });
+
+    // axios
+    //   .all([rOne, rTwo])
+    //   .then(
+    //     axios.spread(async (...responses) => {
+    //       const responseOne = responses[0];
+    //       const responseTwo = responses[1];
+
+    //       console.log("responseOne", responseOne);
+    //       console.log("responseTwo", responseTwo);
+    //       addToast("Payroll generated successfully!!!", {
+    //         appearance: "success",
+    //         autoDismiss: true,
+    //       });
+    //     })
+    //   )
+    //   .catch((errors) => {
+    //     console.log(errors);
+
+    //   addToast("Error in generating Payroll!!!", {
+    //     appearance: "error",
+    //     autoDismiss: true,
+    //   });
+    // });
   };
   return (
     <div className="hr_office_right">
