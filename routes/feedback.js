@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Feedback = require("../schema/Feedback");
-const getDate = require("../utils/date");
+const getDate = require("../utils/Date");
 const genId = require("../utils/random");
 router.use(express.json());
 
@@ -15,33 +15,36 @@ router.post("/", (req, res) => {
     fTitle: req.body.fTitle,
     fDept: req.body.fDept,
     cDate: getDate(),
-    orgId: req.body.orgId
+    orgId: req.body.orgId,
   });
-  
+
   feedback.save((err, data) => {
     if (err) {
       return res.send("Error: " + err);
     }
-    res.send(data); 
+    res.send(data);
     console.log("created!");
   });
 });
 
 //get all feedback
 router.get("/:id", async (req, res) => {
-  const feedback = await Feedback.find({orgId: req.params.id}, (err, result) => {
-    if (!err) {
-      return res.status(200).json({
-        data: result,
-        message: "All feedback..",
-      });
-    } else {
-      return res.status(400).json({
-        data: {},
-        message: "Some error occured..",
-      });
+  const feedback = await Feedback.find(
+    { orgId: req.params.id },
+    (err, result) => {
+      if (!err) {
+        return res.status(200).json({
+          data: result,
+          message: "All feedback..",
+        });
+      } else {
+        return res.status(400).json({
+          data: {},
+          message: "Some error occured..",
+        });
+      }
     }
-  });
+  );
 });
 
 //get api for a specific feedback

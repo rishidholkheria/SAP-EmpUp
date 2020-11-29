@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const Announcement = require("../schema/Announcement");
 const genId = require("../utils/random");
-const getDate = require("../utils/date");
+const getDate = require("../utils/Date");
 router.use(express.json());
 
 const { verify } = require("jsonwebtoken");
@@ -57,7 +57,6 @@ router.get("/:id", async (req, res) => {
     }
   );
 });
-
 
 //get api for a specific annoucement
 router.get("/single/:id", (req, res) => {
