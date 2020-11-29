@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const moment = require("moment");
 
 const Employee = require("../schema/Employee");
 const objOrg = require("../routes/organisation");
@@ -17,13 +18,18 @@ dotenv.config();
 console.log(objOrg.oId);
 router.use(express.json());
 
+var date = getDate();
+// var time = moment().format('h:mm a');
+
 //upload the file
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "upload");
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    const name = `${objOrg.oId}_EmpUp_Employee_${date}.xlsx`;
+    console.log(name);
+    cb(null, name);
   },
 });
 
@@ -68,7 +74,7 @@ router.post("/upload-to-db", (req, res) => {
   XLSX.utils.book_append_sheet(newWB, newWS, "Login credentials");
   XLSX.writeFile(
     newWB,
-    process.cwd() + "/upload/EmpUp Employee Credentials.xlsx"
+    process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`
   );
 
   console.log("employees added!");
@@ -100,9 +106,9 @@ router.post("/send-password-to-organisation", async (req, res) => {
     html: { path: "welcome/welcome.html" },
     attachments: [
       {
-        filename: "EmpUp Employee Credentials.xlsx",
-        path: process.cwd() + "/upload/EmpUp Employee Credentials.xlsx",
-        cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+        filename: `${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+        path: process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+        cid: `uniq-${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
       },
     ],
     //   },
@@ -118,7 +124,7 @@ router.post("/send-password-to-organisation", async (req, res) => {
 
 const excelToJson = () => {
   //convert to JSON
-  const workBook = XLSX.readFile(process.cwd() + "/upload/Employee.xlsx");
+  const workBook = XLSX.readFile(process.cwd() + `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`);
   var sheet_name_list = workBook.SheetNames;
   var jsonData = XLSX.utils.sheet_to_json(workBook.Sheets[sheet_name_list[0]], {
     defval: "",
@@ -147,5 +153,12 @@ const excelToJson = () => {
   }
   return jsonData;
 };
+
+function getDate() {
+  var d = new Date();
+  var month = d.getMonth() + 1;
+  var date = d.getDate() + "-" + month + "-" + d.getFullYear();
+  return date;
+}
 
 module.exports = router;
