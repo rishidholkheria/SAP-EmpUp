@@ -30,9 +30,9 @@ router.post("/", (req, res) => {
 
   feedback.save((err, data) => {
     if (err) {
-      return res.send("Error: " + err);
+      return res.status(400).send("Error: " + err);
     }
-    res.send(data);
+    res.status(200).send(data);
     console.log("created!");
   });
 });

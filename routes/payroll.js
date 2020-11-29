@@ -34,7 +34,7 @@ router.post("/upload", function (req, res) {
 router.get("/data", (req, res) => {
   var jsonData = excelToJson();
   console.log(jsonData);
-  res.json({
+  res.status(200).json({
     data: jsonData,
     message: "Payroll data sent",
   });
@@ -61,9 +61,8 @@ router.get("/data", (req, res) => {
 
 //need email of org from front end
 router.post("/send-payroll", async (req, res) => {
-
-  if(req.body.email === ""){
-    return res.send("Email can't be empty!!!!!");
+  if (req.body.email === "") {
+    return res.status(400).send("Email can't be empty!!!!!");
   }
   //send mail
   let transporter = nodemailer.createTransport({
@@ -79,25 +78,24 @@ router.post("/send-payroll", async (req, res) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     // try:{
-      from: '"Team EmpUp" <team@EmpUp.com>',
-      to: req.body.email,
-      subject: "Welcome to EmpUp!",
-      html: { path: 'welcome/payroll.html' },
-      attachments: [
+    from: '"Team EmpUp" <team@EmpUp.com>',
+    to: req.body.email,
+    subject: "Welcome to EmpUp!",
+    html: { path: "welcome/payroll.html" },
+    attachments: [
       {
         filename: "EmpUp Payroll.xlsx",
-        path:  process.cwd() + "/upload/EmpUp Payroll.xlsx",
+        path: process.cwd() + "/upload/EmpUp Payroll.xlsx",
         cid: "uniq-EmpUp Payroll.xlsx",
       },
-      ],
+    ],
     // },
     // catch(err){
-    // res.send("Error: " + err);  
+    // res.send("Error: " + err);
     // }
   });
-
-  res.send("Email to your account sent");
-  console.log("Message sent: %s", info.messageId);   
+  res.staus(200).send("Email to your account sent");
+  console.log("Message sent: %s", info.messageId);
 });
 
 const excelToJson = () => {

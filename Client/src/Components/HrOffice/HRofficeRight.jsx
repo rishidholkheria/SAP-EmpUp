@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useToasts } from "react-toast-notifications";
 import GetFeedback from "./GetFeedback";
 import Payroll from "../Payroll";
 import "./HRofficeRight.css";
 import axios from "axios";
-require('dotenv').config();
+require("dotenv").config();
 
 const HRofficeRight = () => {
   const [feedback, setFeedback] = useState([]);
   const [csv, setCsv] = useState(null);
   const [payrollMail, setPayrollMail] = useState("");
   const [date, setDate] = useState("");
+
+  const { addToast } = useToasts();
 
   const apiOne = process.env.REACT_APP_SERVER + "/payroll/send-payroll";
   const apiTwo = process.env.REACT_APP_SERVER + "/payroll/upload";
@@ -49,19 +52,24 @@ const HRofficeRight = () => {
     }
   };
 
-  const getDate = ()=>{
+  const getDate = () => {
     var d = new Date();
     var month = d.getMonth() + 1;
-    var systemDate = d.getDate() + '-' + month  + '-' + d.getFullYear();
+    var systemDate = d.getDate() + "-" + month + "-" + d.getFullYear();
     setDate(systemDate);
-  }
+  };
 
   const generatePayroll = () => {
     var formData = new FormData();
     formData.append("file", csv);
     const email = payrollMail;
     getDate();
-    alert("Payroll Generated and sent to your Email!");
+    // alert("Payroll Generated and sent to your Email!");
+
+    addToast("Request sent wait for a while...", {
+      appearance: "info",
+      autoDismiss: true,
+    });
 
     const rOne = axios.post(apiTwo, formData, {
       headers: {
@@ -81,15 +89,22 @@ const HRofficeRight = () => {
 
           console.log("responseOne", responseOne);
           console.log("responseTwo", responseTwo);
+          addToast("Payroll generated successfully!!!", {
+            appearance: "success",
+            autoDismiss: true,
+          });
         })
       )
       .catch((errors) => {
         console.log(errors);
-        // alert(errors);
+
+        addToast("Error in generating Payroll!!!", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
   };
   return (
-    
     <div className="hr_office_right">
       <div className="payroll">
         <h2>Payroll Generator</h2>
@@ -128,7 +143,7 @@ const HRofficeRight = () => {
           onClick={onCsvInput}
         />
         <span className="file_text" id="custom-text" ref={csv_name}></span>
-        <button className="generate" onClick={generatePayroll} >
+        <button className="generate" onClick={generatePayroll}>
           Generate
         </button>
       </div>
@@ -142,9 +157,7 @@ const HRofficeRight = () => {
           />
         ))}
       </div>
-      
     </div>
-    
   );
 };
 

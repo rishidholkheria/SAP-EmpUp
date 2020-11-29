@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 import Feed from "./Components/DashBoard/Feed";
 import Sidebar from "./Components/Sidebar";
 import Library from "./Components/Library/Library";
@@ -33,112 +34,114 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          {/* <Route path="/library/"></Route> */}
-          <Route path="/library">
-            <div className="path_direction">
-              <Sidebar />
-              <Library />
-              <LibraryRight />
-            </div>
-          </Route>
-          {/* <Route path="/payroll">
+        <ToastProvider>
+          <Switch>
+            {/* <Route path="/library/"></Route> */}
+            <Route path="/library">
+              <div className="path_direction">
+                <Sidebar />
+                <Library />
+                <LibraryRight />
+              </div>
+            </Route>
+            {/* <Route path="/payroll">
             <div className="path_direction">
               <Sidebar />
               <Payroll />
             </div>
           </Route> */}
-          <Route path="/commonroom">
-            <div className="path_direction">
-              <Sidebar />
-              <CommonRoom />
-              <GroupChatSide />
-            </div>
-          </Route>
-          <Route path="/hrd">
-            <div className="path_direction">
-              <Sidebar />
-              <HrChatPortal />
-            </div>
-          </Route>
-          <Route path="/feedback">
-            <div className="path_direction">
-              <Sidebar />
-              <Feedback />
-            </div>
-          </Route>
-          <Route path="/profile">
-            <div className="path_direction">
-              <Sidebar />
-              <Profile />
-              <ProfileRight />
-            </div>
-          </Route>
-          <Route path="/hroffice">
-            <div className="path_direction">
-              <Sidebar />
-              <HRDept />
-              <HRofficeRight />
-            </div>
-          </Route>
-          <Route path="/payroll">
-            <div className="path_direction">
-              <Payroll />
-            </div>
-          </Route>
-          <Route path="/register">
-            <div className="path_direction">
-              <RegisterOrg />
-            </div>
-          </Route>
-          <Route path="/infopage">
-            <div className="path_direction">
-              <InfoPage />
-            </div>
-          </Route>
-          <Route path="/adminlogin">
-            <div className="path_direction">
-              <AdminLogin />
-            </div>
-          </Route>
-          <Route path="/emplogin">
-            <div className="path_direction">
-              <EmpLogin />
-            </div>
-          </Route>
-          <Route path="/contactus">
-            <div className="path_direction">
-              <ContactUs />
-            </div>
-          </Route>
-          <Route path="/payrolldetails">
-            <div className="path_direction">
-              <PayrollDetails />
-            </div>
-          </Route>
-          <Route path="/welcome">
-            <div>
-              {/* <Header /> */}
-              <Navbar />
-              <HeroSectionLeft />
-              <MiddleSection />
-              <HeroSectionRight />
-              <Footer />
-            </div>
-          </Route>
-          <Route path="/error">
-            <div className="path_direction">
-              <ErrorPage />
-            </div>
-          </Route>
-          <Route path="/">
-            <div className="path_direction">
-              <Sidebar />
-              <Feed />
-              <HomeRight />
-            </div>
-          </Route>
-        </Switch>
+            <Route path="/commonroom">
+              <div className="path_direction">
+                <Sidebar />
+                <CommonRoom />
+                <GroupChatSide />
+              </div>
+            </Route>
+            <Route path="/hrd">
+              <div className="path_direction">
+                <Sidebar />
+                <HrChatPortal />
+              </div>
+            </Route>
+            <Route path="/feedback">
+              <div className="path_direction">
+                <Sidebar />
+                <Feedback />
+              </div>
+            </Route>
+            <Route path="/profile">
+              <div className="path_direction">
+                <Sidebar />
+                <Profile />
+                <ProfileRight />
+              </div>
+            </Route>
+            <Route path="/hroffice">
+              <div className="path_direction">
+                <Sidebar />
+                <HRDept />
+                <HRofficeRight />
+              </div>
+            </Route>
+            <Route path="/payroll">
+              <div className="path_direction">
+                <Payroll />
+              </div>
+            </Route>
+            <Route path="/register">
+              <div className="path_direction">
+                <RegisterOrg />
+              </div>
+            </Route>
+            <Route path="/infopage">
+              <div className="path_direction">
+                <InfoPage />
+              </div>
+            </Route>
+            <Route path="/adminlogin">
+              <div className="path_direction">
+                <AdminLogin />
+              </div>
+            </Route>
+            <Route path="/emplogin">
+              <div className="path_direction">
+                <EmpLogin />
+              </div>
+            </Route>
+            <Route path="/contactus">
+              <div className="path_direction">
+                <ContactUs />
+              </div>
+            </Route>
+            <Route path="/payrolldetails">
+              <div className="path_direction">
+                <PayrollDetails />
+              </div>
+            </Route>
+            <Route path="/welcome">
+              <div>
+                {/* <Header /> */}
+                <Navbar />
+                <HeroSectionLeft />
+                <MiddleSection />
+                <HeroSectionRight />
+                <Footer />
+              </div>
+            </Route>
+            <Route path="/error">
+              <div className="path_direction">
+                <ErrorPage />
+              </div>
+            </Route>
+            <Route path="/">
+              <div className="path_direction">
+                <Sidebar />
+                <Feed />
+                <HomeRight />
+              </div>
+            </Route>
+          </Switch>
+        </ToastProvider>
       </div>
     </Router>
   );

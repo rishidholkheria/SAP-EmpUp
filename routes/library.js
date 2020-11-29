@@ -39,9 +39,9 @@ router.post("/upload-new-book", (req, res) => {
   console.log("text api: " + req.body);
   libBook.save((err, data) => {
     if (err) {
-      return res.send("Error: " + err);
+      return res.status(400).json({ data: {}, message: err });
     }
-    res.json({
+    res.status(200).json({
       data: data,
       message: "The file has been created successfully!",
     });
@@ -105,10 +105,10 @@ router.delete("/delete/:id", function (req, res) {
   var id = req.params.id;
   Library.deleteOne({ _id: id }, function (err, results) {
     if (err) {
-      return res.send("Error:" + err);
+      return res.status(400).send("Error:" + err);
     }
     console.log("Deleted book!");
-    return res.send("Book Deleted!");
+    return res.status(200).send("Book Deleted!");
   });
 });
 

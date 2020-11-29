@@ -43,7 +43,7 @@ connect.once("open", () => {
 
 const storage = new GridFsStorage({
   url: mongoURI,
-    file: (req, file) => {
+  file: (req, file) => {
     return new Promise((resolve, reject) => {
       const filename = file.originalname;
       const fileInfo = {
@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
   gfs.files.find().toArray((err, files) => {
     //if files r there
     if (!files || files.length === 0) {
-      res.json({
+      res.status(404).json({
         data: {},
         message: "Coudln't find the file you are looking!",
       });
@@ -75,7 +75,7 @@ router.get("/", (req, res) => {
       //       file.isImage = false;
       //     }
       //   });
-      res.json({
+      res.status(200).json({
         data: { files: files },
         message: "File recieved!",
       });
@@ -85,7 +85,7 @@ router.get("/", (req, res) => {
 
 // //upload to DB
 router.post("/upload", upload.single("real-file"), (req, res) => {
-  console.log('FILE API ');
+  console.log("FILE API ");
   console.log(req.file);
   res.json({ file: req.file });
   res.send("The file has been uploaded");
@@ -93,13 +93,13 @@ router.post("/upload", upload.single("real-file"), (req, res) => {
 
 //acces token and filename
 router.post("/link-file-to-library", (req, res) => {
-  console.log("data from frontend: ")
+  console.log("data from frontend: ");
   console.log(req.body);
 
-  if(req.body.bookId === "" && req.body.fileId === ""){
-    return res.json({
+  if (req.body.bookId === "" && req.body.fileId === "") {
+    return res.status(400).json({
       data: {},
-      message: "Empty string!"
+      message: "Empty string!",
     });
   }
 
@@ -112,12 +112,12 @@ router.post("/link-file-to-library", (req, res) => {
     }
   )
     .then((data) => {
-      console.log("link api:"+data);
-      res.send("uploaded");
+      console.log("link api:" + data);
+      res.status(200).send("uploaded");
     })
     .catch((err) => {
       console.log(err);
-      res.send("err");
+      res.status(400).send("err");
     });
 });
 
@@ -138,14 +138,13 @@ router.post("/link-file-to-library", (req, res) => {
 // });
 
 // display specific image
-router.get('/image-id/:id',function(req , res) {
+router.get("/image-id/:id", function (req, res) {
   var id = gfs.tryParseObjectId(req.params.id);
-  var options = {_id: id, root: 'library_file'};
-  try{
+  var options = { _id: id, root: "library_file" };
+  try {
     gfs.createReadStream(options).pipe(res);
-  }
-  catch(err){
-    res.json(err);  
+  } catch (err) {
+    res.status(400).json(err);
     console.log(err);
   }
 });
@@ -157,7 +156,7 @@ router.delete("/files/:id", (req, res) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
-    return res.send("deleted!");
+    return res.status(200).send("deleted!");
   });
 });
 

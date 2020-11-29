@@ -90,7 +90,24 @@
   flex: 2;
   padding: 20px 20px 20px 25px;
   width: 600px;
-  height: 350px;
+  height: 100%;
+  overflow: auto;
+}
+
+.contact::-webkit-scrollbar {
+  width: 10px;
+}
+
+.contact::-webkit-scrollbar-track {
+  background-color: rgb(228, 227, 227);
+  border-radius: 8px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.contact::-webkit-scrollbar-thumb {
+  background-color: indigo;
+  border-radius: 8px;
 }
 
 .contact_heading {
@@ -101,7 +118,7 @@
 }
 
 .form {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

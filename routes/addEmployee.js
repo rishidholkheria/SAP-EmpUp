@@ -94,22 +94,22 @@ router.post("/send-password-to-organisation", async (req, res) => {
   // send mail with defined transport object
   let info = await transporter.sendMail({
     // try: {
-      from: '"Team EmpUp" <team@EmpUp.com>',
-      to: req.body.orgEmail,
-      subject: "Welcome to EmpUp!",
-      html: { path: "welcome/welcome.html" },
-      attachments: [
-        {
-          filename: "EmpUp Employee Credentials.xlsx",
-          path: process.cwd() + "/upload/EmpUp Employee Credentials.xlsx",
-          cid: "uniq-EmpUpEmployeeCredentials.xlsx",
-        },
-      ],
-  //   },
-  //   catch(err) {
-  //     res.send("Error in sending email: "+ err);
-  //     next(err);
-  //   },
+    from: '"Team EmpUp" <team@EmpUp.com>',
+    to: req.body.orgEmail,
+    subject: "Welcome to EmpUp!",
+    html: { path: "welcome/welcome.html" },
+    attachments: [
+      {
+        filename: "EmpUp Employee Credentials.xlsx",
+        path: process.cwd() + "/upload/EmpUp Employee Credentials.xlsx",
+        cid: "uniq-EmpUpEmployeeCredentials.xlsx",
+      },
+    ],
+    //   },
+    //   catch(err) {
+    //     res.send("Error in sending email: "+ err);
+    //     next(err);
+    //   },
   });
 
   res.send("Email to your org sent");

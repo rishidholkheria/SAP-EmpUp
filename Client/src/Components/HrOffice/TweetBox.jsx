@@ -1,5 +1,6 @@
 import { Avatar, Button } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 import "./TweetBox.css";
 import axios from "axios";
 require("dotenv").config();
@@ -8,6 +9,8 @@ const TweetBox = () => {
   const [tweetMessage, setTweetMessage] = useState("");
   const [tweetImage, setTweetImage] = useState("");
   const [organisationId, setOrg] = useState(null);
+
+  const { addToast } = useToasts();
 
   useEffect(() => {
     const oId = localStorage.getItem("orgId");
@@ -30,9 +33,20 @@ const TweetBox = () => {
       .then((res) => {
         console.log(res);
         console.log(res.data);
+
+        addToast("Announcement added!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       })
       .then((res) => res.doesNotExist.throwAnError)
-      .catch((err) => err);
+      .catch((err) => {
+        console.log(err);
+        addToast("Error in Posting Announcement!", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
 
     setTweetMessage("");
     setTweetImage("");

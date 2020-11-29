@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import "./HRDept.css";
+import { useToasts } from "react-toast-notifications";
 import TweetBox from "./TweetBox";
 import BookMgt from "./BookMgt";
 import PostAddIcon from "@material-ui/icons/PostAdd";
@@ -7,7 +8,7 @@ import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import { useState } from "react";
 import axios from "axios";
 import Payroll from "../Payroll";
-require('dotenv').config();
+require("dotenv").config();
 
 const HRDept = () => {
   const [bookName, setBookName] = useState("");
@@ -24,37 +25,61 @@ const HRDept = () => {
   const [disable, setDisabled] = useState(true);
   const [nameError, setNameError] = useState(null);
 
+  const { addToast } = useToasts();
+
   const organisationId = localStorage.getItem("orgId");
   const monthlyGoal = newgoal;
   const onGoalSend = () => {
     axios
       .put(
-        process.env.REACT_APP_SERVER + `/organisation/monthly-goal/update/${organisationId}`,
+        process.env.REACT_APP_SERVER +
+          `/organisation/monthly-goal/update/${organisationId}`,
         { monthlyGoal }
       )
       .then((res) => {
         console.log(res);
+        addToast("Monthly Goal Updated!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       })
       .catch((err) => {
-        alert("There is some Unexpected Error!!!");
+        // alert("There is some Unexpected Error!!!");
+
+        addToast("Error in Updating Monthly Goal!", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
     setGoal("");
-    alert("Monthly Goal Added Successfully!!!");
+    // alert("Monthly Goal Added Successfully!!!");
   };
 
   const onNoticeSend = () => {
     axios
-      .put(process.env.REACT_APP_SERVER + `/organisation/notices/${organisationId}`, {
-        notice,
-      })
+      .put(
+        process.env.REACT_APP_SERVER +
+          `/organisation/notices/${organisationId}`,
+        {
+          notice,
+        }
+      )
       .then((res) => {
         console.log(res);
+        addToast("Notice Board Updated!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       })
       .catch((err) => {
-        alert("There is some Unexpected Error!!!");
+        // alert("There is some Unexpected Error!!!");
+        addToast("Error in posting Notice!", {
+          appearance: "error",
+          autoDismiss: true,
+        });
       });
     setNotice("");
-    alert("Notice Added Successfully!!!");
+    // alert("Notice Added Successfully!!!");
   };
 
   useEffect(() => {
@@ -66,7 +91,8 @@ const HRDept = () => {
       });
   }, []);
 
-  const apiOne = process.env.REACT_APP_SERVER + "/virtual-library/upload-new-book";
+  const apiOne =
+    process.env.REACT_APP_SERVER + "/virtual-library/upload-new-book";
   const apiTwo = process.env.REACT_APP_SERVER + "/virtual-library-file/upload";
 
   const onAddBook = () => {
@@ -109,6 +135,11 @@ const HRDept = () => {
             bookId: responseOne.data.data._id,
           });
 
+          addToast("Book Added to Library!", {
+            appearance: "success",
+            autoDismiss: true,
+          });
+
           console.log(responseOne.data.data._id);
           console.log(responseTwo.data.file.id);
         })
@@ -117,7 +148,7 @@ const HRDept = () => {
         console.log(errors);
       });
 
-    alert("Your file has been added to the library!!!");
+    // alert("Your file has been added to the library!!!");
     setBookName("");
     setBookDesc("");
     setBookDept("");
@@ -127,7 +158,8 @@ const HRDept = () => {
     if (fileandbook.bookId !== "" && fileandbook.fileId !== "") {
       axios
         .post(
-          process.env.REACT_APP_SERVER + "/virtual-library-file/link-file-to-library",
+          process.env.REACT_APP_SERVER +
+            "/virtual-library-file/link-file-to-library",
           fileandbook
         )
         .then((res) => {

@@ -34,9 +34,9 @@ router.post("/", (req, res) => {
   console.log(req.body);
   announcement.save((err, data) => {
     if (err) {
-      return res.send("Error: " + err);
+      return res.status(400).send("Error: " + err);
     }
-    res.send(data);
+    res.status(200).send(data);
     console.log("Announcement created!");
   });
   //   }
@@ -85,7 +85,7 @@ router.get("/single/:id", (req, res) => {
         message: "Announcement fetched!",
       });
     } else {
-      return res.status(400).json({
+      return res.status(500).json({
         data: {},
         message: "Some unexpected error occurred.",
       });

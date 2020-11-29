@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useToasts } from "react-toast-notifications";
 import "./Feedback.css";
 import axios from "axios";
-require('dotenv').config();
+require("dotenv").config();
 
 const Feedback = () => {
   const [title, setTitle] = useState("");
   const [dept, setDept] = useState("");
   const [message, setMessage] = useState("");
+
+  const { addToast } = useToasts();
 
   const SubmitHandler = (e) => {
     e.preventDefault();
@@ -16,14 +19,23 @@ const Feedback = () => {
     const feedback = message;
     const orgId = localStorage.getItem("orgId");
     axios
-      .post(process.env.REACT_APP_SERVER + "/feedback", { fTitle, fDept, feedback, orgId})
+      .post(process.env.REACT_APP_SERVER + "/feedback", {
+        fTitle,
+        fDept,
+        feedback,
+        orgId,
+      })
       .then((res) => {
         console.log(res.data);
+        addToast("Feedback Sent to HR Department!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
       })
       .then((res) => res.doesNotExist.throwAnError)
       .catch((err) => err);
 
-    alert("Your feedback has been sent to HR Department!!!");
+    // alert("Your feedback has been sent to HR Department!!!");
     setTitle("");
     setDept("");
     setMessage("");

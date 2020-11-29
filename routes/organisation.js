@@ -44,9 +44,17 @@ router.put("/monthly-goal/update/:id", (req, res) => {
   )
     .then((result) => {
       console.log(result);
-      res.json("Successfully added monthly goal.");
+      res.status(200).json({
+        data: result,
+        message: "Notice has been added.",
+      });
     })
-    .catch((error) => console.error(error));
+    .catch((error) =>
+      res.status(400).json({
+        data: {},
+        message: error,
+      })
+    );
   // }
 
   // else {
@@ -70,7 +78,10 @@ router.put("/notices/:id", (req, res) => {
   )
     .then((result) => {
       console.log(result);
-      res.json("Successfully added a new notice.");
+      res.status(200).json({
+        data: {},
+        message: "Successfully added a new notice.",
+      });
     })
     .catch((error) => console.error(error));
   // }
