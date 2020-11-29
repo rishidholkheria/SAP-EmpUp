@@ -11,7 +11,7 @@ const LibraryRight = () => {
   useEffect(() => {
     axios
       .get(
-        `http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=${newsApiKey}`
+        `https://newsapi.org/v2/top-headlines?sources=the-next-web&apiKey=${newsApiKey}`
       )
       .then((res) => {
         setNews(res.data.articles);
