@@ -50,7 +50,7 @@ const EmpLogin = () => {
         localStorage.setItem("empId", res.data.payload.userid);
         localStorage.setItem("isAuth", res.data.payload.isAuthorized);
         localStorage.setItem("empName", res.data.payload.name);
-        history.push("/");
+        history.push("/dashboard");
       })
       .catch((err) => {
         // err;
