@@ -39,7 +39,6 @@ const TweetBox = () => {
           autoDismiss: true,
         });
       })
-      .then((res) => res.doesNotExist.throwAnError)
       .catch((err) => {
         console.log(err);
         addToast("Error in Posting Announcement!", {

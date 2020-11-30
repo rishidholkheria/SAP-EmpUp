@@ -1,7 +1,12 @@
 .notice_board {
   /* border: 2px solid red; */
   padding: 10px 15px;
-  background-color: white;
+  background-color: #a684f3;
+  /* background-image: linear-gradient(315deg, #f5aedf 0%, #a684f3 74%); */
+  /* background-color: #7f53ac;
+  background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%); */
+  /* background-color: #f9c5d1;
+  background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%); */
   margin: 10px;
   /* padding-left: 8px; */
   border-radius: 10px;

@@ -8,18 +8,18 @@ const MiddleSection = () => {
     <div className="hero_right">
       <OurServices
         number={"01"}
-        heading={"Service One"}
-        description={" Lorem ipsum dolor sit amet consectetur, adipisici"}
+        heading={"Easy solution"}
+        description={" Easy solution for a fully loaded Virtual HR Office. Chat portal to facilitate chat with the HR directly!"}
       />
       <OurServices
         number={"02"}
-        heading={"Service Two"}
-        description={" Lorem ipsum dolor sit amet consectetur, adipisici"}
+        heading={"Boost productivity"}
+        description={"Boost your employee's productivity and moral by stress buster games and 360 degree feedback."}
       />
       <OurServices
         number={"03"}
-        heading={"Service Three"}
-        description={" Lorem ipsum dolor sit amet consectetur, adipisici"}
+        heading={"Virtual Library"}
+        description={"Virtual library lets you store all the company's referral books and many more important files & documents."}
       />
     </div>
   );

@@ -18,20 +18,15 @@ const InfoPage = ({ addedResponse }) => {
           <div className="form">
             <h1 className="woe">Working of EmpUp</h1>
             <p>
-              There would be mainly 3 types of users of our platform:
-              <br /> 1. Admin: <br />
-              There would be an admin who would be having the access from
-              anything to everything. Everything that can be done on the
-              platform is accessible by the admin.
-              <br /> 2. Human Resource Department: <br /> The HR would be having
-              access to a lot of facilities such as posting the
-              announcements/notices, getting all the feedbacks, uploading the
-              resources to the virtual library, to name a few.
-              <br /> 3. Employees: <br /> Every employee would be having the
-              portal in which he can view the important notices, announcements,
-              create their TODO, give 360 degree anonymous feedbacks to name a
-              few. <br /> The employee will not have access to posting anything
-              on the portal.
+              There would be mainly 3 types of users on our platform:
+              <br /> 1. Admin: There would be an admin who would be having the
+              access from anything to everything.
+              <br /> 2. Human Resource Department: The HR would be having access
+              to a lot of facilities such as posting the announcements/notices,
+              uploading to virtual library, to name a few.
+              <br /> 3. Employees: The employee will not have access to posting
+              anything on the portal. He can give feedbacks and view all the
+              facilities posted by HR.
             </p>
             {/* <h3>
               On clicking the proceed button you will be redirected to create an
@@ -83,7 +78,7 @@ const InfoPage = ({ addedResponse }) => {
                 EmpUp welcomes you to dive deep into the virtual working
                 experience.
                 <br /> In the time of social distancing we help you to come
-                closer. With you, For your, Forever.{" "}
+                closer. With you, For you, Forever.{" "}
               </h3>
               <img src={infoImage} alt="" />
               <button

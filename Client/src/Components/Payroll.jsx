@@ -78,8 +78,7 @@ const Payroll = ({ date }) => {
         </div>
         <div className="fin_notice">
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia illo
-            veritatis fugit, tempore eveniet beatae modi recusandae
+            This data is about the last payroll update of the organisation. It is the total amount payable to the employees. 
           </p>
         </div>
       </div>

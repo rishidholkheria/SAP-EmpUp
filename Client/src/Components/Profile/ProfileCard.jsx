@@ -22,10 +22,11 @@ const ProfileCard = () => {
             <div className="about">
               <h3 className="about_title">About</h3>
               <p className="about_text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Repudiandae architecto veniam accusamus aut optio! Nisi quasi
-                ea, dolorum aperiam maxime, repellat voluptate deleniti earum
-                reprehenderit, quas fuga nostrum explicabo architecto!
+                I have been working with web development since 2010, the period
+                during which I have worked in different environments. I am a
+                self-motivated and self-taught professional who likes to solve
+                problems. I merge a passion for usability and user experience
+                with technical knowledge to create cool digital experiences.
               </p>
             </div>
           </div>

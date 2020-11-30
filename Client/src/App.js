@@ -118,7 +118,19 @@ function App() {
                 <PayrollDetails />
               </div>
             </Route>
-            <Route path="/welcome">
+            <Route path="/error">
+              <div className="path_direction">
+                <ErrorPage />
+              </div>
+            </Route>
+            <Route path="/dashboard">
+              <div className="path_direction">
+                <Sidebar />
+                <Feed />
+                <HomeRight />
+              </div>
+            </Route>
+            <Route path="/">
               <div>
                 {/* <Header /> */}
                 <Navbar />
@@ -126,18 +138,6 @@ function App() {
                 <MiddleSection />
                 <HeroSectionRight />
                 <Footer />
-              </div>
-            </Route>
-            <Route path="/error">
-              <div className="path_direction">
-                <ErrorPage />
-              </div>
-            </Route>
-            <Route path="/">
-              <div className="path_direction">
-                <Sidebar />
-                <Feed />
-                <HomeRight />
               </div>
             </Route>
           </Switch>

@@ -113,7 +113,7 @@ class GroupChatSide extends React.Component {
         <div className="chat-container">
           <header className="chat-header">
             <h2 id="room-name">{rName}</h2>
-            <a href="index.html" className="leave_chat_btn">
+            <a href="/commonroom" className="leave_chat_btn">
               Leave Room
             </a>
           </header>

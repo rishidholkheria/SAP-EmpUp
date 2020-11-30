@@ -37,6 +37,10 @@
   flex: 4;
   margin: 0px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
 }
 
 .emp_netpay_details h2 {

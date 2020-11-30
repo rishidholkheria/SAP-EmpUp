@@ -26,7 +26,7 @@ function Sidebar() {
       <div className="amazon_logo_container">
         <Avatar className="sidebar__twitterIcon" src={boostLogo} />
       </div>
-      <Link to="/">
+      <Link to="/dashboard">
         <SidebarOption active Icon={HomeIcon} text="Dashboard" />
       </Link>
       <Link to="/library">
