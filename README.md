@@ -21,5 +21,5 @@
 - Rishi Dholkheria 🤘
 
 ## **Image Gallery**
-![WhatsApp Image 2020-12-01 at 7 24 38 PM](https://user-images.githubusercontent.com/64290511/100750557-3649f300-340c-11eb-9fdb-efa4807ef161.jpeg)
-![WhatsApp Image 2020-12-01 at 7 24 39 PM](https://user-images.githubusercontent.com/64290511/100750571-3ba73d80-340c-11eb-889e-61d6f984aa98.jpeg)
+![empup](https://user-images.githubusercontent.com/64290511/100751219-0cdd9700-340d-11eb-850a-67ebb43c3da2.jpeg)
+![dashboard](https://user-images.githubusercontent.com/64290511/100751243-1535d200-340d-11eb-956b-cc224fd0cbf1.jpeg)
