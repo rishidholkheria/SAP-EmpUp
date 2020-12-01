@@ -27,6 +27,20 @@ const LibraryRight = () => {
         <h2>News</h2>
       </div>
       <div className="all_news">
+        <NewsArticle
+          title={
+            "Lockdown Extended Till December 31: This States Imposes Total Shutdown in COVID Hotspots, Clamps Night Curfew in 12 Districts "
+          }
+          description="Amid the rising number of coronavirus cases, the Ashok Gehlot-led Rajasthan government extended the lockdown in containment zones till December 31, 2020."
+          source="https://www.india.com/news/india/lockdown-till-december-31-school-colleges-cinema-halls-closed-large-gatherings-restricted-whats-allowed-whats-prohibited-4232326/"
+        />
+        <NewsArticle
+          title={
+            "India’s Covid count in November lowest in 4 months, since july"
+          }
+          description="The Covid death toll in the country fell sharply in November .."
+          source=" http://timesofindia.indiatimes.com/articleshow/79500639.cms?utm_source=contentofinterest&utm_medium=text&utm_campaign=cppst"
+        />
         {news != 0 ? (
           [...news]
             .slice(0, 10)
