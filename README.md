@@ -1,6 +1,7 @@
 # **EmpUp🚀**
 ## **ADOBTABLE * ACCOUNTABLE * AFFORDABLE**
 > **BUILT ON MERN STACK 🔥💯**
+##**WINNERS OF SAP SEMICOLON HACKATHON 4.0 in the domain Customer Challenge 😎**
 
 - EmpUp is a web-based application which focuses on the challenges faced by the HR and employees during work-from-home environment.
 - EmpUp is also available as a desktop application powered by Electron.
@@ -17,8 +18,8 @@
 - HR OFFICE 👨‍💼
 
 ## **TEAM TWIN TECH**
-- Samridhi ✌
-- Rishi Dholkheria 🤘
+- Samridhi 🤘 (samridhikots@gmail.com): Github profile: https://github.com/samridhikots
+- Rishi Dholkheria 🤘 (rishidholkheria2001@gmail.com)
 
 ## **Image Gallery**
 ![empup](https://user-images.githubusercontent.com/64290511/100751219-0cdd9700-340d-11eb-850a-67ebb43c3da2.jpeg)
