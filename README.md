@@ -1,7 +1,8 @@
 # **EmpUp🚀**
 ## **ADOBTABLE * ACCOUNTABLE * AFFORDABLE**
 > **BUILT ON MERN STACK 🔥💯**
-##**WINNERS OF SAP SEMICOLON HACKATHON 4.0 in the domain Customer Challenge 😎**
+
+## **WINNERS OF SAP SEMICOLON HACKATHON 4.0 in the domain Customer Challenge 😎**
 
 - EmpUp is a web-based application which focuses on the challenges faced by the HR and employees during work-from-home environment.
 - EmpUp is also available as a desktop application powered by Electron.
