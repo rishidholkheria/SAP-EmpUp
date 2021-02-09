@@ -6,9 +6,24 @@ const XLSX = require("xlsx");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 const genId = require("../utils/random");
+const { google } = require("googleapis");
 
 const random = genId(6);
 var date = getDate();
+
+//setup google oauth
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLEINT_SECRET = process.env.CLEINT_SECRET;
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const EMAIL_ID = process.env.EMAIL;
+
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLEINT_SECRET,
+  REDIRECT_URI
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 //upload the file
 var storage = multer.diskStorage({
@@ -68,38 +83,45 @@ router.post("/send-payroll", async (req, res) => {
   if (req.body.email === "") {
     return res.status(400).send("Email can't be empty!!!!!");
   }
-  //send mail
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    // try:{
-    from: '"Team EmpUp" <team@EmpUp.com>',
-    to: req.body.email,
-    subject: "Welcome to EmpUp!",
-    html: { path: "welcome/payroll.html" },
-    attachments: [
-      {
-        filename: `EmpUp_${random}_Payroll_${date}.xlsx`,
-        path: process.cwd() + `/upload/EmpUp_${random}_Payroll_${date}.xlsx`,
-        cid: `uniq-EmpUp_${random}_Payroll_${date}.xlsx`,
+  try {
+    const accessToken = await oAuth2Client.getAccessToken();
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: EMAIL_ID,
+        clientId: CLIENT_ID,
+        clientSecret: CLEINT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
       },
-    ],
-    // },
-    // catch(err){
-    // res.send("Error: " + err);
-    // }
-  });
-  res.status(200).send("Email to your account sent");
-  console.log("Message sent: %s", info.messageId);
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      // try:{
+      from: '"Team EmpUp" <team@EmpUp.com>',
+      to: req.body.email,
+      subject: "Welcome to EmpUp!",
+      html: { path: "welcome/payroll.html" },
+      attachments: [
+        {
+          filename: `EmpUp_${random}_Payroll_${date}.xlsx`,
+          path: process.cwd() + `/upload/EmpUp_${random}_Payroll_${date}.xlsx`,
+          cid: `uniq-EmpUp_${random}_Payroll_${date}.xlsx`,
+        },
+      ],
+      // },
+      // catch(err){
+      // res.send("Error: " + err);
+      // }
+    });
+    res.status(200).send("Email to your account sent");
+    console.log("Message sent: %s", info.messageId);
+  }
+  catch (error) {
+    return error;
+  }
 });
 
 const excelToJson = () => {

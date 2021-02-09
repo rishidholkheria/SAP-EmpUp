@@ -10,6 +10,7 @@ const dotenv = require("dotenv");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const moment = require("moment");
+const { google } = require("googleapis");
 
 const Employee = require("../schema/Employee");
 const objOrg = require("../routes/organisation");
@@ -17,6 +18,20 @@ dotenv.config();
 
 console.log(objOrg.oId);
 router.use(express.json());
+
+//setup google oauth
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLEINT_SECRET = process.env.CLEINT_SECRET;
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const EMAIL_ID = process.env.EMAIL;
+
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLEINT_SECRET,
+  REDIRECT_URI
+);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 var date = getDate();
 // var time = moment().format('h:mm a');
@@ -75,7 +90,7 @@ router.post("/upload-to-db", (req, res) => {
   XLSX.writeFile(
     newWB,
     process.cwd() +
-      `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`
+    `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`
   );
 
   console.log("employees added!");
@@ -83,46 +98,43 @@ router.post("/upload-to-db", (req, res) => {
 
 //need email of org from front end
 router.post("/send-password-to-organisation", async (req, res) => {
-  // if (req.body.orgEmail === "") {
-  //   return res.send("Email should not be empty!!!!!");
-  // }
-  console.log(req.body.orgEmail);
-  //send mail
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  });
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    // try: {
-    from: '"Team EmpUp" <team@EmpUp.com>',
-    to: req.body.orgEmail,
-    subject: "Welcome to EmpUp!",
-    html: { path: "welcome/welcome.html" },
-    attachments: [
-      {
-        filename: `${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
-        path:
-          process.cwd() +
-          `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
-        cid: `uniq-${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+  try {
+    const accessToken = await oAuth2Client.getAccessToken();
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: EMAIL_ID,
+        clientId: CLIENT_ID,
+        clientSecret: CLEINT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken,
       },
-    ],
-    //   },
-    //   catch(err) {
-    //     res.send("Error in sending email: "+ err);
-    //     next(err);
-    //   },
-  });
+    });
 
-  res.send("Email to your org sent");
-  console.log("Message sent: %s", info.messageId);
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+      from: '"Team EmpUp" <team@EmpUp.com>',
+      to: req.body.orgEmail,
+      subject: "Welcome to EmpUp!",
+      html: { path: "welcome/welcome.html" },
+      attachments: [
+        {
+          filename: `${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+          path:
+            process.cwd() +
+            `/upload/${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+          cid: `uniq-${objOrg.oId}_EmpUp_Employee_${date}_Credentials.xlsx`,
+        },
+      ]
+    });
+    res.send("Email to your org sent");
+    console.log("Message sent: %s", info.messageId);
+  }
+  catch (error) {
+    return error;
+  }
 });
 
 const excelToJson = () => {
